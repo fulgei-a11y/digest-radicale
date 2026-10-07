@@ -7,105 +7,101 @@ from google.genai import types
 from google.genai import errors
 
 
-def generate_digest_with_fallback(client: genai.Client, prompt: str, system_instruction: str) -> str:
+def generate_digest_with_smart_fallback(client: genai.Client, prompt: str, system_instruction: str) -> str:
     """
-    Tenta di generare il contenuto con un meccanismo di retry e fallback progressivo.
-    Se Google Search (Grounding) causa incompatibilità su un modello, tenta la chiamata pulita.
+    Gestisce la generazione usando modelli Flash/Flash-Lite leggeri.
+    In caso di errori 429 (quota), attende qualche secondo prima di passare 
+    alla chiamata senza search o al modello successivo.
     """
-    # Elenco ordinato dei modelli stabili
+    # Lista di modelli ad alta quota nel piano gratuito
     models_to_try = [
-        "gemini-2.5-flash",  # Modello di riferimento: veloce, supporta la ricerca ed è molto tollerante sui limiti
-        "gemini-2.5-pro",    # Backup ad alte prestazioni
+        "gemini-2.5-flash",       # Modello principale veloce
+        "gemini-2.5-flash-lite",  # Modello ultra-leggero di riserva
     ]
 
-    max_retries_per_model = 3
     last_exception = None
 
     for model in models_to_try:
-        print(f"🔄 Inizio elaborazione con il modello: '{model}'...")
+        print(f"🔄 Avvio tentativo con il modello: '{model}'...")
 
-        for attempt in range(1, max_retries_per_model + 1):
+        # --- FASE 1: Tentativo con Google Search (Grounding) ---
+        for attempt in range(1, 3):
             try:
-                print(f"   [Tentativo {attempt}/{max_retries_per_model}] Generazione con Google Search...")
-
-                # Configurazione standard con Google Search
+                print(f"   [Tentativo {attempt}/2] Generazione con Google Search...")
                 config = types.GenerateContentConfig(
                     system_instruction=system_instruction,
                     tools=[{"google_search": {}}],
                     temperature=0.3,
                 )
-
                 response = client.models.generate_content(
                     model=model,
                     contents=prompt,
                     config=config,
                 )
-                print(f"✅ Generazione completata con successo con '{model}'!")
+                print(f"✅ Generazione con Search completata con successo usando '{model}'!")
                 return response.text
 
             except errors.APIError as e:
                 last_exception = e
                 is_rate_limit = e.code == 429 or "RESOURCE_EXHAUSTED" in str(e)
                 is_unavailable = e.code == 503 or "UNAVAILABLE" in str(e)
-                is_invalid_arg = e.code == 400 or "INVALID_ARGUMENT" in str(e)
-                is_not_found = e.code == 404 or "NOT_FOUND" in str(e)
 
-                # 1. Se il modello non viene trovato (404), passa al modello successivo
-                if is_not_found:
-                    print(f"⚠️ Modello '{model}' non trovato (404). Passaggio al prossimo modello...")
-                    break
-
-                # 2. Se l'errore è dovuto ai Tool (400), tenta la generazione SENZA Google Search
-                if is_invalid_arg:
-                    print(f"⚠️ Formato o tool non supportato per '{model}'. Riprovo senza Google Search...")
-                    try:
-                        clean_config = types.GenerateContentConfig(
-                            system_instruction=system_instruction,
-                            temperature=0.3,
-                        )
-                        clean_response = client.models.generate_content(
-                            model=model,
-                            contents=prompt,
-                            config=clean_config,
-                        )
-                        print(f"✅ Generazione senza tool completata con '{model}'!")
-                        return clean_response.text
-                    except Exception as clean_err:
-                        print(f"❌ Fallito anche il tentativo senza tool: {clean_err}")
-                        break
-
-                # 3. Se si tratta di un errore temporaneo (429 o 503), attesa esponenziale e riprova
                 if is_rate_limit or is_unavailable:
-                    reason = "Quota/Frequenza esaurita (429)" if is_rate_limit else "Server sovraccarico (503)"
-                    wait_time = attempt * 6  # Attesa: 6s, 12s, 18s
-                    print(f"⚠️ {reason}. Attesa di {wait_time} secondi prima di riprovare...")
+                    wait_time = attempt * 25  # Attende 25s al primo blocco, 50s al secondo
+                    print(f"⚠️ Quota o frequenza momentaneamente superata per '{model}'. Attesa di {wait_time} secondi...")
                     time.sleep(wait_time)
                 else:
-                    print(f"❌ Errore API imprevisto su '{model}': {e}")
-                    raise e
-
+                    print(f"⚠️ Errore con i tools su '{model}': {e}. Interruzione dei tentativi con Search.")
+                    break
             except Exception as e:
                 last_exception = e
                 print(f"❌ Errore generico di rete su '{model}': {e}")
-                time.sleep(4)
+                break
 
-    raise RuntimeError(f"❌ Impossibile generare il digest con i modelli configurati. Dettaglio ultimo errore: {last_exception}")
+        # --- FASE 2: Fallback SENZA Google Search (consuma molti meno token/quota) ---
+        print(f"🔄 Tentativo di generazione pulita (senza Search) su '{model}'...")
+        try:
+            clean_config = types.GenerateContentConfig(
+                system_instruction=system_instruction,
+                temperature=0.3,
+            )
+            clean_response = client.models.generate_content(
+                model=model,
+                contents=prompt,
+                config=clean_config,
+            )
+            print(f"✅ Generazione senza Search completata con successo con '{model}'!")
+            return clean_response.text
+
+        except errors.APIError as e:
+            last_exception = e
+            print(f"⚠️ Quota esaurita anche per la modalità pulita su '{model}': {e}")
+            print(f"➡️ Passaggio al modello successivo...")
+            time.sleep(5)
+        except Exception as e:
+            last_exception = e
+            print(f"❌ Errore imprevisto su '{model}': {e}")
+
+    raise RuntimeError(
+        f"❌ Impossibile generare il digest. La quota del piano gratuito è momentaneamente esaurita per tutti i modelli.\n"
+        f"Dettaglio ultimo errore: {last_exception}"
+    )
 
 
 def main():
-    # 1. Calcola la data di riferimento (2 giorni fa per garantire palinsesto completo)
+    # 1. Calcola la data di riferimento (2 giorni fa)
     ref_date = datetime.now() - timedelta(days=2)
     date_str_iso = ref_date.strftime("%Y-%m-%d")
     date_str_it = ref_date.strftime("%d.%m.%Y")
 
-    # 2. Inizializza il client verificando la chiave d'ambiente
+    # 2. Inizializza il client verificando la chiave di ambiente
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        raise ValueError("GEMINI_API_KEY non trovata nelle variabili d'ambiente di GitHub!")
+        raise ValueError("GEMINI_API_KEY non trovata nelle variabili d'ambiente!")
 
     client = genai.Client(api_key=api_key)
 
-    # 3. Istruzioni e Prompt
+    # 3. Prompt di istruzioni per Gemini
     system_instruction = (
         "Sei un giornalista professionista. Il tuo compito è analizzare la giornata di Radio Radicale "
         "e produrre un digest approfondito, organizzato PER TEMI e scritto in prosa chiara."
@@ -135,10 +131,10 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
 
     print(f"🚀 Inizio processo per il digest del {date_str_it}...")
 
-    # Esecuzione generazione con fallback
-    digest_md = generate_digest_with_fallback(client, prompt, system_instruction)
+    # Generazione con il sistema di fallback intelligente
+    digest_md = generate_digest_with_smart_fallback(client, prompt, system_instruction)
 
-    # 4. Salvataggio file JSON del giorno
+    # 4. Salvataggio del file JSON del giorno
     os.makedirs("digests", exist_ok=True)
     digest_path = f"digests/{date_str_iso}.json"
 
@@ -151,7 +147,7 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
     with open(digest_path, "w", encoding="utf-8") as f:
         json.dump(digest_data, f, ensure_ascii=False, indent=2)
 
-    # 5. Aggiornamento indice principale (index.json)
+    # 5. Aggiornamento dell'indice globale (index.json)
     index_path = "digests/index.json"
     index_data = []
 
@@ -162,7 +158,6 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
             except json.JSONDecodeError:
                 index_data = []
 
-    # Aggiorna evitando duplicati per la stessa data
     index_data = [item for item in index_data if item.get("date") != date_str_iso]
     index_data.insert(0, {"date": date_str_iso, "label": date_str_it})
 
@@ -170,7 +165,6 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
         json.dump(index_data, f, ensure_ascii=False, indent=2)
 
     print("✨ Processo completato: Digest e file index.json aggiornati con successo!")
-
 
 if __name__ == "__main__":
     main()

@@ -10,12 +10,12 @@ from google.genai import errors
 def generate_digest_with_fallback(client: genai.Client, prompt: str, system_instruction: str) -> str:
     """
     Tenta di generare il contenuto ciclando attraverso una lista di modelli.
-    Se un modello fallisce per quota esaurita (HTTP 429), passa automaticamente al successivo.
+    Se un modello è sovraccarico (503) o ha superato la quota (429), passa al successivo.
     """
     # Lista ordinata dei modelli da tentare
     models_to_try = [
-        "gemini-2.5-pro",    # Scelta prioritaria (qualità massima)
-        "gemini-2.5-flash",  # Backup principale (veloce, economico, quote ampie)
+        "gemini-2.5-pro",    # Scelta prioritaria
+        "gemini-2.5-flash",  # Backup temporaneo ad alte prestazioni
         "gemini-2.0-flash",  # Backup secondario
         "gemini-1.5-flash",  # Fallback di sicurezza
     ]
@@ -38,10 +38,14 @@ def generate_digest_with_fallback(client: genai.Client, prompt: str, system_inst
             return response.text
 
         except errors.APIError as e:
-            # Intercetta il blocco della quota 429 / RESOURCE_EXHAUSTED
-            if e.code == 429 or "RESOURCE_EXHAUSTED" in str(e):
-                print(f"⚠️ Quota esaurita o limite superato per '{model}'. Passaggio al modello successivo...")
-                time.sleep(2)  # Pausa precauzionale
+            # Intercetta sia l'esaurimento quota (429) sia il sovraccarico del server (503)
+            is_rate_limit = e.code == 429 or "RESOURCE_EXHAUSTED" in str(e)
+            is_server_unavailable = e.code == 503 or "UNAVAILABLE" in str(e)
+
+            if is_rate_limit or is_server_unavailable:
+                reason = "Quota esaurita (429)" if is_rate_limit else "Server momentaneamente sovraccarico (503)"
+                print(f"⚠️ {reason} per '{model}'. Passaggio al modello successivo...")
+                time.sleep(3)  # Pausa precauzionale
                 continue
             else:
                 # Errore critico (chiave errata, permessi, sintassi) -> interrompe subito
@@ -51,7 +55,7 @@ def generate_digest_with_fallback(client: genai.Client, prompt: str, system_inst
             print(f"❌ Errore generico con il modello '{model}': {e}")
             raise e
 
-    raise RuntimeError("❌ Impossibile generare il digest: tutti i modelli in elenco hanno esaurito la quota disponibile.")
+    raise RuntimeError("❌ Impossibile generare il digest: tutti i modelli in elenco sono indisponibili o hanno esaurito le quote.")
 
 
 def main():
@@ -97,7 +101,7 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
 
     print(f"Generazione del digest per la data {date_str_it} in corso...")
 
-    # Generazione con gestione e fallback dei modelli
+    # Generazione del digest gestita con fallback sui modelli
     digest_md = generate_digest_with_fallback(client, prompt, system_instruction)
 
     # 4. Salvataggio del digest in formato JSON
@@ -132,6 +136,5 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
         json.dump(index_data, f, ensure_ascii=False, indent=2)
 
     print("✨ Digest e indice aggiornati con successo!")
-
 if __name__ == "__main__":
     main()

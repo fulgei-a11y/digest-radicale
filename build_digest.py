@@ -9,14 +9,16 @@ from google.genai import errors
 
 def generate_digest_with_smart_fallback(client: genai.Client, prompt: str, system_instruction: str) -> str:
     """
-    Tenta prima l'elaborazione con i modelli PRO.
-    Se incontra blocchi di quota (429), sovraccarico (503) o limiti del Free Tier,
-    scala automaticamente sui modelli FLASH e FLASH-LITE.
+    Scorre la catena di modelli in modo intelligente.
+    In caso di blocco di quota (429) o modello non trovato (404), passa IMMEDIATAMENTE
+    al modello successivo della lista senza perdere tempo con tentativi ridondanti.
     """
+    # Elenco validato dei modelli Gemini attivi e funzionanti
     models_to_try = [
-        "gemini-2.5-pro",         # Massima qualità giornalistica
-        "gemini-2.5-flash",       # Bilanciato, veloce e con ampie quote
-        "gemini-2.5-flash-lite",  # Backup ultraleggero ad alta tolleranza
+        "gemini-2.5-pro",        # 1st Choice: Massima qualità di analisi e sintesi
+        "gemini-2.5-flash",      # 2nd Choice: Veloce, preciso, ottimo con Google Search
+        "gemini-2.0-flash",      # 3rd Choice: Solida alternativa di backup
+        "gemini-2.5-flash-lite", # 4th Choice: Ultraleggero con quote ampie nel Free Tier
     ]
 
     last_exception = None
@@ -24,50 +26,53 @@ def generate_digest_with_smart_fallback(client: genai.Client, prompt: str, syste
     for model in models_to_try:
         print(f"🔄 Inizio tentativo con il modello: '{model}'...")
 
-        # --- FASE 1: Generazione con Google Search (Grounding) ---
-        for attempt in range(1, 3):
-            try:
-                print(f"   [Tentativo {attempt}/2] Generazione con Google Search...")
-                config = types.GenerateContentConfig(
-                    system_instruction=system_instruction,
-                    tools=[{"google_search": {}}],
-                    temperature=0.3,
-                )
-                response = client.models.generate_content(
-                    model=model,
-                    contents=prompt,
-                    config=config,
-                )
-                print(f"✅ Generazione con Search completata con successo usando '{model}'!")
-                return response.text
+        # -------------------------------------------------------------
+        # TENTATIVO PRINCIPALE: Generazione con Google Search (Grounding)
+        # -------------------------------------------------------------
+        try:
+            print(f"   Esecuzione generazione con Google Search su '{model}'...")
+            config = types.GenerateContentConfig(
+                system_instruction=system_instruction,
+                tools=[types.Tool(google_search=types.GoogleSearch())],
+                temperature=0.3,
+            )
+            response = client.models.generate_content(
+                model=model,
+                contents=prompt,
+                config=config,
+            )
+            print(f"✅ Digest generato con successo usando '{model}' (con Search)!")
+            return response.text
 
-            except errors.APIError as e:
-                last_exception = e
-                is_rate_limit = e.code == 429 or "RESOURCE_EXHAUSTED" in str(e)
-                is_unavailable = e.code == 503 or "UNAVAILABLE" in str(e)
+        except errors.APIError as e:
+            last_exception = e
+            is_rate_limit = e.code == 429 or "RESOURCE_EXHAUSTED" in str(e)
+            is_not_found = e.code in (404, 400) or "NOT_FOUND" in str(e)
+            is_unavailable = e.code == 503 or "UNAVAILABLE" in str(e)
 
-                if is_rate_limit:
-                    if "pro" in model:
-                        print(f"⚠️ Quota del piano gratuito per '{model}' esaurita (429). Scalo subito sui modelli Flash...")
-                        break
-                    else:
-                        wait_time = attempt * 20
-                        print(f"⚠️ Quota o frequenza superata per '{model}'. Attesa di {wait_time}s...")
-                        time.sleep(wait_time)
-                elif is_unavailable:
-                    print(f"⚠️ Server sovraccarico (503) per '{model}'. Attesa breve...")
-                    time.sleep(5)
-                else:
-                    print(f"⚠️ Errore con i tools su '{model}': {e}. Interruzione tentativi con Search.")
-                    break
+            # Caso 1: Quota esaurita (429) -> Passa SUBITO al prossimo modello
+            if is_rate_limit:
+                print(f"⚠️ Quota o limite di frequenza esaurito per '{model}' (429). Passaggio immediato al modello successivo...")
+                continue
 
-            except Exception as e:
-                last_exception = e
-                print(f"❌ Errore di connessione su '{model}': {e}")
-                break
+            # Caso 2: Modello inesistente/deprecato (404) -> Passa SUBITO al prossimo modello
+            if is_not_found:
+                print(f"⚠️ Modello '{model}' non trovato o non supportato (404/400). Passaggio al prossimo modello...")
+                continue
 
-        # --- FASE 2: Fallback SENZA Google Search ---
-        print(f"🔄 Tentativo di generazione pulita (senza Search) su '{model}'...")
+            # Caso 3: Server sovraccarico (503) -> Piccola attesa prima di tentare il fallback pulito
+            if is_unavailable:
+                print(f"⚠️ Server temporaneamente non disponibile (503) per '{model}'. Breve attesa...")
+                time.sleep(3)
+
+        except Exception as e:
+            last_exception = e
+            print(f"❌ Errore imprevisto su '{model}': {e}")
+
+        # -------------------------------------------------------------
+        # FALLBACK SECONDARIO: Tentativo senza Search (solo se l'errore non era 429/404)
+        # -------------------------------------------------------------
+        print(f"🔄 Tentativo di fallback senza strumenti su '{model}'...")
         try:
             clean_config = types.GenerateContentConfig(
                 system_instruction=system_instruction,
@@ -78,26 +83,25 @@ def generate_digest_with_smart_fallback(client: genai.Client, prompt: str, syste
                 contents=prompt,
                 config=clean_config,
             )
-            print(f"✅ Generazione senza Search completata con successo con '{model}'!")
+            print(f"✅ Digest generato con successo usando '{model}' (senza Search)!")
             return clean_response.text
 
         except errors.APIError as e:
             last_exception = e
-            print(f"⚠️ Quota/accesso negato anche in modalità pulita per '{model}': {e}")
-            print(f"➡️ Passaggio al modello successivo...")
-            time.sleep(3)
+            print(f"⚠️ Fallito anche il fallback pulito su '{model}': {e}")
+            print(f"➡️ Passaggio al prossimo modello della lista...")
         except Exception as e:
             last_exception = e
-            print(f"❌ Errore imprevisto su '{model}': {e}")
+            print(f"❌ Errore generico nel fallback su '{model}': {e}")
 
     raise RuntimeError(
-        f"❌ Impossibile generare il digest. Nessun modello è riuscito a completare la richiesta.\n"
-        f"Dettaglio ultimo errore: {last_exception}"
+        f"❌ Errore critico: Tutte le quote dei modelli sono esaurite per la giornata di oggi.\n"
+        f"Dettaglio dell'ultimo errore riscontrato: {last_exception}"
     )
 
 
 def generate_index_html():
-    """Genera la pagina index.html per la visualizzazione web dei digest."""
+    """Genera la pagina web index.html dinamica per la visualizzazione dei digest."""
     html_content = """<!DOCTYPE html>
 <html lang="it">
 <head>
@@ -124,7 +128,7 @@ def generate_index_html():
     </header>
 
     <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-        <!-- Sidebar date -->
+        <!-- Sidebar edizioni -->
         <aside class="md:col-span-1 bg-white p-4 rounded-xl shadow-sm border border-slate-200 h-fit">
             <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Archivio Edizioni</h2>
             <ul id="date-list" class="space-y-1">
@@ -132,7 +136,7 @@ def generate_index_html():
             </ul>
         </aside>
 
-        <!-- Contenuto del Digest -->
+        <!-- Visualizzatore contenuto -->
         <section class="md:col-span-3 bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200">
             <div id="content" class="prose max-w-none">
                 <p class="text-slate-400">Seleziona una data dall'archivio per leggere il digest.</p>
@@ -141,7 +145,7 @@ def generate_index_html():
     </main>
 
     <footer class="bg-white border-t border-slate-200 mt-12 py-4 text-center text-xs text-slate-500">
-        Generato automaticamente tramite Gemini API & GitHub Actions
+        Generato automaticamente con Gemini API & GitHub Actions
     </footer>
 
     <script>
@@ -155,7 +159,6 @@ def generate_index_html():
                 const data = await res.json();
                 contentDiv.innerHTML = marked.parse(data.markdown);
                 
-                // Aggiorna stato attivo nella sidebar
                 document.querySelectorAll('#date-list button').forEach(btn => {
                     btn.classList.remove('bg-indigo-50', 'text-indigo-700', 'font-semibold');
                     if (btn.dataset.date === date) {
@@ -190,10 +193,9 @@ def generate_index_html():
                     </li>
                 `).join('');
 
-                // Carica di default il più recente
                 loadDigest(index[0].date);
             } catch (err) {
-                document.getElementById('date-list').innerHTML = '<li class="text-red-500 text-sm">Errore indice.</li>';
+                document.getElementById('date-list').innerHTML = '<li class="text-red-500 text-sm">Errore caricamento indice.</li>';
             }
         }
 
@@ -204,7 +206,7 @@ def generate_index_html():
 """
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
-    print("🌐 File 'index.html' generato e aggiornato con successo!")
+    print("🌐 Pagina 'index.html' aggiornata con successo!")
 
 
 def main():
@@ -213,21 +215,21 @@ def main():
     date_str_iso = ref_date.strftime("%Y-%m-%d")
     date_str_it = ref_date.strftime("%d.%m.%Y")
 
-    # 2. Inizializza il client verificando la chiave di ambiente
+    # 2. Inizializza il client con la API Key
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         raise ValueError("GEMINI_API_KEY non trovata nelle variabili d'ambiente!")
 
     client = genai.Client(api_key=api_key)
 
-    # 3. Prompt di istruzioni
+    # 3. Istruzioni e Prompt
     system_instruction = (
         "Sei un giornalista professionista. Il tuo compito è analizzare la giornata di Radio Radicale "
         "e produrre un digest approfondito, organizzato PER TEMI e scritto in prosa chiara."
     )
 
     prompt = f"""
-Produci un digest in italiano sui lavori e le trasmissioni di Radio Radicale relativi alla data: {date_str_it}.
+Produci un digest in italiano sui lavori e le trasmissionsi di Radio Radicale relativi alla data: {date_str_it}.
 URL agenda di riferimento: https://www.radioradicale.it/agenda?data={date_str_iso}
 
 Raccogli tutte le informazioni sulle registrazioni, interventi, audizioni e rassegne stampa di quella giornata.
@@ -250,7 +252,7 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
 
     print(f"🚀 Inizio processo per il digest del {date_str_it}...")
 
-    # Generazione con il sistema di fallback
+    # Generazione con fallback ad alta efficienza
     digest_md = generate_digest_with_smart_fallback(client, prompt, system_instruction)
 
     # 4. Salvataggio del file JSON del giorno
@@ -283,9 +285,11 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
     with open(index_path, "w", encoding="utf-8") as f:
         json.dump(index_data, f, ensure_ascii=False, indent=2)
 
-    # 6. Generazione della pagina HTML per la pubblicazione web (GitHub Pages)
+    # 6. Generazione del file web
     generate_index_html()
 
-    print("✨ Processo completato: Digest, index.json e index.html aggiornati con successo!")
+    print("✨ Esecuzione completata con successo!")
+
+
 if __name__ == "__main__":
     main()

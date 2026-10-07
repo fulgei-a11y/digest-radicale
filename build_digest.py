@@ -9,22 +9,24 @@ from google.genai import errors
 
 def generate_digest_with_fallback(client: genai.Client, prompt: str, system_instruction: str) -> str:
     """
-    Tenta di generare il contenuto ciclando attraverso una lista di modelli.
-    Se un modello è sovraccarico (503) o ha superato la quota (429), passa al successivo.
+    Tenta di generare il contenuto ciclando attraverso una lista di modelli validi.
+    Se un modello incontra un problema (quota 429, sovraccarico 503, non trovato 404/400),
+    passa al successivo senza far fallire lo script.
     """
-    # Lista ordinata dei modelli da tentare
+    # Lista ordinata di modelli stabili e supportati dall'SDK google-genai
     models_to_try = [
-        "gemini-2.5-pro",    # Scelta prioritaria
-        "gemini-2.5-flash",  # Backup temporaneo ad alte prestazioni
-        "gemini-2.0-flash",  # Backup secondario
-        "gemini-1.5-flash",  # Fallback di sicurezza
+        "gemini-2.5-flash",  # Scelta primaria: velocissimo, altissimi limiti di quota gratuita
+        "gemini-2.5-pro",    # Modello avanzato (soggetto a limiti di quota più stringenti)
+        "gemini-1.5-flash",  # Fallback di massima stabilità
     ]
 
     config = types.GenerateContentConfig(
         system_instruction=system_instruction,
-        tools=[{"google_search": {}}],  # Grounding con Google Search attivo
+        tools=[{"google_search": {}}],  # Grounding con Google Search
         temperature=0.3,
     )
+
+    last_exception = None
 
     for model in models_to_try:
         try:
@@ -38,24 +40,34 @@ def generate_digest_with_fallback(client: genai.Client, prompt: str, system_inst
             return response.text
 
         except errors.APIError as e:
-            # Intercetta sia l'esaurimento quota (429) sia il sovraccarico del server (503)
+            last_exception = e
+            # Intercetta errori di quota, sovraccarico o modello non trovato/deprecato
             is_rate_limit = e.code == 429 or "RESOURCE_EXHAUSTED" in str(e)
-            is_server_unavailable = e.code == 503 or "UNAVAILABLE" in str(e)
+            is_unavailable = e.code == 503 or "UNAVAILABLE" in str(e)
+            is_not_found = e.code in (404, 400) or "NOT_FOUND" in str(e) or "INVALID_ARGUMENT" in str(e)
 
-            if is_rate_limit or is_server_unavailable:
-                reason = "Quota esaurita (429)" if is_rate_limit else "Server momentaneamente sovraccarico (503)"
+            if is_rate_limit or is_unavailable or is_not_found:
+                if is_rate_limit:
+                    reason = "Quota esaurita (429)"
+                elif is_unavailable:
+                    reason = "Server momentaneamente sovraccarico (503)"
+                else:
+                    reason = "Modello non disponibile o non supportato (404/400)"
+
                 print(f"⚠️ {reason} per '{model}'. Passaggio al modello successivo...")
-                time.sleep(3)  # Pausa precauzionale
+                time.sleep(2)  # Pausa precauzionale prima di riprovare
                 continue
             else:
-                # Errore critico (chiave errata, permessi, sintassi) -> interrompe subito
+                # Errore critico non di rete/quota (es. API Key errata) -> interrompe subito
                 print(f"❌ Errore API critico con il modello '{model}': {e}")
                 raise e
         except Exception as e:
-            print(f"❌ Errore generico con il modello '{model}': {e}")
-            raise e
+            last_exception = e
+            print(f"❌ Errore generico durante la chiamata al modello '{model}': {e}")
+            time.sleep(2)
+            continue
 
-    raise RuntimeError("❌ Impossibile generare il digest: tutti i modelli in elenco sono indisponibili o hanno esaurito le quote.")
+    raise RuntimeError(f"❌ Impossibile generare il digest con i modelli configurati. Ultimo errore: {last_exception}")
 
 
 def main():

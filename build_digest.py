@@ -9,81 +9,103 @@ from google.genai import errors
 
 def generate_digest_with_fallback(client: genai.Client, prompt: str, system_instruction: str) -> str:
     """
-    Tenta di generare il contenuto ciclando attraverso una lista di modelli validi.
-    Se un modello incontra un problema (quota 429, sovraccarico 503, non trovato 404/400),
-    passa al successivo senza far fallire lo script.
+    Tenta di generare il contenuto con un meccanismo di retry e fallback progressivo.
+    Se Google Search (Grounding) causa incompatibilità su un modello, tenta la chiamata pulita.
     """
-    # Lista ordinata di modelli stabili e supportati dall'SDK google-genai
+    # Elenco ordinato dei modelli stabili
     models_to_try = [
-        "gemini-2.5-flash",  # Scelta primaria: velocissimo, altissimi limiti di quota gratuita
-        "gemini-2.5-pro",    # Modello avanzato (soggetto a limiti di quota più stringenti)
-        "gemini-1.5-flash",  # Fallback di massima stabilità
+        "gemini-2.5-flash",  # Modello di riferimento: veloce, supporta la ricerca ed è molto tollerante sui limiti
+        "gemini-2.5-pro",    # Backup ad alte prestazioni
     ]
 
-    config = types.GenerateContentConfig(
-        system_instruction=system_instruction,
-        tools=[{"google_search": {}}],  # Grounding con Google Search
-        temperature=0.3,
-    )
-
+    max_retries_per_model = 3
     last_exception = None
 
     for model in models_to_try:
-        try:
-            print(f"🔄 Tentativo di generazione con il modello: '{model}'...")
-            response = client.models.generate_content(
-                model=model,
-                contents=prompt,
-                config=config,
-            )
-            print(f"✅ Generazione completata con successo con il modello: '{model}'")
-            return response.text
+        print(f"🔄 Inizio elaborazione con il modello: '{model}'...")
 
-        except errors.APIError as e:
-            last_exception = e
-            # Intercetta errori di quota, sovraccarico o modello non trovato/deprecato
-            is_rate_limit = e.code == 429 or "RESOURCE_EXHAUSTED" in str(e)
-            is_unavailable = e.code == 503 or "UNAVAILABLE" in str(e)
-            is_not_found = e.code in (404, 400) or "NOT_FOUND" in str(e) or "INVALID_ARGUMENT" in str(e)
+        for attempt in range(1, max_retries_per_model + 1):
+            try:
+                print(f"   [Tentativo {attempt}/{max_retries_per_model}] Generazione con Google Search...")
 
-            if is_rate_limit or is_unavailable or is_not_found:
-                if is_rate_limit:
-                    reason = "Quota esaurita (429)"
-                elif is_unavailable:
-                    reason = "Server momentaneamente sovraccarico (503)"
+                # Configurazione standard con Google Search
+                config = types.GenerateContentConfig(
+                    system_instruction=system_instruction,
+                    tools=[{"google_search": {}}],
+                    temperature=0.3,
+                )
+
+                response = client.models.generate_content(
+                    model=model,
+                    contents=prompt,
+                    config=config,
+                )
+                print(f"✅ Generazione completata con successo con '{model}'!")
+                return response.text
+
+            except errors.APIError as e:
+                last_exception = e
+                is_rate_limit = e.code == 429 or "RESOURCE_EXHAUSTED" in str(e)
+                is_unavailable = e.code == 503 or "UNAVAILABLE" in str(e)
+                is_invalid_arg = e.code == 400 or "INVALID_ARGUMENT" in str(e)
+                is_not_found = e.code == 404 or "NOT_FOUND" in str(e)
+
+                # 1. Se il modello non viene trovato (404), passa al modello successivo
+                if is_not_found:
+                    print(f"⚠️ Modello '{model}' non trovato (404). Passaggio al prossimo modello...")
+                    break
+
+                # 2. Se l'errore è dovuto ai Tool (400), tenta la generazione SENZA Google Search
+                if is_invalid_arg:
+                    print(f"⚠️ Formato o tool non supportato per '{model}'. Riprovo senza Google Search...")
+                    try:
+                        clean_config = types.GenerateContentConfig(
+                            system_instruction=system_instruction,
+                            temperature=0.3,
+                        )
+                        clean_response = client.models.generate_content(
+                            model=model,
+                            contents=prompt,
+                            config=clean_config,
+                        )
+                        print(f"✅ Generazione senza tool completata con '{model}'!")
+                        return clean_response.text
+                    except Exception as clean_err:
+                        print(f"❌ Fallito anche il tentativo senza tool: {clean_err}")
+                        break
+
+                # 3. Se si tratta di un errore temporaneo (429 o 503), attesa esponenziale e riprova
+                if is_rate_limit or is_unavailable:
+                    reason = "Quota/Frequenza esaurita (429)" if is_rate_limit else "Server sovraccarico (503)"
+                    wait_time = attempt * 6  # Attesa: 6s, 12s, 18s
+                    print(f"⚠️ {reason}. Attesa di {wait_time} secondi prima di riprovare...")
+                    time.sleep(wait_time)
                 else:
-                    reason = "Modello non disponibile o non supportato (404/400)"
+                    print(f"❌ Errore API imprevisto su '{model}': {e}")
+                    raise e
 
-                print(f"⚠️ {reason} per '{model}'. Passaggio al modello successivo...")
-                time.sleep(2)  # Pausa precauzionale prima di riprovare
-                continue
-            else:
-                # Errore critico non di rete/quota (es. API Key errata) -> interrompe subito
-                print(f"❌ Errore API critico con il modello '{model}': {e}")
-                raise e
-        except Exception as e:
-            last_exception = e
-            print(f"❌ Errore generico durante la chiamata al modello '{model}': {e}")
-            time.sleep(2)
-            continue
+            except Exception as e:
+                last_exception = e
+                print(f"❌ Errore generico di rete su '{model}': {e}")
+                time.sleep(4)
 
-    raise RuntimeError(f"❌ Impossibile generare il digest con i modelli configurati. Ultimo errore: {last_exception}")
+    raise RuntimeError(f"❌ Impossibile generare il digest con i modelli configurati. Dettaglio ultimo errore: {last_exception}")
 
 
 def main():
-    # 1. Calcola la data di riferimento (2 giorni fa per avere palinsesto completo)
+    # 1. Calcola la data di riferimento (2 giorni fa per garantire palinsesto completo)
     ref_date = datetime.now() - timedelta(days=2)
     date_str_iso = ref_date.strftime("%Y-%m-%d")
     date_str_it = ref_date.strftime("%d.%m.%Y")
 
-    # 2. Inizializza il client con la chiave presente nell'ambiente
+    # 2. Inizializza il client verificando la chiave d'ambiente
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        raise ValueError("GEMINI_API_KEY non trovata nelle variabili d'ambiente!")
+        raise ValueError("GEMINI_API_KEY non trovata nelle variabili d'ambiente di GitHub!")
 
     client = genai.Client(api_key=api_key)
 
-    # 3. Prompt di istruzioni per Gemini
+    # 3. Istruzioni e Prompt
     system_instruction = (
         "Sei un giornalista professionista. Il tuo compito è analizzare la giornata di Radio Radicale "
         "e produrre un digest approfondito, organizzato PER TEMI e scritto in prosa chiara."
@@ -111,12 +133,12 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
 ## Cosa non è stato possibile ricostruire
 """
 
-    print(f"Generazione del digest per la data {date_str_it} in corso...")
+    print(f"🚀 Inizio processo per il digest del {date_str_it}...")
 
-    # Generazione del digest gestita con fallback sui modelli
+    # Esecuzione generazione con fallback
     digest_md = generate_digest_with_fallback(client, prompt, system_instruction)
 
-    # 4. Salvataggio del digest in formato JSON
+    # 4. Salvataggio file JSON del giorno
     os.makedirs("digests", exist_ok=True)
     digest_path = f"digests/{date_str_iso}.json"
 
@@ -129,7 +151,7 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
     with open(digest_path, "w", encoding="utf-8") as f:
         json.dump(digest_data, f, ensure_ascii=False, indent=2)
 
-    # 5. Aggiornamento dell'indice globale (index.json)
+    # 5. Aggiornamento indice principale (index.json)
     index_path = "digests/index.json"
     index_data = []
 
@@ -140,13 +162,15 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
             except json.JSONDecodeError:
                 index_data = []
 
-    # Aggiungi o aggiorna l'elemento nell'indice
+    # Aggiorna evitando duplicati per la stessa data
     index_data = [item for item in index_data if item.get("date") != date_str_iso]
     index_data.insert(0, {"date": date_str_iso, "label": date_str_it})
 
     with open(index_path, "w", encoding="utf-8") as f:
         json.dump(index_data, f, ensure_ascii=False, indent=2)
 
-    print("✨ Digest e indice aggiornati con successo!")
+    print("✨ Processo completato: Digest e file index.json aggiornati con successo!")
+
+
 if __name__ == "__main__":
     main()

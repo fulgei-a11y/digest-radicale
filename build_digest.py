@@ -1,8 +1,58 @@
 import os
 import json
+import time
 from datetime import datetime, timedelta
 from google import genai
 from google.genai import types
+from google.genai import errors
+
+
+def generate_digest_with_fallback(client: genai.Client, prompt: str, system_instruction: str) -> str:
+    """
+    Tenta di generare il contenuto ciclando attraverso una lista di modelli.
+    Se un modello fallisce per quota esaurita (HTTP 429), passa automaticamente al successivo.
+    """
+    # Lista ordinata dei modelli da tentare
+    models_to_try = [
+        "gemini-2.5-pro",    # Scelta prioritaria (qualità massima)
+        "gemini-2.5-flash",  # Backup principale (veloce, economico, quote ampie)
+        "gemini-2.0-flash",  # Backup secondario
+        "gemini-1.5-flash",  # Fallback di sicurezza
+    ]
+
+    config = types.GenerateContentConfig(
+        system_instruction=system_instruction,
+        tools=[{"google_search": {}}],  # Grounding con Google Search attivo
+        temperature=0.3,
+    )
+
+    for model in models_to_try:
+        try:
+            print(f"🔄 Tentativo di generazione con il modello: '{model}'...")
+            response = client.models.generate_content(
+                model=model,
+                contents=prompt,
+                config=config,
+            )
+            print(f"✅ Generazione completata con successo con il modello: '{model}'")
+            return response.text
+
+        except errors.APIError as e:
+            # Intercetta il blocco della quota 429 / RESOURCE_EXHAUSTED
+            if e.code == 429 or "RESOURCE_EXHAUSTED" in str(e):
+                print(f"⚠️ Quota esaurita o limite superato per '{model}'. Passaggio al modello successivo...")
+                time.sleep(2)  # Pausa precauzionale
+                continue
+            else:
+                # Errore critico (chiave errata, permessi, sintassi) -> interrompe subito
+                print(f"❌ Errore API critico con il modello '{model}': {e}")
+                raise e
+        except Exception as e:
+            print(f"❌ Errore generico con il modello '{model}': {e}")
+            raise e
+
+    raise RuntimeError("❌ Impossibile generare il digest: tutti i modelli in elenco hanno esaurito la quota disponibile.")
+
 
 def main():
     # 1. Calcola la data di riferimento (2 giorni fa per avere palinsesto completo)
@@ -47,18 +97,8 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
 
     print(f"Generazione del digest per la data {date_str_it} in corso...")
 
-    # Chiamata al modello con Google Search abilitato (Grounding)
-    response = client.models.generate_content(
-        model='gemini-2.5-pro',
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            system_instruction=system_instruction,
-            tools=[{"google_search": {}}],
-            temperature=0.3,
-        )
-    )
-
-    digest_md = response.text
+    # Generazione con gestione e fallback dei modelli
+    digest_md = generate_digest_with_fallback(client, prompt, system_instruction)
 
     # 4. Salvataggio del digest in formato JSON
     os.makedirs("digests", exist_ok=True)
@@ -91,7 +131,7 @@ Sintetizza i contenuti e genera il digest in formato Markdown seguendo questa st
     with open(index_path, "w", encoding="utf-8") as f:
         json.dump(index_data, f, ensure_ascii=False, indent=2)
 
-    print("Digest e indice aggiornati con successo!")
+    print("✨ Digest e indice aggiornati con successo!")
 
 if __name__ == "__main__":
     main()

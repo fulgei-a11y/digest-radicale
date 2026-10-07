@@ -1,0 +1,39 @@
+name: Generate Daily Radicale Digest
+
+on:
+  schedule:
+    - cron: '0 5 * * *'  # Esegue ogni mattina alle 05:00 UTC
+  workflow_dispatch:      # Permette l'esecuzione manuale
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configura Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installa dipendenze
+        run: |
+          pip install -r requirements.txt
+
+      - name: Esegui generazione Digest
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python build_digest.py
+
+      - name: Salva e carica le modifiche sul repository
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add digests/
+          git commit -m "Automated digest update" || exit 0
+          git push

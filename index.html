@@ -2,91 +2,334 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
 <title>Digest Radio Radicale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>window.marked || document.write('<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"><\/script>')</script>
 <style>
-  :root { --bg:#fff; --fg:#1f2328; --muted:#656d76; --line:#d0d7de; --accent:#0969da; --chip:#f3f4f6; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#0d1117; --fg:#e6edf3; --muted:#8d96a0; --line:#30363d; --accent:#4493f8; --chip:#161b22; }
+  :root {
+    --bg:#f6f4ef; --surface:#ffffff; --surface-2:#efece5; --fg:#16181d; --muted:#6b6f76;
+    --line:#e3dfd6; --accent:#d6332f; --accent-soft:#fbe9e7; --link:#b5241f;
+    --shadow:0 1px 2px rgba(20,20,20,.04), 0 8px 24px rgba(20,20,20,.06);
+    --radius:18px;
+    --serif:"Fraunces", Georgia, "Times New Roman", serif;
+    --sans:"Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
   }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg);
-         font:17px/1.6 -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width:760px; margin:0 auto; padding:16px; }
-  header { border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:8px; }
-  header h1 { font-size:1.3rem; margin:0 0 10px; }
-  .nav { display:flex; gap:8px; align-items:center; }
-  .nav button { font-size:1rem; padding:8px 12px; border-radius:8px; cursor:pointer;
-                border:1px solid var(--line); background:var(--chip); color:var(--fg); }
-  .nav button:disabled { opacity:.4; cursor:default; }
-  .nav select { flex:1; min-width:0; font-size:1rem; padding:8px 10px; border-radius:8px;
-                border:1px solid var(--line); background:var(--bg); color:var(--fg); }
-  #content h1 { font-size:1.6rem; line-height:1.25; }
-  #content h2 { font-size:1.25rem; margin-top:1.8em; border-bottom:1px solid var(--line); padding-bottom:4px; }
-  #content a { color:var(--accent); }
-  #content li { margin:4px 0; }
-  .msg { color:var(--muted); padding:24px 0; }
-  #archive { margin-top:40px; border-top:1px solid var(--line); padding-top:12px; }
-  #archive h2 { font-size:1.1rem; margin:0 0 10px; }
-  .days { display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:0; }
-  .days a { display:block; padding:6px 12px; border-radius:999px; text-decoration:none;
-            background:var(--chip); border:1px solid var(--line); color:var(--fg); font-size:.95rem; }
-  .days a.current { background:var(--accent); border-color:var(--accent); color:#fff; }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0f1115; --surface:#171a20; --surface-2:#1f232b; --fg:#ecebe7; --muted:#9a9ea6;
+      --line:#2a2f38; --accent:#ff5a4f; --accent-soft:#2a1716; --link:#ff8a80;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16.5px/1.7 var(--sans);
+         -webkit-font-smoothing:antialiased; }
+
+  /* Barra di avanzamento della lettura */
+  #progress { position:fixed; top:0; left:0; height:3px; width:0; background:var(--accent);
+              z-index:30; transition:width .1s linear; }
+
+  /* Testata */
+  .topbar { position:sticky; top:0; z-index:20; backdrop-filter:saturate(1.4) blur(14px);
+            -webkit-backdrop-filter:saturate(1.4) blur(14px);
+            background:color-mix(in srgb, var(--bg) 82%, transparent);
+            border-bottom:1px solid var(--line); }
+  .topbar-inner { max-width:780px; margin:0 auto; padding:12px 16px;
+                  display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:-.01em; }
+  .brand small { display:block; font-weight:500; color:var(--muted); font-size:.75rem; letter-spacing:.08em;
+                 text-transform:uppercase; line-height:1.2; }
+  .onair { width:10px; height:10px; border-radius:50%; background:var(--accent); flex:none;
+           box-shadow:0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
+           animation:pulse 2.2s infinite; }
+  @keyframes pulse { 70% { box-shadow:0 0 0 10px transparent; } 100% { box-shadow:0 0 0 0 transparent; } }
+  .icon-btn { display:inline-flex; align-items:center; gap:8px; border:0; cursor:pointer;
+              background:var(--fg); color:var(--bg); font:600 .9rem var(--sans);
+              padding:9px 14px; border-radius:999px; transition:transform .15s, opacity .15s; }
+  .icon-btn:active { transform:scale(.96); }
+  .icon-btn:disabled { opacity:.35; cursor:default; }
+  .icon-btn svg { width:18px; height:18px; }
+
+  main { max-width:780px; margin:0 auto; padding:20px 16px 80px; }
+
+  /* Navigatore delle date */
+  .datenav { display:flex; align-items:center; gap:8px; background:var(--surface);
+             border:1px solid var(--line); border-radius:999px; padding:6px; box-shadow:var(--shadow); }
+  .datenav button { flex:none; width:42px; height:42px; border-radius:50%; border:0; cursor:pointer;
+                    background:var(--surface-2); color:var(--fg); display:grid; place-items:center;
+                    transition:background .15s, transform .15s; }
+  .datenav button:hover:not(:disabled) { background:var(--accent-soft); color:var(--accent); }
+  .datenav button:active:not(:disabled) { transform:scale(.92); }
+  .datenav button:disabled { opacity:.3; cursor:default; }
+  .datenav button svg { width:20px; height:20px; }
+  .datenav select { flex:1; min-width:0; appearance:none; -webkit-appearance:none; border:0; background:transparent;
+                    color:var(--fg); font:600 1rem var(--sans); text-align:center; text-align-last:center;
+                    padding:8px 4px; cursor:pointer; }
+  .datenav select:focus { outline:none; }
+
+  /* Articolo */
+  .hero { margin:28px 4px 8px; }
+  .kicker { display:inline-flex; align-items:center; gap:8px; color:var(--accent); font-weight:700;
+            font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; }
+  #content h1 { font-family:var(--serif); font-weight:700; font-size:clamp(2rem, 7vw, 2.9rem);
+                line-height:1.08; letter-spacing:-.02em; margin:.3em 0 .25em; }
+  #content h1 + p em, #content h1 + p { color:var(--muted); font-size:1.05rem; }
+  #content h2 { font-family:var(--serif); font-weight:700; font-size:1.45rem; line-height:1.2;
+                letter-spacing:-.01em; margin:0 0 .7em; display:flex; gap:12px; align-items:flex-start; }
+  #content h2 .num { flex:none; display:grid; place-items:center; min-width:34px; height:34px; padding:0 8px;
+                     border-radius:10px; background:var(--accent-soft); color:var(--accent);
+                     font:700 .95rem var(--sans); margin-top:1px; }
+  #content h3 { font-size:1.08rem; margin:1.4em 0 .4em; }
+  #content p { margin:.75em 0; }
+  #content ul, #content ol { padding-left:1.25em; }
+  #content li { margin:.35em 0; }
+  #content li::marker { color:var(--accent); }
+  #content a { color:var(--link); text-decoration:underline; text-decoration-thickness:1px;
+               text-underline-offset:3px; word-break:break-word; }
+  #content a:hover { text-decoration-thickness:2px; }
+  #content blockquote { margin:1em 0; padding:.2em 1em; border-left:3px solid var(--accent);
+                        color:var(--muted); font-style:italic; }
+  #content hr { border:0; border-top:1px solid var(--line); margin:2em 0; }
+  #content table { width:100%; border-collapse:collapse; font-size:.93rem; display:block; overflow-x:auto; }
+  #content th, #content td { border-bottom:1px solid var(--line); padding:8px 10px; text-align:left; }
+
+  /* Etichette tipo "Per capire:" a inizio paragrafo */
+  #content p > strong:first-child { display:block; font:700 .74rem var(--sans); letter-spacing:.1em;
+                                    text-transform:uppercase; color:var(--accent); margin-bottom:2px; }
+
+  /* Ogni sezione diventa una scheda */
+  .block { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+           padding:22px 20px; margin:18px 0; box-shadow:var(--shadow); }
+  .block.brief { background:linear-gradient(180deg, var(--accent-soft), var(--surface) 70%);
+                 border-color:color-mix(in srgb, var(--accent) 25%, var(--line)); }
+  .block.brief ul { list-style:none; padding:0; }
+  .block.brief li { position:relative; padding-left:22px; }
+  .block.brief li::before { content:""; position:absolute; left:2px; top:.7em; width:8px; height:8px;
+                            border-radius:50%; background:var(--accent); }
+  .block.quiet { background:transparent; box-shadow:none; border-style:dashed; }
+
+  /* Fonti */
+  #content .sources ol { counter-reset:src; list-style:none; padding:0; }
+  .sources li { counter-increment:src; display:flex; gap:12px; align-items:baseline;
+                padding:10px 0; border-bottom:1px solid var(--line); margin:0; }
+  .sources li:last-child { border-bottom:0; }
+  .sources li::before { content:counter(src); flex:none; min-width:26px; height:26px; border-radius:8px;
+                        display:grid; place-items:center; background:var(--surface-2); color:var(--muted);
+                        font:700 .78rem var(--sans); }
+  .sources .host { display:block; color:var(--muted); font-size:.82rem; }
+  .sources .note { color:var(--muted); font-size:.9rem; margin-top:-.4em; }
+
+  /* Caricamento */
+  .skeleton { margin-top:28px; }
+  .skeleton div { height:16px; border-radius:8px; margin:12px 0;
+                  background:linear-gradient(90deg, var(--surface-2) 25%, var(--line) 50%, var(--surface-2) 75%);
+                  background-size:200% 100%; animation:shimmer 1.3s infinite; }
+  .skeleton .t { height:42px; width:80%; margin-bottom:22px; }
+  @keyframes shimmer { to { background-position:-200% 0; } }
+  .msg { text-align:center; color:var(--muted); padding:48px 16px; }
+
+  /* Archivio */
+  #archive { margin-top:48px; }
+  #archive h2 { font-family:var(--serif); font-size:1.4rem; margin:0 0 4px; }
+  #archive p { color:var(--muted); margin:0 0 16px; font-size:.92rem; }
+  .days { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:10px;
+          list-style:none; padding:0; margin:0; }
+  .days a { display:block; text-decoration:none; color:var(--fg); background:var(--surface);
+            border:1px solid var(--line); border-radius:14px; padding:12px 14px;
+            transition:transform .15s, border-color .15s, box-shadow .15s; }
+  .days a:hover { transform:translateY(-2px); border-color:var(--accent); box-shadow:var(--shadow); }
+  .days .wd { display:block; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .days .dt { display:block; font-weight:700; font-size:1.02rem; }
+  .days a.current { background:var(--fg); color:var(--bg); border-color:var(--fg); }
+  .days a.current .wd { color:inherit; opacity:.7; }
+
+  /* Torna su */
+  #totop { position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); width:46px; height:46px;
+           border-radius:50%; border:0; cursor:pointer; background:var(--accent); color:#fff;
+           box-shadow:var(--shadow); display:grid; place-items:center; opacity:0; pointer-events:none;
+           transform:translateY(10px); transition:opacity .2s, transform .2s; }
+  #totop.show { opacity:1; pointer-events:auto; transform:none; }
+  #totop svg { width:22px; height:22px; }
+
+  footer { text-align:center; color:var(--muted); font-size:.8rem; margin-top:40px; }
+
+  @media (min-width:640px) {
+    body { font-size:17px; }
+    .block { padding:28px 30px; }
+    main { padding-top:28px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before { animation:none !important; transition:none !important; }
+    html { scroll-behavior:auto; }
+  }
+
+  /* Stampa e PDF */
+  @media print {
+    @page { margin:18mm 16mm; }
+    :root { --bg:#fff; --surface:#fff; --fg:#000; --muted:#444; --line:#ccc; --accent:#000; --link:#000; --accent-soft:#fff; }
+    body { font:11pt/1.5 Georgia, "Times New Roman", serif; background:#fff; color:#000; }
+    .topbar, .datenav, #archive, #totop, #progress, footer { display:none !important; }
+    main { max-width:none; padding:0; }
+    .hero { margin-top:0; }
+    .block, .block.brief { background:none; border:0; box-shadow:none; padding:0; margin:0 0 14pt; }
+    #content h1 { font-size:22pt; }
+    #content h2 { font-size:14pt; break-after:avoid; page-break-after:avoid; }
+    #content h2 .num { background:none; padding:0; min-width:0; height:auto; }
+    #content p, #content li { orphans:3; widows:3; }
+    #content a { text-decoration:none; }
+    #content a[href^="http"]::after { content:" (" attr(href) ")"; font-size:8pt; color:#555; word-break:break-all; }
+    .print-footer { display:block !important; margin-top:20pt; font-size:9pt; color:#555;
+                    border-top:1px solid #ccc; padding-top:6pt; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <h1>Digest Radio Radicale</h1>
-    <div class="nav">
-      <button id="prev" aria-label="Giorno precedente">‹ Prec.</button>
-      <select id="picker" aria-label="Scegli la data"></select>
-      <button id="next" aria-label="Giorno successivo">Succ. ›</button>
-    </div>
-  </header>
+<div id="progress"></div>
 
-  <article id="content"><p class="msg">Caricamento…</p></article>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="onair" aria-hidden="true"></span>
+      <div>Digest<small>Radio Radicale</small></div>
+    </div>
+    <button id="print" class="icon-btn" disabled aria-label="Stampa o salva in PDF">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7" rx="1"/><path d="M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/></svg>
+      PDF
+    </button>
+  </div>
+</header>
+
+<main>
+  <nav class="datenav" aria-label="Scegli il giorno">
+    <button id="prev" aria-label="Giorno precedente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <select id="picker" aria-label="Data del digest"></select>
+    <button id="next" aria-label="Giorno successivo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </nav>
+
+  <div class="hero"><span class="kicker" id="kicker">Caricamento</span></div>
+  <article id="content">
+    <div class="skeleton"><div class="t"></div><div></div><div></div><div style="width:70%"></div></div>
+  </article>
+  <p class="print-footer" hidden>Digest generato automaticamente da fonti di Radio Radicale.</p>
 
   <section id="archive" hidden>
-    <h2>Tutti i giorni</h2>
+    <h2>Archivio</h2>
+    <p>Tutti i giorni disponibili.</p>
     <ul class="days" id="days"></ul>
   </section>
+
+  <footer>Sintesi generata automaticamente. Verifica sempre sulle fonti indicate.</footer>
 </main>
+
+<button id="totop" aria-label="Torna su">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
 <script>
-  const picker = document.getElementById('picker');
-  const content = document.getElementById('content');
-  const prevBtn = document.getElementById('prev');
-  const nextBtn = document.getElementById('next');
-  const daysList = document.getElementById('days');
+  const $ = id => document.getElementById(id);
+  const picker = $('picker'), content = $('content'), prevBtn = $('prev'), nextBtn = $('next');
+  const daysList = $('days'), printBtn = $('print'), kicker = $('kicker');
+  const SKELETON = content.innerHTML;
   let list = [];
 
-  function showError(text) {
-    content.innerHTML = '<p class="msg">' + text + '</p>';
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, c =>
+      ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+  }
+
+  function longDate(iso) {
+    const d = new Date(iso + 'T12:00:00');
+    return isNaN(d) ? iso : d.toLocaleDateString('it-IT',
+      { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  }
+  function weekday(iso) {
+    const d = new Date(iso + 'T12:00:00');
+    return isNaN(d) ? '' : d.toLocaleDateString('it-IT', { weekday:'long' });
+  }
+
+  function renderSources(sources) {
+    if (!Array.isArray(sources) || !sources.length) return '';
+    const items = sources.filter(s => s && /^https?:\/\//.test(s.url)).map(s => {
+      let host = '';
+      try { host = new URL(s.url).hostname.replace(/^www\./, ''); } catch (e) {}
+      const title = s.title && s.title !== host ? s.title : host;
+      return '<li><div><a href="' + esc(s.url) + '">' + esc(title) + '</a>' +
+             (host && title !== host ? '<span class="host">' + esc(host) + '</span>' : '') + '</div></li>';
+    }).join('');
+    return '<h2>Fonti consultate per i riscontri</h2>' +
+           '<p class="note">Pagine aperte o trovate durante la preparazione del digest.</p><ol>' + items + '</ol>';
+  }
+
+  // Raggruppa ogni titolo di sezione e il suo contenuto in una scheda
+  function buildBlocks(root) {
+    const nodes = Array.from(root.childNodes);
+    const frag = document.createDocumentFragment();
+    let current = null;
+    for (const n of nodes) {
+      if (n.nodeType === 1 && n.tagName === 'H2') {
+        current = document.createElement('section');
+        current.className = 'block';
+        const t = n.textContent.trim().toLowerCase();
+        if (t.startsWith('in breve')) current.classList.add('brief');
+        if (t.startsWith('cosa non') || t.startsWith('glossario')) current.classList.add('quiet');
+        if (t.startsWith('fonti')) current.classList.add('sources');
+        // "1. Titolo" diventa un numero in evidenza
+        const m = n.textContent.match(/^\s*(\d+)[.)]\s*(.*)$/);
+        if (m) n.innerHTML = '<span class="num">' + m[1] + '</span><span>' + esc(m[2]) + '</span>';
+        frag.appendChild(current);
+      }
+      (current || frag).appendChild(n);
+    }
+    root.innerHTML = '';
+    root.appendChild(frag);
+
+    // Etichette "Per capire:" → toglie i due punti, ora che l'etichetta va a capo
+    root.querySelectorAll('p > strong:first-child').forEach(s => {
+      if (s.previousSibling && s.previousSibling.textContent.trim()) return;
+      s.textContent = s.textContent.replace(/\s*:\s*$/, '');
+      const next = s.nextSibling;
+      if (next && next.nodeType === 3) next.textContent = next.textContent.replace(/^\s*:\s*/, '');
+    });
   }
 
   function updateNav(date) {
     const i = list.findIndex(x => x.date === date);
     picker.value = date;
-    // la lista è dalla data più recente alla più vecchia
     prevBtn.disabled = i >= list.length - 1;
     nextBtn.disabled = i <= 0;
-    daysList.querySelectorAll('a').forEach(a =>
-      a.classList.toggle('current', a.dataset.date === date));
+    daysList.querySelectorAll('a').forEach(a => a.classList.toggle('current', a.dataset.date === date));
   }
 
   async function loadDigest(date) {
     updateNav(date);
-    content.innerHTML = '<p class="msg">Caricamento…</p>';
+    printBtn.disabled = true;
+    kicker.textContent = longDate(date);
+    content.innerHTML = SKELETON;
     try {
       const r = await fetch('digests/' + date + '.json', { cache: 'no-store' });
       if (!r.ok) throw new Error(r.status);
       const d = await r.json();
-      content.innerHTML = marked.parse(d.markdown || '');
+      content.innerHTML = marked.parse(d.markdown || '') + renderSources(d.sources);
+      buildBlocks(content);
+      content.querySelectorAll('a[href^="http"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
+      document.title = 'Digest Radio Radicale ' + (d.label || date);
+      printBtn.disabled = false;
       if (location.hash.slice(1) !== date) history.pushState(null, '', '#' + date);
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0 });
     } catch (e) {
-      showError('Impossibile caricare il digest del ' + date + ' (' + e.message + ').');
+      content.innerHTML = '<p class="msg">Impossibile caricare il digest del ' + esc(longDate(date)) +
+                          ' (' + esc(e.message) + ').</p>';
     }
   }
 
@@ -100,25 +343,28 @@
       const r = await fetch('digests/index.json', { cache: 'no-store' });
       if (!r.ok) throw new Error(r.status);
       list = (await r.json()).sort((a, b) => b.date.localeCompare(a.date));
-      if (!list.length) return showError('Nessun digest disponibile.');
-
+      if (!list.length) {
+        kicker.textContent = '';
+        content.innerHTML = '<p class="msg">Nessun digest disponibile.</p>';
+        return;
+      }
       for (const item of list) {
-        const label = item.label || item.date;
         const o = document.createElement('option');
         o.value = item.date;
-        o.textContent = label;
+        o.textContent = longDate(item.date);
         picker.appendChild(o);
 
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = '#' + item.date;
         a.dataset.date = item.date;
-        a.textContent = label;
+        a.innerHTML = '<span class="wd">' + esc(weekday(item.date)) + '</span>' +
+                      '<span class="dt">' + esc(item.label || item.date) + '</span>';
         a.onclick = ev => { ev.preventDefault(); loadDigest(item.date); };
         li.appendChild(a);
         daysList.appendChild(li);
       }
-      document.getElementById('archive').hidden = false;
+      $('archive').hidden = false;
 
       picker.onchange = () => loadDigest(picker.value);
       prevBtn.onclick = () => step(1);
@@ -131,11 +377,17 @@
       const wanted = location.hash.slice(1);
       loadDigest(list.some(x => x.date === wanted) ? wanted : list[0].date);
     } catch (e) {
-      showError('Impossibile leggere digests/index.json (' + e.message + ').');
+      kicker.textContent = '';
+      content.innerHTML = '<p class="msg">Impossibile leggere digests/index.json (' + esc(e.message) + ').</p>';
     }
   }
 
-  init();
-</script>
-</body>
-</html>
+  printBtn.onclick = () => window.print();
+  $('totop').onclick = () => window.scrollTo({ top: 0 });
+
+  // Barra di lettura e pulsante "torna su"
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    $('progress').style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    $('totop').

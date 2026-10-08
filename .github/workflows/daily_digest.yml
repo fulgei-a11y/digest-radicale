@@ -55,6 +55,13 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add digests/
-          git commit -m "Automated digest update" || exit 0
+          echo "File modificati:"
+          git status --short digests/
+          if git diff --cached --quiet; then
+            echo "Nessun digest nuovo da salvare."
+            exit 0
+          fi
+          git commit -m "Automated digest update"
           git pull --rebase
           git push
+          echo "✅ Digest pubblicati. Il sito si aggiorna in 1-2 minuti."

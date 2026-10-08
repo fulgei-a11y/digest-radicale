@@ -160,6 +160,42 @@
 
   footer { text-align:center; color:var(--muted); font-size:.8rem; margin-top:40px; }
 
+  /* Temi */
+  .toc { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+         padding:18px 20px; margin:18px 0; box-shadow:var(--shadow); }
+  .toc h2 { font-family:var(--serif); font-size:1.25rem; margin:0 0 4px; }
+  .toc .area { font:700 .72rem var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin:14px 0 4px; }
+  .toc ol { margin:0; padding-left:1.2em; }
+  .toc li { margin:4px 0; }
+  .toc a { color:var(--fg); text-decoration:none; }
+  .toc a:hover { color:var(--link); text-decoration:underline; }
+  .toc .tools { display:flex; gap:8px; margin-top:12px; }
+  .chipbtn { border:1px solid var(--line); background:var(--surface-2); color:var(--fg); border-radius:999px;
+             padding:6px 12px; font:600 .85rem var(--sans); cursor:pointer; }
+  details.theme { border-top:1px solid var(--line); padding:4px 0; scroll-margin-top:80px; }
+  details.theme:first-of-type { border-top:0; }
+  details.theme > summary { list-style:none; cursor:pointer; padding:12px 30px 12px 0; position:relative; }
+  details.theme > summary::-webkit-details-marker { display:none; }
+  details.theme > summary::after { content:"+"; position:absolute; right:4px; top:10px; font:600 1.4rem var(--sans); color:var(--accent); }
+  details.theme[open] > summary::after { content:"–"; }
+  details.theme > summary .t { display:block; font-family:var(--serif); font-weight:700; font-size:1.12rem; line-height:1.3; }
+  details.theme > summary .s { display:block; color:var(--muted); font-size:.95rem; margin-top:3px; }
+  details.theme[open] > summary .s { display:none; }
+  details.theme .body { padding:0 0 12px; }
+  .block.area > h2 { font-size:.8rem !important; font-family:var(--sans) !important; letter-spacing:.12em;
+                     text-transform:uppercase; color:var(--accent); margin-bottom:4px !important; }
+  #archive .tabs { display:flex; gap:8px; margin:0 0 14px; }
+  #archive .tabs button.on { background:var(--fg); color:var(--bg); border-color:var(--fg); }
+  #themeSearch { width:100%; font:1rem var(--sans); padding:10px 14px; border-radius:999px; border:1px solid var(--line);
+                 background:var(--surface); color:var(--fg); margin-bottom:12px; }
+  .tres { list-style:none; padding:0; margin:0; }
+  .tres li { padding:10px 0; border-bottom:1px solid var(--line); }
+  .tres a { text-decoration:none; color:var(--fg); }
+  .tres .d { font:600 .78rem var(--sans); color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
+  .tres .tt { display:block; font-weight:700; }
+  .tres .ss { display:block; color:var(--muted); font-size:.92rem; }
+  .tres mark { background:var(--accent-soft); color:inherit; border-radius:3px; }
+
   /* Pulsanti della testata */
   .actions { display:flex; gap:8px; }
   .icon-btn.ghost { background:var(--surface); color:var(--fg); border:1px solid var(--line); }
@@ -211,6 +247,8 @@
     body { font:11pt/1.5 Georgia, "Times New Roman", serif; background:#fff; color:#000; }
     .topbar, .datenav, #archive, #totop, #progress, footer, #player { display:none !important; }
     .speaking { background:none; box-shadow:none; }
+    .toc .tools, details.theme > summary::after { display:none !important; }
+    details.theme > summary .s { display:none; }
     main { max-width:none; padding:0; }
     .hero { margin-top:0; }
     .block, .block.brief { background:none; border:0; box-shadow:none; padding:0; margin:0 0 14pt; }
@@ -266,8 +304,18 @@
 
   <section id="archive" hidden>
     <h2>Archivio</h2>
-    <p>Tutti i giorni disponibili.</p>
-    <ul class="days" id="days"></ul>
+    <div class="tabs">
+      <button class="chipbtn on" id="tabDays" type="button">Per giorno</button>
+      <button class="chipbtn" id="tabThemes" type="button">Per tema</button>
+    </div>
+    <div id="paneDays">
+      <p>Tutti i giorni disponibili.</p>
+      <ul class="days" id="days"></ul>
+    </div>
+    <div id="paneThemes" hidden>
+      <input id="themeSearch" type="search" placeholder="Cerca un tema in tutti i giorni (es. legge elettorale, carcere)" autocomplete="off">
+      <ul class="tres" id="themeResults"></ul>
+    </div>
   </section>
 
   <footer>Sintesi generata automaticamente. Verifica sempre sulle fonti indicate.</footer>
@@ -364,6 +412,7 @@
     }
     root.innerHTML = '';
     root.appendChild(frag);
+    buildThemes(root);
 
     // Etichette "Per capire:" → toglie i due punti, ora che l'etichetta va a capo
     root.querySelectorAll('p > strong:first-child').forEach(s => {
@@ -374,6 +423,73 @@
     });
   }
 
+  function slugify(t) {
+    return t.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+  }
+
+  // Ogni "### tema" dentro un'area diventa una scheda apribile, con la frase "In una riga" come anteprima
+  function buildThemes(root) {
+    const toc = [];
+    root.querySelectorAll('section.block').forEach(sec => {
+      const h2 = sec.querySelector(':scope > h2');
+      const area = h2 ? h2.textContent.trim() : '';
+      if (/^(in breve|le altre|glossario|cosa non|fonti)/i.test(area)) return;
+      const h3s = sec.querySelectorAll(':scope > h3');
+      if (!h3s.length) return;
+      sec.classList.add('area');
+      const entry = { area, themes: [] };
+      h3s.forEach(h3 => {
+        const det = document.createElement('details');
+        det.className = 'theme';
+        const title = h3.textContent.trim();
+        det.id = slugify(title);
+        const body = document.createElement('div');
+        body.className = 'body';
+        let n = h3.nextSibling, summary = '';
+        while (n && !(n.nodeType === 1 && /^H[23]$/.test(n.tagName))) {
+          const next = n.nextSibling;
+          if (n.nodeType === 1 && !summary && /^in una riga/i.test(n.textContent.trim())) {
+            summary = n.textContent.replace(/^\s*in una riga\s*:?\s*/i, '').replace(/\s*ascolta\s*$/i, '').trim();
+          }
+          body.appendChild(n);
+          n = next;
+        }
+        det.innerHTML = '<summary><span class="t">' + esc(title) + '</span>' +
+                        (summary ? '<span class="s">' + esc(summary) + '</span>' : '') + '</summary>';
+        det.appendChild(body);
+        h3.replaceWith(det);
+        entry.themes.push({ id: det.id, title });
+      });
+      toc.push(entry);
+    });
+    if (!toc.length) return;
+    const total = toc.reduce((a, e) => a + e.themes.length, 0);
+    const box = document.createElement('nav');
+    box.className = 'toc';
+    box.innerHTML = '<h2>I temi della giornata</h2><p class="note" style="margin:0;color:var(--muted)">' + total +
+      ' temi. Tocca un tema per aprirlo.</p>' +
+      toc.map(e => '<div class="area">' + esc(e.area) + '</div><ol>' +
+        e.themes.map(t => '<li><a href="#" data-theme="' + t.id + '">' + esc(t.title) + '</a></li>').join('') + '</ol>').join('') +
+      '<div class="tools"><button class="chipbtn" type="button" data-all="1">Apri tutti</button>' +
+      '<button class="chipbtn" type="button" data-all="0">Chiudi tutti</button></div>';
+    const brief = root.querySelector('section.brief');
+    (brief ? brief.after(box) : root.prepend(box));
+    box.addEventListener('click', ev => {
+      const a = ev.target.closest('[data-theme]');
+      if (a) { ev.preventDefault(); openTheme(a.dataset.theme); }
+      const b = ev.target.closest('[data-all]');
+      if (b) root.querySelectorAll('details.theme').forEach(d => d.open = b.dataset.all === '1');
+    });
+  }
+
+  function openTheme(id) {
+    const det = document.getElementById(id);
+    if (!det) return;
+    det.open = true;
+    det.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   function updateNav(date) {
     const i = list.findIndex(x => x.date === date);
     picker.value = date;
@@ -382,7 +498,7 @@
     daysList.querySelectorAll('a').forEach(a => a.classList.toggle('current', a.dataset.date === date));
   }
 
-  async function loadDigest(date) {
+  async function loadDigest(date, themeId) {
     updateNav(date);
     if (typeof stopReading === 'function') stopReading(true);
     printBtn.disabled = true;
@@ -403,8 +519,10 @@
       document.title = 'Digest Radio Radicale ' + (d.label || date);
       printBtn.disabled = false;
       listenBtn.disabled = false;
-      if (location.hash.slice(1) !== date) history.pushState(null, '', '#' + date);
-      window.scrollTo({ top: 0 });
+      const h = '#' + date + (themeId ? '/' + themeId : '');
+      if (location.hash !== h) history.pushState(null, '', h);
+      if (themeId) setTimeout(() => openTheme(themeId), 50);
+      else window.scrollTo({ top: 0 });
     } catch (e) {
       content.innerHTML = '<p class="msg">Impossibile caricare il digest del ' + esc(longDate(date)) +
                           ' (' + esc(e.message) + ').</p>';
@@ -448,12 +566,14 @@
       prevBtn.onclick = () => step(1);
       nextBtn.onclick = () => step(-1);
       window.onpopstate = () => {
-        const h = location.hash.slice(1);
-        if (list.some(x => x.date === h)) loadDigest(h);
+        const [h, t] = location.hash.slice(1).split('/');
+        if (list.some(x => x.date === h)) loadDigest(h, t);
       };
+      setupThemeArchive();
 
-      const wanted = location.hash.slice(1);
-      loadDigest(list.some(x => x.date === wanted) ? wanted : list[0].date);
+      const [wanted, wantedTheme] = location.hash.slice(1).split('/');
+      if (list.some(x => x.date === wanted)) loadDigest(wanted, wantedTheme);
+      else loadDigest(list[0].date);
     } catch (e) {
       kicker.textContent = '';
       content.innerHTML = '<p class="msg">Impossibile leggere digests/index.json (' + esc(e.message) + ').</p>';
@@ -461,6 +581,45 @@
   }
 
   printBtn.onclick = () => window.print();
+  window.addEventListener('beforeprint', () => content.querySelectorAll('details.theme').forEach(d => d.open = true));
+
+  /* Archivio per tema: tutti i temi di tutti i giorni (digests/themes.json) */
+  let allThemes = null;
+  function setupThemeArchive() {
+    const tabD = $('tabDays'), tabT = $('tabThemes');
+    const show = which => {
+      tabD.classList.toggle('on', which === 'd'); tabT.classList.toggle('on', which === 't');
+      $('paneDays').hidden = which !== 'd'; $('paneThemes').hidden = which !== 't';
+      if (which === 't') loadThemes();
+    };
+    tabD.onclick = () => show('d');
+    tabT.onclick = () => show('t');
+    let timer;
+    $('themeSearch').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(renderThemes, 150); });
+  }
+  async function loadThemes() {
+    if (allThemes) return renderThemes();
+    try {
+      const r = await fetch('digests/themes.json', { cache: 'no-store' });
+      allThemes = r.ok ? await r.json() : [];
+    } catch (e) { allThemes = []; }
+    renderThemes();
+  }
+  function renderThemes() {
+    const q = $('themeSearch').value.trim().toLowerCase();
+    const words = q.split(/\s+/).filter(Boolean);
+    const hit = t => words.every(w => (t.title + ' ' + t.summary + ' ' + t.area).toLowerCase().includes(w));
+    const res = (allThemes || []).filter(hit).slice(0, 300);
+    const mark = s => { let out = esc(s); words.forEach(w => { out = out.replace(new RegExp('(' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), '<mark>$1</mark>'); }); return out; };
+    $('themeResults').innerHTML = !allThemes || !allThemes.length
+      ? '<li class="msg">L\'archivio dei temi si crea alla prossima esecuzione automatica.</li>'
+      : (res.length ? res.map(t => '<li><a href="#' + t.date + '/' + t.id + '" data-d="' + t.date + '" data-t="' + t.id + '">' +
+          '<span class="d">' + esc(longDate(t.date)) + ' · ' + esc(t.area) + '</span>' +
+          '<span class="tt">' + mark(t.title) + '</span>' + (t.summary ? '<span class="ss">' + mark(t.summary) + '</span>' : '') +
+          '</a></li>').join('') : '<li class="msg">Nessun tema trovato.</li>');
+    $('themeResults').querySelectorAll('a[data-d]').forEach(a => a.onclick = ev => {
+      ev.preventDefault(); loadDigest(a.dataset.d, a.dataset.t); });
+  }
 
   /* ------------------------------------------------------------------ */
   /*  Lettura vocale (voce preferita: Paola)                             */
@@ -505,7 +664,7 @@
 
   // Divide il digest in paragrafi da leggere, saltando link e fonti
   function buildChunks() {
-    const els = content.querySelectorAll('h1, h2, h3, p, li');
+    const els = content.querySelectorAll('h1, h2, h3, summary .t, p, li');
     const out = [];
     els.forEach(el => {
       if (el.closest('.sources')) return;
@@ -539,6 +698,8 @@
     content.querySelectorAll('.speaking').forEach(e => e.classList.remove('speaking'));
     const c = reader.chunks[idx];
     if (!c) return;
+    const det = c.el.closest('details');
+    if (det && !det.open) det.open = true;
     c.el.classList.add('speaking');
     c.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     $('pNow').textContent = c.text.slice(0, 90);

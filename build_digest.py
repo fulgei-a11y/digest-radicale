@@ -179,8 +179,30 @@ def scrape_agenda(date_iso: str) -> list:
             "time": f"{int(tm.group(1)):02d}:{tm.group(2)}" if tm else "",
             "place": place,
             "agenda_text": desc[:800],
+            "in_table": bool(row and row.name == "tr"),
         })
+
+    # La pagina contiene anche riquadri laterali ("ultimi inseriti", rubriche di altri giorni):
+    # se l'agenda vera è una tabella, si tengono solo le righe della tabella.
+    in_table = [i for i in items if i["in_table"]]
+    if in_table:
+        skipped = len(items) - len(in_table)
+        if skipped:
+            print(f"   (scartati {skipped} link estranei all'agenda del giorno)")
+        items = in_table
     return items
+
+
+def clean_markdown(md: str, date_it: str) -> str:
+    """Toglie eventuali ragionamenti del modello prima del digest e garantisce il titolo."""
+    md = re.sub(r"^```(?:markdown)?\s*|\s*```\s*$", "", md.strip())
+    m = re.search(r"^# Radio Radicale.*$", md, re.M) or re.search(r"^## In breve.*$", md, re.M)
+    if m and m.start() > 0:
+        print(f"   🧽 Rimosse {m.start()} battute di testo prima del digest.")
+        md = md[m.start():]
+    if not md.lstrip().startswith("# "):
+        md = f"# Radio Radicale, {date_it}\n*Analisi tematica delle registrazioni della giornata.*\n\n" + md
+    return md
 
 
 def scrape_scheda(url: str) -> dict:
@@ -403,7 +425,9 @@ STRUTTURA (Markdown)
 
 ## Cosa non è stato possibile ricostruire
 
-Restituisci solo il Markdown, senza blocchi di codice attorno.
+Restituisci SOLO il digest in italiano: la prima riga deve essere "# Radio Radicale, {date_it}".
+Non scrivere ragionamenti, piani, note di lavoro o commenti prima o dopo il digest, e niente blocchi di codice.
+Usa solo le registrazioni dell'agenda di questo giorno.
 """
 
 
@@ -531,6 +555,7 @@ def generate_for_date(client: genai.Client, ref_date: datetime) -> None:
             unique.append(s)
 
     known_good = {i["url"] for i in items} | {agenda_url}
+    digest_md = clean_markdown(digest_md, date_it)
     digest_md = clean_dead_links(digest_md, known_good)
 
     with open(os.path.join(DIGESTS_DIR, f"{date_iso}.json"), "w", encoding="utf-8") as f:

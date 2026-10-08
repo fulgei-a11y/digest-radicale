@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digest Radio Radicale</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<style>
+  :root { --bg:#fff; --fg:#1f2328; --muted:#656d76; --line:#d0d7de; --accent:#0969da; --chip:#f3f4f6; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1117; --fg:#e6edf3; --muted:#8d96a0; --line:#30363d; --accent:#4493f8; --chip:#161b22; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.6 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:16px; }
+  header { border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:8px; }
+  header h1 { font-size:1.3rem; margin:0 0 10px; }
+  .nav { display:flex; gap:8px; align-items:center; }
+  .nav button { font-size:1rem; padding:8px 12px; border-radius:8px; cursor:pointer;
+                border:1px solid var(--line); background:var(--chip); color:var(--fg); }
+  .nav button:disabled { opacity:.4; cursor:default; }
+  .nav select { flex:1; min-width:0; font-size:1rem; padding:8px 10px; border-radius:8px;
+                border:1px solid var(--line); background:var(--bg); color:var(--fg); }
+  #content h1 { font-size:1.6rem; line-height:1.25; }
+  #content h2 { font-size:1.25rem; margin-top:1.8em; border-bottom:1px solid var(--line); padding-bottom:4px; }
+  #content a { color:var(--accent); }
+  #content li { margin:4px 0; }
+  .msg { color:var(--muted); padding:24px 0; }
+  #archive { margin-top:40px; border-top:1px solid var(--line); padding-top:12px; }
+  #archive h2 { font-size:1.1rem; margin:0 0 10px; }
+  .days { display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:0; }
+  .days a { display:block; padding:6px 12px; border-radius:999px; text-decoration:none;
+            background:var(--chip); border:1px solid var(--line); color:var(--fg); font-size:.95rem; }
+  .days a.current { background:var(--accent); border-color:var(--accent); color:#fff; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Digest Radio Radicale</h1>
+    <div class="nav">
+      <button id="prev" aria-label="Giorno precedente">‹ Prec.</button>
+      <select id="picker" aria-label="Scegli la data"></select>
+      <button id="next" aria-label="Giorno successivo">Succ. ›</button>
+    </div>
+  </header>
+
+  <article id="content"><p class="msg">Caricamento…</p></article>
+
+  <section id="archive" hidden>
+    <h2>Tutti i giorni</h2>
+    <ul class="days" id="days"></ul>
+  </section>
+</main>
+<script>
+  const picker = document.getElementById('picker');
+  const content = document.getElementById('content');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const daysList = document.getElementById('days');
+  let list = [];
+
+  function showError(text) {
+    content.innerHTML = '<p class="msg">' + text + '</p>';
+  }
+
+  function updateNav(date) {
+    const i = list.findIndex(x => x.date === date);
+    picker.value = date;
+    // la lista è dalla data più recente alla più vecchia
+    prevBtn.disabled = i >= list.length - 1;
+    nextBtn.disabled = i <= 0;
+    daysList.querySelectorAll('a').forEach(a =>
+      a.classList.toggle('current', a.dataset.date === date));
+  }
+
+  async function loadDigest(date) {
+    updateNav(date);
+    content.innerHTML = '<p class="msg">Caricamento…</p>';
+    try {
+      const r = await fetch('digests/' + date + '.json', { cache: 'no-store' });
+      if (!r.ok) throw new Error(r.status);
+      const d = await r.json();
+      content.innerHTML = marked.parse(d.markdown || '');
+      if (location.hash.slice(1) !== date) history.pushState(null, '', '#' + date);
+      window.scrollTo(0, 0);
+    } catch (e) {
+      showError('Impossibile caricare il digest del ' + date + ' (' + e.message + ').');
+    }
+  }
+
+  function step(delta) {
+    const i = list.findIndex(x => x.date === picker.value) + delta;
+    if (i >= 0 && i < list.length) loadDigest(list[i].date);
+  }
+
+  async function init() {
+    try {
+      const r = await fetch('digests/index.json', { cache: 'no-store' });
+      if (!r.ok) throw new Error(r.status);
+      list = (await r.json()).sort((a, b) => b.date.localeCompare(a.date));
+      if (!list.length) return showError('Nessun digest disponibile.');
+
+      for (const item of list) {
+        const label = item.label || item.date;
+        const o = document.createElement('option');
+        o.value = item.date;
+        o.textContent = label;
+        picker.appendChild(o);
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#' + item.date;
+        a.dataset.date = item.date;
+        a.textContent = label;
+        a.onclick = ev => { ev.preventDefault(); loadDigest(item.date); };
+        li.appendChild(a);
+        daysList.appendChild(li);
+      }
+      document.getElementById('archive').hidden = false;
+
+      picker.onchange = () => loadDigest(picker.value);
+      prevBtn.onclick = () => step(1);
+      nextBtn.onclick = () => step(-1);
+      window.onpopstate = () => {
+        const h = location.hash.slice(1);
+        if (list.some(x => x.date === h)) loadDigest(h);
+      };
+
+      const wanted = location.hash.slice(1);
+      loadDigest(list.some(x => x.date === wanted) ? wanted : list[0].date);
+    } catch (e) {
+      showError('Impossibile leggere digests/index.json (' + e.message + ').');
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>

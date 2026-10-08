@@ -45,12 +45,46 @@ AUDIO_MAX_MINUTES = int(os.environ.get("AUDIO_MAX_MINUTES", "60"))
 AUDIO_DOWNLOAD_TIMEOUT = int(os.environ.get("AUDIO_DOWNLOAD_TIMEOUT", "480"))
 AUDIO_TOTAL_BUDGET = int(os.environ.get("AUDIO_TOTAL_BUDGET", "1500"))
 
+# Modelli preferiti, in ordine. Lo script controlla all'avvio quali sono davvero disponibili
+# per la tua chiave e aggiunge in coda gli altri modelli "flash" più recenti: così, se Google
+# ne ritira uno, non si blocca più tutto.
 MODELS_TO_TRY = [
     "gemini-3.8-flash",
+    "gemini-3.5-flash",
     "gemini-2.5-flash",
+    "gemini-3.5-flash-lite",
     "gemini-2.5-pro",
-    "gemini-2.5-flash-lite",
 ]
+_MODELS_CHECKED = False
+
+
+def available_models(client) -> list:
+    """Restituisce l'elenco dei modelli da provare, solo fra quelli disponibili per questa chiave."""
+    global MODELS_TO_TRY, _MODELS_CHECKED
+    if _MODELS_CHECKED:
+        return MODELS_TO_TRY
+    _MODELS_CHECKED = True
+    try:
+        names = []
+        for m in client.models.list():
+            name = (getattr(m, "name", "") or "").replace("models/", "")
+            actions = getattr(m, "supported_actions", None) or getattr(m, "supported_generation_methods", None) or []
+            if name.startswith("gemini") and (not actions or "generateContent" in actions):
+                names.append(name)
+        if not names:
+            return MODELS_TO_TRY
+        def ver(n):
+            m = re.search(r"gemini-(\d+(?:\.\d+)?)", n)
+            return float(m.group(1)) if m else 0
+        extra = sorted((n for n in names if "flash" in n and not re.search(r"preview|exp|tts|image|audio|live|embed", n)
+                        and n not in MODELS_TO_TRY), key=ver, reverse=True)
+        chosen = [m for m in MODELS_TO_TRY if m in names] + extra[:3]
+        if chosen:
+            MODELS_TO_TRY = chosen
+        print("🤖 Modelli disponibili che userò:", ", ".join(MODELS_TO_TRY))
+    except Exception as e:
+        print(f"⚠️ Non riesco a leggere l'elenco dei modelli ({e}): uso quelli predefiniti.")
+    return MODELS_TO_TRY
 
 USER_AGENT = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -85,31 +119,38 @@ AUDIO_SKIP = [
 #  Chiamate a Gemini con modelli di riserva
 # --------------------------------------------------------------------------- #
 def call_gemini(client: genai.Client, contents, config: types.GenerateContentConfig):
-    """Prova i modelli in ordine; passa al successivo in caso di 429, 503, 404/400 o risposta vuota."""
+    """Prova i modelli disponibili in ordine. Con il limite al minuto (429) aspetta e riprova;
+    se un modello è ritirato (404) passa subito al successivo."""
     last_error = None
-    for model in MODELS_TO_TRY:
-        try:
-            print(f"   🔄 Modello '{model}'...")
-            response = client.models.generate_content(model=model, contents=contents, config=config)
-            text = (response.text or "").strip()
-            if not text:
-                print(f"   ⚠️ Risposta vuota da '{model}'.")
-                continue
-            print(f"   ✅ Risposta da '{model}'")
-            return text, response
-        except errors.APIError as e:
-            msg = str(e)
-            last_error = e
-            if e.code == 429 or "RESOURCE_EXHAUSTED" in msg:
-                reason = "quota esaurita (429)"
-            elif e.code == 503 or "UNAVAILABLE" in msg:
-                reason = "server sovraccarico (503)"
-            elif e.code in (404, 400) or "NOT_FOUND" in msg:
-                reason = "modello non disponibile (404/400)"
-            else:
+    for model in available_models(client):
+        for attempt in range(3):
+            try:
+                print(f"   🔄 Modello '{model}'...")
+                response = client.models.generate_content(model=model, contents=contents, config=config)
+                text = (response.text or "").strip()
+                if not text:
+                    print(f"   ⚠️ Risposta vuota da '{model}'.")
+                    break
+                print(f"   ✅ Risposta da '{model}'")
+                return text, response
+            except errors.APIError as e:
+                msg = str(e)
+                last_error = e
+                if e.code == 429 or "RESOURCE_EXHAUSTED" in msg:
+                    if "per day" in msg.lower() or "PerDay" in msg:
+                        print(f"   ⚠️ Quota giornaliera esaurita per '{model}'.")
+                        break
+                    print(f"   ⏳ Limite al minuto per '{model}': attendo 65 secondi e riprovo...")
+                    time.sleep(65)
+                    continue
+                if e.code == 503 or "UNAVAILABLE" in msg:
+                    print(f"   ⚠️ Server sovraccarico (503) per '{model}': riprovo tra 20 secondi...")
+                    time.sleep(20)
+                    continue
+                if e.code in (404, 400) or "NOT_FOUND" in msg:
+                    print(f"   ⚠️ Modello '{model}' non disponibile: passo al successivo.")
+                    break
                 raise
-            print(f"   ⚠️ {reason} per '{model}'.")
-            time.sleep(3)
     raise RuntimeError(f"Nessun modello disponibile. Ultimo errore: {last_error}")
 
 

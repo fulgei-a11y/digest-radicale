@@ -16,7 +16,7 @@ on:
       audio_recordings:
         description: 'Quante registrazioni ascoltare (0 = nessuna)'
         required: false
-        default: '4'
+        default: '0'
 
 jobs:
   build:
@@ -53,7 +53,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DIGEST_DATE: ${{ github.event.inputs.digest_date }}
           BACKFILL_DAYS: ${{ github.event.inputs.backfill_days || '7' }}
-          AUDIO_MAX_RECORDINGS: ${{ github.event.inputs.audio_recordings || '4' }}
+          AUDIO_MAX_RECORDINGS: ${{ github.event.inputs.audio_recordings || '0' }}
           AUDIO_MAX_MINUTES: '60'
           MAX_PER_RUN: '2'
         run: python build_digest.py

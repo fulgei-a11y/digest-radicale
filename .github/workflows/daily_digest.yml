@@ -2,8 +2,17 @@ name: Generate Daily Radicale Digest
 
 on:
   schedule:
-    - cron: '0 5 * * *'  # Esegue ogni mattina alle 05:00 UTC
-  workflow_dispatch:      # Permette l'esecuzione manuale
+    - cron: '0 5 * * *'  # Ogni mattina alle 05:00 UTC
+  workflow_dispatch:
+    inputs:
+      digest_date:
+        description: 'Data da generare (AAAA-MM-GG). Vuoto = automatico'
+        required: false
+        default: ''
+      backfill_days:
+        description: 'Quanti giorni indietro recuperare se mancano'
+        required: false
+        default: '7'
 
 jobs:
   build:
@@ -21,14 +30,14 @@ jobs:
           python-version: '3.11'
 
       - name: Installa dipendenze
-        run: |
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Esegui generazione Digest
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          python build_digest.py
+          DIGEST_DATE: ${{ github.event.inputs.digest_date }}
+          BACKFILL_DAYS: ${{ github.event.inputs.backfill_days || '7' }}
+        run: python build_digest.py
 
       - name: Salva e carica le modifiche sul repository
         run: |

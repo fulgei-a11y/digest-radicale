@@ -41,6 +41,9 @@ MAX_SCHEDE = int(os.environ.get("MAX_SCHEDE", "60"))
 # Ascolto audio: quante registrazioni e quanti minuti ciascuna (0 = disattivato)
 AUDIO_MAX_RECORDINGS = int(os.environ.get("AUDIO_MAX_RECORDINGS", "4"))
 AUDIO_MAX_MINUTES = int(os.environ.get("AUDIO_MAX_MINUTES", "60"))
+# Tempo massimo per scaricare ciascun audio (secondi) e per tutta la fase di ascolto di un giorno
+AUDIO_DOWNLOAD_TIMEOUT = int(os.environ.get("AUDIO_DOWNLOAD_TIMEOUT", "480"))
+AUDIO_TOTAL_BUDGET = int(os.environ.get("AUDIO_TOTAL_BUDGET", "1500"))
 
 MODELS_TO_TRY = [
     "gemini-3.8-flash",
@@ -257,11 +260,17 @@ def download_audio(stream: str, minutes: int, out_path: str) -> bool:
         "-b:a", "32k", out_path,
     ]
     try:
-        subprocess.run(cmd, check=True, timeout=minutes * 60)
-        return os.path.exists(out_path) and os.path.getsize(out_path) > 50_000
+        # al massimo 8 minuti di download: se il server è lento si usa la parte già scaricata
+        subprocess.run(cmd, check=True, timeout=AUDIO_DOWNLOAD_TIMEOUT)
+    except subprocess.TimeoutExpired:
+        print("   ⏱️ Download lento: uso la parte di audio già scaricata.")
     except Exception as e:
         print(f"   ⚠️ Download audio fallito: {e}")
         return False
+    ok = os.path.exists(out_path) and os.path.getsize(out_path) > 50_000
+    if ok:
+        print(f"   📦 Audio scaricato: {os.path.getsize(out_path) // 1024} KB")
+    return ok
 
 
 def listen_recording(client: genai.Client, item: dict) -> str:
@@ -486,7 +495,11 @@ def generate_for_date(client: genai.Client, ref_date: datetime) -> None:
     if AUDIO_MAX_RECORDINGS > 0 and items:
         candidates = [i for i in items if i.get("stream") and audio_score(i) >= 0]
         candidates.sort(key=audio_score, reverse=True)
+        audio_start = time.time()
         for it in candidates[:AUDIO_MAX_RECORDINGS]:
+            if time.time() - audio_start > AUDIO_TOTAL_BUDGET:
+                print("   ⏱️ Tempo per l'ascolto esaurito: passo alla scrittura del digest.")
+                break
             try:
                 it["audio_notes"] = listen_recording(client, it)
             except Exception as e:

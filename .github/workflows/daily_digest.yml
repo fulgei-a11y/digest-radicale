@@ -37,6 +37,14 @@ jobs:
       - name: Installa ffmpeg (per l'ascolto dell'audio)
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
 
+      - name: Controlla che lo script sia completo
+        run: |
+          echo "Righe di build_digest.py: $(wc -l < build_digest.py)"
+          if ! grep -q "SCRIPT_VERSION = 3" build_digest.py || ! tail -3 build_digest.py | grep -q "main()"; then
+            echo "❌ build_digest.py è incompleto o vecchio: ricaricalo per intero (deve finire con main())."
+            exit 1
+          fi
+
       - name: Installa dipendenze
         run: pip install -r requirements.txt
 

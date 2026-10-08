@@ -390,4 +390,10 @@
     const h = document.documentElement;
     const max = h.scrollHeight - h.clientHeight;
     $('progress').style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
-    $('totop').
+    $('totop').classList.toggle('show', h.scrollTop > 600);
+  }, { passive: true });
+
+  init();
+</script>
+</body>
+</html>

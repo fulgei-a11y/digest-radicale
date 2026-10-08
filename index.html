@@ -160,6 +160,40 @@
 
   footer { text-align:center; color:var(--muted); font-size:.8rem; margin-top:40px; }
 
+  /* Pulsanti della testata */
+  .actions { display:flex; gap:8px; }
+  .icon-btn.ghost { background:var(--surface); color:var(--fg); border:1px solid var(--line); }
+
+  /* Lettura vocale */
+  .speaking { background:color-mix(in srgb, var(--accent) 14%, transparent); border-radius:8px;
+              box-shadow:0 0 0 6px color-mix(in srgb, var(--accent) 14%, transparent);
+              transition:background .2s, box-shadow .2s; }
+  #player { position:fixed; left:50%; bottom:calc(14px + env(safe-area-inset-bottom)); z-index:25;
+            transform:translate(-50%, 140%); transition:transform .25s ease;
+            width:min(760px, calc(100% - 24px)); background:var(--fg); color:var(--bg);
+            border-radius:22px; padding:10px 12px; box-shadow:0 12px 40px rgba(0,0,0,.28); }
+  #player.open { transform:translate(-50%, 0); }
+  #player .row { display:flex; align-items:center; gap:8px; }
+  #player button { flex:none; width:44px; height:44px; border-radius:50%; border:0; cursor:pointer;
+                   display:grid; place-items:center; background:color-mix(in srgb, var(--bg) 14%, transparent);
+                   color:var(--bg); }
+  #player button.main { background:var(--accent); color:#fff; }
+  #player button svg { width:20px; height:20px; }
+  #player .info { flex:1; min-width:0; }
+  #player .now { font-weight:600; font-size:.88rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  #player .bar { height:4px; border-radius:2px; background:color-mix(in srgb, var(--bg) 20%, transparent);
+                 margin-top:6px; overflow:hidden; }
+  #player .bar i { display:block; height:100%; width:0; background:var(--accent); transition:width .3s; }
+  #player .opts { display:flex; gap:8px; margin-top:8px; }
+  #player select { min-width:0; flex:1; font:500 .82rem var(--sans); color:var(--bg);
+                   background:color-mix(in srgb, var(--bg) 12%, transparent); border:0; border-radius:10px;
+                   padding:7px 8px; }
+  #player select option { color:#000; }
+  #player .opts select.speed { flex:0 0 84px; }
+  #player .hint { font-size:.78rem; opacity:.75; margin-top:6px; }
+  body.player-open #totop { bottom:calc(150px + env(safe-area-inset-bottom)); }
+  body.player-open main { padding-bottom:180px; }
+
   @media (min-width:640px) {
     body { font-size:17px; }
     .block { padding:28px 30px; }
@@ -175,7 +209,8 @@
     @page { margin:18mm 16mm; }
     :root { --bg:#fff; --surface:#fff; --fg:#000; --muted:#444; --line:#ccc; --accent:#000; --link:#000; --accent-soft:#fff; }
     body { font:11pt/1.5 Georgia, "Times New Roman", serif; background:#fff; color:#000; }
-    .topbar, .datenav, #archive, #totop, #progress, footer { display:none !important; }
+    .topbar, .datenav, #archive, #totop, #progress, footer, #player { display:none !important; }
+    .speaking { background:none; box-shadow:none; }
     main { max-width:none; padding:0; }
     .hero { margin-top:0; }
     .block, .block.brief { background:none; border:0; box-shadow:none; padding:0; margin:0 0 14pt; }
@@ -199,10 +234,16 @@
       <span class="onair" aria-hidden="true"></span>
       <div>Digest<small>Radio Radicale</small></div>
     </div>
-    <button id="print" class="icon-btn" disabled aria-label="Stampa o salva in PDF">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7" rx="1"/><path d="M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/></svg>
-      PDF
-    </button>
+    <div class="actions">
+      <button id="listen" class="icon-btn ghost" disabled aria-label="Ascolta il digest">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+        Ascolta
+      </button>
+      <button id="print" class="icon-btn" disabled aria-label="Stampa o salva in PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7" rx="1"/><path d="M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/></svg>
+        PDF
+      </button>
+    </div>
   </div>
 </header>
 
@@ -231,6 +272,36 @@
 
   <footer>Sintesi generata automaticamente. Verifica sempre sulle fonti indicate.</footer>
 </main>
+
+<div id="player" role="region" aria-label="Lettura vocale">
+  <div class="row">
+    <button id="pPrev" aria-label="Paragrafo precedente">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zM9.5 12L18 6v12z"/></svg>
+    </button>
+    <button id="pPlay" class="main" aria-label="Riproduci o pausa">
+      <svg id="icoPlay" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="icoPause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
+    <button id="pNext" aria-label="Paragrafo successivo">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg>
+    </button>
+    <div class="info">
+      <div class="now" id="pNow">Pronto</div>
+      <div class="bar"><i id="pBar"></i></div>
+    </div>
+    <button id="pClose" aria-label="Chiudi la lettura">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="opts">
+    <select id="pVoice" aria-label="Voce"></select>
+    <select id="pRate" class="speed" aria-label="Velocità">
+      <option value="0.85">0.85×</option><option value="1" selected>1×</option>
+      <option value="1.15">1.15×</option><option value="1.3">1.3×</option><option value="1.5">1.5×</option>
+    </select>
+  </div>
+  <div class="hint" id="pHint" hidden></div>
+</div>
 
 <button id="totop" aria-label="Torna su">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
@@ -313,7 +384,9 @@
 
   async function loadDigest(date) {
     updateNav(date);
+    if (typeof stopReading === 'function') stopReading(true);
     printBtn.disabled = true;
+    listenBtn.disabled = true;
     kicker.textContent = longDate(date);
     content.innerHTML = SKELETON;
     try {
@@ -325,6 +398,7 @@
       content.querySelectorAll('a[href^="http"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
       document.title = 'Digest Radio Radicale ' + (d.label || date);
       printBtn.disabled = false;
+      listenBtn.disabled = false;
       if (location.hash.slice(1) !== date) history.pushState(null, '', '#' + date);
       window.scrollTo({ top: 0 });
     } catch (e) {
@@ -383,6 +457,158 @@
   }
 
   printBtn.onclick = () => window.print();
+
+  /* ------------------------------------------------------------------ */
+  /*  Lettura vocale (voce preferita: Paola)                             */
+  /* ------------------------------------------------------------------ */
+  const synth = window.speechSynthesis;
+  const PREFERRED = 'paola';
+  const reader = { chunks: [], i: 0, playing: false, voice: null, rate: 1 };
+  const listenBtn = $('listen'), player = $('player');
+
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  function italianVoices() {
+    return (synth ? synth.getVoices() : []).filter(v => /^it([-_]|$)/i.test(v.lang));
+  }
+
+  function fillVoices() {
+    const sel = $('pVoice'), hint = $('pHint');
+    const voices = italianVoices();
+    sel.innerHTML = '';
+    if (!voices.length) {
+      hint.hidden = false;
+      hint.textContent = 'Nessuna voce italiana installata. Su Android: Impostazioni › Sintesi vocale; su iPhone: Impostazioni › Accessibilità › Contenuto letto ad alta voce › Voci › Italiano › Paola.';
+      return;
+    }
+    voices.forEach(v => {
+      const o = document.createElement('option');
+      o.value = v.name;
+      o.textContent = v.name.replace(/^Microsoft |\(Italian.*\)|Online|Natural/gi, '').trim() || v.name;
+      sel.appendChild(o);
+    });
+    const saved = load('voice');
+    const paola = voices.find(v => v.name.toLowerCase().includes(PREFERRED));
+    const pick = voices.find(v => v.name === saved) || paola ||
+                 voices.find(v => /natural|enhanced|premium/i.test(v.name)) || voices[0];
+    sel.value = pick.name;
+    reader.voice = pick;
+    hint.hidden = !!paola;
+    if (!paola) hint.textContent = 'La voce Paola non è installata su questo dispositivo: uso ' + sel.options[sel.selectedIndex].text +
+      '. Su iPhone/Mac si scarica da Impostazioni › Accessibilità › Contenuto letto ad alta voce › Voci › Italiano.';
+  }
+
+  // Divide il digest in paragrafi da leggere, saltando link e fonti
+  function buildChunks() {
+    const els = content.querySelectorAll('h1, h2, h3, p, li');
+    const out = [];
+    els.forEach(el => {
+      if (el.closest('.sources')) return;
+      if (el.tagName === 'P' && el.closest('li')) return;      // già letto con il suo elemento di lista
+      const clone = el.cloneNode(true);
+      clone.querySelectorAll('ul, ol').forEach(l => l.remove());  // le sottoliste si leggono a parte
+      clone.querySelectorAll('a').forEach(a => {
+        if (/^\s*(ascolta|fonte|fonti|link|scheda|qui|registrazione|video|audio)\s*$/i.test(a.textContent)) a.remove();
+      });
+      const num = clone.querySelector('.num');
+      if (num) num.textContent = 'Tema ' + num.textContent + '. ';
+      let text = clone.textContent
+        .replace(/https?:\/\/\S+/g, '')
+        .replace(/[()\[\]]\s*[()\[\]]/g, '')
+        .replace(/\s+/g, ' ').trim();
+      const label = el.querySelector(':scope > strong:first-child');
+      if (label && el.tagName === 'P') text = text.replace(label.textContent, label.textContent + '. ');
+      const minLetters = /^H[1-3]$/.test(el.tagName) ? 3 : 12;
+      if (text.replace(/[^\p{L}]/gu, '').length < minLetters) return;   // righe fatte solo di link
+      out.push({ el, text });
+    });
+    return out;
+  }
+
+  function setPlayingUI(on) {
+    $('icoPlay').style.display = on ? 'none' : '';
+    $('icoPause').style.display = on ? '' : 'none';
+  }
+
+  function highlight(idx) {
+    content.querySelectorAll('.speaking').forEach(e => e.classList.remove('speaking'));
+    const c = reader.chunks[idx];
+    if (!c) return;
+    c.el.classList.add('speaking');
+    c.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    $('pNow').textContent = c.text.slice(0, 90);
+    $('pBar').style.width = ((idx + 1) / reader.chunks.length * 100) + '%';
+  }
+
+  function speakFrom(idx) {
+    synth.cancel();
+    reader.i = idx;
+    if (idx >= reader.chunks.length) { stopReading(false); $('pNow').textContent = 'Lettura terminata'; return; }
+    const u = new SpeechSynthesisUtterance(reader.chunks[idx].text);
+    u.lang = 'it-IT';
+    if (reader.voice) u.voice = reader.voice;
+    u.rate = reader.rate;
+    u.onend = () => { if (reader.playing && reader.i === idx) speakFrom(idx + 1); };
+    u.onerror = e => { if (e.error !== 'interrupted' && e.error !== 'canceled' && reader.playing) speakFrom(idx + 1); };
+    highlight(idx);
+    reader.playing = true;
+    setPlayingUI(true);
+    synth.speak(u);
+  }
+
+  function pauseReading() {
+    reader.playing = false;
+    synth.cancel();            // più affidabile di pause() sui telefoni: riprende dal paragrafo corrente
+    setPlayingUI(false);
+  }
+
+  function stopReading(close) {
+    reader.playing = false;
+    if (synth) synth.cancel();
+    setPlayingUI(false);
+    content.querySelectorAll('.speaking').forEach(e => e.classList.remove('speaking'));
+    if (close) { player.classList.remove('open'); document.body.classList.remove('player-open'); }
+  }
+
+  function openPlayer() {
+    if (!synth) { alert('Questo browser non supporta la lettura vocale.'); return; }
+    fillVoices();
+    reader.chunks = buildChunks();
+    player.classList.add('open');
+    document.body.classList.add('player-open');
+    speakFrom(0);
+  }
+
+  if (synth) {
+    synth.onvoiceschanged = () => { if (player.classList.contains('open')) fillVoices(); };
+    const r = parseFloat(load('rate'));
+    if (r) { reader.rate = r; $('pRate').value = String(r); }
+  } else {
+    listenBtn.style.display = 'none';
+  }
+
+  listenBtn.onclick = openPlayer;
+  $('pPlay').onclick = () => reader.playing ? pauseReading() : speakFrom(reader.i);
+  $('pNext').onclick = () => speakFrom(Math.min(reader.i + 1, reader.chunks.length - 1));
+  $('pPrev').onclick = () => speakFrom(Math.max(reader.i - 1, 0));
+  $('pClose').onclick = () => stopReading(true);
+  $('pVoice').onchange = e => {
+    reader.voice = italianVoices().find(v => v.name === e.target.value) || null;
+    store('voice', e.target.value);
+    if (reader.playing) speakFrom(reader.i);
+  };
+  $('pRate').onchange = e => {
+    reader.rate = parseFloat(e.target.value) || 1;
+    store('rate', String(reader.rate));
+    if (reader.playing) speakFrom(reader.i);
+  };
+  // Tocca un paragrafo mentre il lettore è aperto per partire da lì
+  content.addEventListener('click', e => {
+    if (!player.classList.contains('open') || e.target.closest('a')) return;
+    const idx = reader.chunks.findIndex(c => c.el.contains(e.target));
+    if (idx >= 0) speakFrom(idx);
+  });
   $('totop').onclick = () => window.scrollTo({ top: 0 });
 
   // Barra di lettura e pulsante "torna su"

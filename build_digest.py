@@ -39,7 +39,7 @@ MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "2"))
 # Quante schede di registrazione aprire al massimo per giorno
 MAX_SCHEDE = int(os.environ.get("MAX_SCHEDE", "60"))
 # Ascolto audio: quante registrazioni e quanti minuti ciascuna (0 = disattivato)
-AUDIO_MAX_RECORDINGS = int(os.environ.get("AUDIO_MAX_RECORDINGS", "4"))
+AUDIO_MAX_RECORDINGS = int(os.environ.get("AUDIO_MAX_RECORDINGS", "1"))
 AUDIO_MAX_MINUTES = int(os.environ.get("AUDIO_MAX_MINUTES", "60"))
 # Tempo massimo per scaricare ciascun audio (secondi) e per tutta la fase di ascolto di un giorno
 AUDIO_DOWNLOAD_TIMEOUT = int(os.environ.get("AUDIO_DOWNLOAD_TIMEOUT", "480"))
@@ -377,10 +377,24 @@ Puoi integrare il contesto (antefatti, iter di una legge, notizie collegate) con
 === FINE DOSSIER ===
 
 REGOLE DI CONTENUTO
-- Raggruppa le registrazioni per TEMA. Tratta tutti i temi con materiale sufficiente (di norma 5-10).
+- Organizza il digest in AREE (titoli ##) e, dentro ogni area, in TEMI SPECIFICI (titoli ###).
+  Un tema = UN argomento preciso: una legge o un provvedimento, un processo, una vicenda, un convegno
+  su un argomento. Esempi di temi giusti: "Legge elettorale: fiducia sugli articoli 1-3",
+  "Ddl 1990 su sicurezza e disagio giovanile", "Processo Mezzarano", "Parco nazionale dell'Etna".
+  NON mettere argomenti diversi nello stesso tema solo perché si sono svolti nella stessa sede.
+- Aree possibili, in quest'ordine, usando solo quelle che hanno temi:
+  ## Parlamento e governo
+  ## Giustizia e diritti
+  ## Politica e partiti
+  ## Esteri, Europa e difesa
+  ## Economia, lavoro e ambiente
+  ## Società, salute e cultura
+  ## Scienza, tecnologia e informazione
+- Tratta tutti i temi con materiale sufficiente: di norma 8-20 temi in tutto.
 - Sii CONCRETO: per ogni intervento noto scrivi chi ha parlato (nome, ruolo, gruppo) e cosa ha sostenuto,
-  con gli argomenti, i dati e le proposte. Se dagli appunti audio emergono contenuti, riportali in dettaglio.
-- Se di una registrazione conosci solo titolo e oratori, dillo in una riga e non riempire con frasi generiche.
+  con argomenti, dati e proposte. Se dagli appunti audio emergono contenuti, riportali in dettaglio.
+- Se di una registrazione conosci solo titolo e oratori, mettila in "Le altre registrazioni" invece di
+  creare un tema vuoto.
 - Cita numeri degli atti (es. C. 2822-B), articoli, voti, cifre, date.
 - Vietate le frasi vuote: "momento significativo", "tema centrale", "ampio spazio", "offre approfondimenti",
   "punto di vista critico e informato", "scenari complessi e in evoluzione".
@@ -399,24 +413,28 @@ STRUTTURA (Markdown)
 ## In breve
 (8-12 punti, ognuno con un fatto preciso e il link alla scheda)
 
-## 1. [Titolo del tema]
+## [Nome dell'area]
+
+### [Titolo breve e specifico del tema]
+**In una riga**: la notizia principale del tema in una sola frase.
+
 **Le registrazioni**: elenco con ora, titolo e link.
 
-**Per capire**: contesto e antefatti concreti (iter, numeri degli atti, scadenze).
+**Contesto**: antefatti concreti (iter, numeri degli atti, scadenze). Breve.
 
 **Cosa è successo**: racconto dettagliato.
 
-**Le posizioni**: intervento per intervento, chi ha detto cosa.
+**Le posizioni**:
+- **Nome Cognome (ruolo, gruppo)**: cosa ha sostenuto, con argomenti e dati.
+(un punto per ogni intervento)
 
-**Punti di scontro e di convergenza**
+**Numeri e dati**: elenco puntato (solo se ci sono numeri).
 
-**Numeri e dati**: elenco puntato.
-
-**Cosa succede adesso**
+**Cosa succede adesso**: prossimi passaggi e scadenze.
 
 **Per verificare**: elenco dei link (schede e fonti di contesto).
 
-(ripeti per ogni tema)
+(ripeti ### per ogni tema dell'area, poi passa all'area successiva)
 
 ## Le altre registrazioni
 (una riga per registrazione: ora, titolo con link, oratori, contenuto se noto)
@@ -435,9 +453,9 @@ def build_fallback_prompt(date_it: str, date_iso: str) -> str:
     """Usato solo se l'agenda non è leggibile direttamente: Gemini la apre da solo."""
     return f"""
 Apri {BASE}/agenda?data={date_iso} e le schede delle registrazioni collegate, e scrivi il digest di
-Radio Radicale del {date_it} con la stessa struttura di sempre: In breve, temi numerati con
-Le registrazioni / Per capire / Cosa è successo / Le posizioni / Numeri e dati / Cosa succede adesso /
-Per verificare, poi Le altre registrazioni, Glossario, Cosa non è stato possibile ricostruire.
+Radio Radicale del {date_it} con questa struttura: In breve; poi aree (##) e dentro ogni area temi
+specifici (###), ciascuno con In una riga / Le registrazioni / Contesto / Cosa è successo / Le posizioni /
+Cosa succede adesso / Per verificare; poi Le altre registrazioni, Glossario, Cosa non è stato possibile ricostruire.
 Metti accanto a ogni registrazione il link alla sua scheda e non inventare URL.
 Restituisci solo il Markdown.
 """
@@ -589,7 +607,7 @@ def load_index() -> list:
 def save_index(index_data: list) -> None:
     known = {item["date"]: item for item in index_data if "date" in item}
     for name in os.listdir(DIGESTS_DIR):
-        if name.endswith(".json") and name != "index.json":
+        if re.match(r"\d{4}-\d{2}-\d{2}\.json$", name):
             d = name[:-5]
             if d not in known:
                 try:
@@ -602,7 +620,7 @@ def save_index(index_data: list) -> None:
         json.dump(ordered, f, ensure_ascii=False, indent=2)
 
 
-SCRIPT_VERSION = 3
+SCRIPT_VERSION = 4
 
 
 def needs_update(path: str) -> bool:
@@ -622,16 +640,83 @@ def dates_to_generate() -> list:
     if forced:
         return [datetime.strptime(forced, "%Y-%m-%d")]
     today = datetime.now()
-    # dal giorno di 2 giorni fa all'indietro: prima i più recenti
-    candidates = [today - timedelta(days=n) for n in range(2, 2 + BACKFILL_DAYS)]
+    d_from = os.environ.get("DIGEST_FROM", "").strip()
+    d_to = os.environ.get("DIGEST_TO", "").strip()
+    if d_from:
+        # recupero di un periodo: dal più recente al più vecchio
+        start = datetime.strptime(d_from, "%Y-%m-%d")
+        stop = datetime.strptime(d_to, "%Y-%m-%d") if d_to else today - timedelta(days=2)
+        n_days = (stop - start).days + 1
+        candidates = [stop - timedelta(days=n) for n in range(max(n_days, 0))]
+    else:
+        # dal giorno di 2 giorni fa all'indietro: prima i più recenti
+        candidates = [today - timedelta(days=n) for n in range(2, 2 + BACKFILL_DAYS)]
     todo = []
     for d in candidates:
         path = os.path.join(DIGESTS_DIR, d.strftime("%Y-%m-%d") + ".json")
         if needs_update(path):
-            reason = "mancante" if not os.path.exists(path) else "versione vecchia, senza fonti"
+            reason = "mancante" if not os.path.exists(path) else "versione precedente"
             print(f"   • {d.strftime('%d.%m.%Y')}: {reason}")
             todo.append(d)
+    if len(todo) > MAX_PER_RUN:
+        print(f"   (ne faccio {MAX_PER_RUN} ora; gli altri {len(todo) - MAX_PER_RUN} alle prossime esecuzioni)")
     return todo[:MAX_PER_RUN]
+
+
+def slugify(text: str) -> str:
+    import unicodedata
+    t = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")[:60]
+
+
+SPECIAL_SECTIONS = ("in breve", "le altre registrazioni", "glossario", "cosa non")
+
+
+def extract_themes(markdown: str) -> list:
+    """Elenco dei temi (### dentro le aree ##) con la frase "In una riga"."""
+    themes, area = [], ""
+    lines = markdown.split("\n")
+    for i, line in enumerate(lines):
+        if line.startswith("## "):
+            area = re.sub(r"^\d+[.)]\s*", "", line[3:].strip())
+        elif line.startswith("### ") and area and not area.lower().startswith(SPECIAL_SECTIONS):
+            title = re.sub(r"^\d+[.)]\s*", "", line[4:].strip())
+            summary = ""
+            for nxt in lines[i + 1:i + 8]:
+                m = re.match(r"\*\*In una riga\*\*\s*:?\s*(.+)", nxt.strip())
+                if m:
+                    summary = re.sub(r"\s*\[(ascolta|fonte|qui|link)\]\([^)]+\)", "", m.group(1), flags=re.I)
+                    summary = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", summary).strip()
+                    break
+                if nxt.startswith("#"):
+                    break
+            themes.append({"area": area, "title": title, "summary": summary[:300], "id": slugify(title)})
+    if not themes:
+        # digest del formato precedente: i temi erano "## 1. Titolo"
+        for line in lines:
+            m = re.match(r"^##\s+\d+[.)]\s*(.+)", line)
+            if m:
+                themes.append({"area": "Temi del giorno", "title": m.group(1).strip(), "summary": "",
+                               "id": slugify(m.group(1))})
+    return themes
+
+
+def save_themes_index() -> None:
+    """digests/themes.json: tutti i temi di tutti i giorni, per l'archivio e la ricerca nella pagina."""
+    out = []
+    for name in sorted(os.listdir(DIGESTS_DIR), reverse=True):
+        if not re.match(r"\d{4}-\d{2}-\d{2}\.json$", name):
+            continue
+        try:
+            with open(os.path.join(DIGESTS_DIR, name), encoding="utf-8") as f:
+                d = json.load(f)
+        except Exception:
+            continue
+        for t in extract_themes(d.get("markdown", "")):
+            out.append({"date": d.get("date", name[:10]), **t})
+    with open(os.path.join(DIGESTS_DIR, "themes.json"), "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=0)
+    print(f"🗂️ Archivio dei temi: {len(out)} temi.")
 
 
 def main():
@@ -647,6 +732,7 @@ def main():
     if not dates:
         print("Nessun digest da generare: sono già tutti presenti e aggiornati.")
         save_index(load_index())
+        save_themes_index()
         return
 
     failures = 0
@@ -657,6 +743,7 @@ def main():
             failures += 1
             print(f"❌ Digest del {d.strftime('%d.%m.%Y')} non generato: {e}")
 
+    save_themes_index()
     print("\n✨ Fatto.")
     if failures == len(dates):
         raise SystemExit(1)

@@ -17,11 +17,23 @@ on:
         description: 'Quante registrazioni ascoltare (0 = nessuna)'
         required: false
         default: '0'
+      digest_from:
+        description: 'Recupero di un periodo: dal giorno (AAAA-MM-GG). Vuoto = no'
+        required: false
+        default: ''
+      digest_to:
+        description: 'Recupero di un periodo: al giorno (AAAA-MM-GG). Vuoto = fino a 2 giorni fa'
+        required: false
+        default: ''
+      max_per_run:
+        description: 'Quanti giorni generare al massimo in questa esecuzione'
+        required: false
+        default: '2'
 
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    timeout-minutes: 180
     permissions:
       contents: write
 
@@ -40,7 +52,7 @@ jobs:
       - name: Controlla che lo script sia completo
         run: |
           echo "Righe di build_digest.py: $(wc -l < build_digest.py)"
-          if ! grep -q "SCRIPT_VERSION = 3" build_digest.py || ! tail -3 build_digest.py | grep -q "main()"; then
+          if ! grep -q "SCRIPT_VERSION = 4" build_digest.py || ! tail -3 build_digest.py | grep -q "main()"; then
             echo "❌ build_digest.py è incompleto o vecchio: ricaricalo per intero (deve finire con main())."
             exit 1
           fi
@@ -55,7 +67,9 @@ jobs:
           BACKFILL_DAYS: ${{ github.event.inputs.backfill_days || '7' }}
           AUDIO_MAX_RECORDINGS: ${{ github.event.inputs.audio_recordings || '0' }}
           AUDIO_MAX_MINUTES: '60'
-          MAX_PER_RUN: '2'
+          MAX_PER_RUN: ${{ github.event.inputs.max_per_run || '2' }}
+          DIGEST_FROM: ${{ github.event.inputs.digest_from }}
+          DIGEST_TO: ${{ github.event.inputs.digest_to }}
         run: python build_digest.py
 
       - name: Salva e carica le modifiche sul repository

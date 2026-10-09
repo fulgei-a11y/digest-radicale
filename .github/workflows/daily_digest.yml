@@ -22,7 +22,7 @@ on:
         required: false
         default: ''
       digest_to:
-        description: 'Recupero di un periodo: al giorno (AAAA-MM-GG). Vuoto = fino a 2 giorni fa'
+        description: 'Recupero di un periodo: al giorno (AAAA-MM-GG). Vuoto = fino a ieri'
         required: false
         default: ''
       max_per_run:
@@ -36,6 +36,10 @@ jobs:
     timeout-minutes: 180
     permissions:
       contents: write
+      issues: write      # per aprire la segnalazione automatica se qualcosa va storto
+    env:
+      DAYS_LAG: '1'      # 1 = ogni mattina il digest di ieri
+      DIGEST_STATUS_FILE: ${{ github.workspace }}/digest_status.json
 
     steps:
       - name: Checkout repository
@@ -61,6 +65,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Esegui generazione Digest
+        id: gen
+        continue-on-error: true   # si salva comunque quello che è riuscito; l'esito lo valuta il controllo finale
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DIGEST_DATE: ${{ github.event.inputs.digest_date }}
@@ -76,9 +82,9 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add digests/
+          git add digests/ d/ 2>/dev/null || git add digests/
           echo "File modificati:"
-          git status --short digests/
+          git status --short digests/ d/
           if git diff --cached --quiet; then
             echo "Nessun digest nuovo da salvare."
             exit 0
@@ -87,3 +93,36 @@ jobs:
           git pull --rebase
           git push
           echo "✅ Digest pubblicati. Il sito si aggiorna in 1-2 minuti."
+
+      - name: Controllo dell'esito
+        id: health
+        if: always()
+        env:
+          GEN_OUTCOME: ${{ steps.gen.outcome }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python check_health.py
+
+      - name: Avviso se qualcosa non va
+        if: always() && steps.health.outputs.problems == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create digest-errore --color d6332f --description "Aggiornamento automatico non riuscito" 2>/dev/null || true
+          n=$(gh issue list --label digest-errore --state open --json number -q '.[0].number')
+          if [ -n "$n" ]; then
+            gh issue comment "$n" --body-file health.md
+          else
+            gh issue create --title "⚠️ Digest Radio Radicale: aggiornamento non riuscito" \
+              --label digest-errore --body-file health.md
+          fi
+          echo "::error::Aggiornamento non riuscito: vedi la segnalazione nella scheda Issues."
+          exit 1
+
+      - name: Chiudi l'avviso quando tutto torna a posto
+        if: always() && steps.health.outputs.problems == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for n in $(gh issue list --label digest-errore --state open --json number -q '.[].number'); do
+            gh issue close "$n" --comment "$(cat health.md)"
+          done

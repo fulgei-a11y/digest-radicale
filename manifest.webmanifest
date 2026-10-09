@@ -1,0 +1,16 @@
+{
+  "name": "Digest Radio Radicale",
+  "short_name": "Digest RR",
+  "description": "Ogni giorno le registrazioni di Radio Radicale analizzate per tema, con i dossier che seguono le vicende giorno per giorno.",
+  "lang": "it",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f4ef",
+  "theme_color": "#f6f4ef",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -34,6 +34,16 @@ BASE = "https://www.radioradicale.it"
 
 # Quanti giorni indietro controllare per recuperare digest mancanti
 BACKFILL_DAYS = int(os.environ.get("BACKFILL_DAYS", "7"))
+# Di quanti giorni "in ritardo" lavorare: 1 = il digest di ieri, fatto la mattina dopo.
+DAYS_LAG = max(1, int(os.environ.get("DAYS_LAG", "1")))
+# Il giorno dopo si ricontrolla l'agenda: se nel frattempo sono comparse molte registrazioni
+# nuove (schede pubblicate in ritardo), il digest viene rifatto una volta sola.
+RECHECK_MIN_NEW = int(os.environ.get("RECHECK_MIN_NEW", "3"))
+# Indirizzo pubblico del sito (serve per le anteprime su WhatsApp e social)
+SITE_URL = os.environ.get("SITE_URL", "https://fulgei-a11y.github.io/digest-radicale/").rstrip("/") + "/"
+SHARE_DIR = "d"
+# File con l'esito dell'esecuzione, letto dal controllo che apre l'avviso in caso di problemi
+STATUS_PATH = os.environ.get("DIGEST_STATUS_FILE", "")
 # Massimo numero di digest generati per esecuzione (per non esaurire la quota)
 MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "2"))
 # Quante schede di registrazione aprire al massimo per giorno
@@ -403,6 +413,22 @@ def build_dossier(items: list) -> str:
     return "\n\n".join(parts)
 
 
+def known_dossiers_text(before_iso: str, days: int = 30, limit: int = 120) -> str:
+    """Elenco dei dossier aperti nelle ultime settimane, da passare a Gemini perché riusi le chiavi."""
+    path = os.path.join(DIGESTS_DIR, "dossiers.json")
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        return "(nessun dossier ancora)"
+    limit_date = (datetime.strptime(before_iso, "%Y-%m-%d") - timedelta(days=days)).strftime("%Y-%m-%d")
+    rows = [d for d in data if limit_date <= d.get("last", "") < before_iso]
+    rows.sort(key=lambda d: (d.get("days", 0), d.get("last", "")), reverse=True)
+    if not rows:
+        return "(nessun dossier ancora)"
+    return "\n".join(f"- {d['key']} | {d['label']} | ultimo giorno {d['last']}" for d in rows[:limit])
+
+
 def build_prompt(date_it: str, date_iso: str, dossier: str) -> str:
     return f"""
 Scrivi il digest di Radio Radicale del {date_it}.
@@ -446,6 +472,18 @@ REGOLE SUI LINK (obbligatorie)
 - Per i fatti di contesto presi dalla ricerca web aggiungi il link alla pagina da cui li hai presi.
 - Non inventare mai un URL.
 
+DOSSIER (per seguire un tema giorno per giorno)
+- Subito sotto il titolo ### di ogni tema scrivi una riga così, da sola:
+  <!-- dossier: chiave | Nome del dossier -->
+- Se il tema è la prosecuzione di una vicenda già seguita nei giorni scorsi (stessa legge o atto, anche
+  se cambia ramo del Parlamento o numero; stesso processo; stessa indagine conoscitiva; stessa crisi
+  aziendale o vertenza), RIUSA ESATTAMENTE la chiave e il nome dell'elenco qui sotto.
+- Altrimenti crea una chiave nuova: minuscole e trattini, 2-5 parole, che descriva la vicenda e non
+  il singolo passaggio (giusto: "legge-elettorale", "processo-santa-maria-capua-vetere";
+  sbagliato: "legge-elettorale-fiducia-art-3"). Il nome è breve e leggibile: "Legge elettorale".
+Dossier dei giorni scorsi (chiave | nome | ultimo giorno):
+{known_dossiers_text(date_iso)}
+
 STRUTTURA (Markdown)
 
 # Radio Radicale, {date_it}
@@ -457,6 +495,7 @@ STRUTTURA (Markdown)
 ## [Nome dell'area]
 
 ### [Titolo breve e specifico del tema]
+<!-- dossier: chiave-della-vicenda | Nome del dossier -->
 **In una riga**: la notizia principale del tema in una sola frase.
 
 **Le registrazioni**: elenco con ora, titolo e link.
@@ -617,11 +656,21 @@ def generate_for_date(client: genai.Client, ref_date: datetime) -> None:
     digest_md = clean_markdown(digest_md, date_it)
     digest_md = clean_dead_links(digest_md, known_good)
 
-    with open(os.path.join(DIGESTS_DIR, f"{date_iso}.json"), "w", encoding="utf-8") as f:
+    out_path = os.path.join(DIGESTS_DIR, f"{date_iso}.json")
+    rechecked = False
+    if os.path.exists(out_path):
+        try:
+            with open(out_path, encoding="utf-8") as f:
+                rechecked = bool(json.load(f).get("rechecked"))
+        except Exception:
+            pass
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(
             {"version": SCRIPT_VERSION,
              "date": date_iso, "label": date_it, "markdown": digest_md, "sources": unique,
-             "recordings": len(items), "listened": sum(1 for i in items if i.get("audio_notes"))},
+             "recordings": len(items), "listened": sum(1 for i in items if i.get("audio_notes")),
+             "generated": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+             "rechecked": rechecked},
             f, ensure_ascii=False, indent=2,
         )
     print(f"   💾 Salvato con {len(unique)} fonti.")
@@ -686,12 +735,12 @@ def dates_to_generate() -> list:
     if d_from:
         # recupero di un periodo: dal più recente al più vecchio
         start = datetime.strptime(d_from, "%Y-%m-%d")
-        stop = datetime.strptime(d_to, "%Y-%m-%d") if d_to else today - timedelta(days=2)
+        stop = datetime.strptime(d_to, "%Y-%m-%d") if d_to else today - timedelta(days=DAYS_LAG)
         n_days = (stop - start).days + 1
         candidates = [stop - timedelta(days=n) for n in range(max(n_days, 0))]
     else:
-        # dal giorno di 2 giorni fa all'indietro: prima i più recenti
-        candidates = [today - timedelta(days=n) for n in range(2, 2 + BACKFILL_DAYS)]
+        # da ieri (DAYS_LAG) all'indietro: prima i più recenti
+        candidates = [today - timedelta(days=n) for n in range(DAYS_LAG, DAYS_LAG + BACKFILL_DAYS)]
     todo = []
     for d in candidates:
         path = os.path.join(DIGESTS_DIR, d.strftime("%Y-%m-%d") + ".json")
@@ -699,9 +748,44 @@ def dates_to_generate() -> list:
             reason = "mancante" if not os.path.exists(path) else "versione precedente"
             print(f"   • {d.strftime('%d.%m.%Y')}: {reason}")
             todo.append(d)
+    if not d_from:
+        # Ricontrollo del giorno prima: il digest è stato fatto la mattina dopo, quando alcune schede
+        # (soprattutto delle registrazioni serali) potevano non essere ancora pubblicate.
+        d = today - timedelta(days=DAYS_LAG + 1)
+        if d not in todo and recheck_needed(d):
+            todo.insert(1 if todo else 0, d)
     if len(todo) > MAX_PER_RUN:
         print(f"   (ne faccio {MAX_PER_RUN} ora; gli altri {len(todo) - MAX_PER_RUN} alle prossime esecuzioni)")
     return todo[:MAX_PER_RUN]
+
+
+def recheck_needed(d: datetime) -> bool:
+    """True se l'agenda di quel giorno ora contiene parecchie registrazioni in più rispetto al digest.
+    Il ricontrollo si fa una volta sola per giorno (campo "rechecked" nel file)."""
+    path = os.path.join(DIGESTS_DIR, d.strftime("%Y-%m-%d") + ".json")
+    if not os.path.exists(path):
+        return False
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        return False
+    if data.get("rechecked"):
+        return False
+    before = int(data.get("recordings") or 0)
+    now = len(scrape_agenda(d.strftime("%Y-%m-%d")))
+    if not now:
+        return False  # agenda non leggibile adesso: si riprova alla prossima esecuzione
+    redo = now >= before + RECHECK_MIN_NEW
+    data["rechecked"] = True
+    if redo:
+        data["rechecked_from"] = before
+        print(f"   • {d.strftime('%d.%m.%Y')}: da rifare, l'agenda è passata da {before} a {now} registrazioni")
+    else:
+        print(f"   • {d.strftime('%d.%m.%Y')}: ricontrollato, nessuna novità rilevante ({before} → {now})")
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    return redo
 
 
 def slugify(text: str) -> str:
@@ -711,27 +795,36 @@ def slugify(text: str) -> str:
 
 
 SPECIAL_SECTIONS = ("in breve", "le altre registrazioni", "glossario", "cosa non")
+DOSSIER_TAG_RE = re.compile(r"<!--\s*dossier\s*:\s*([^|>]+?)\s*(?:\|\s*([^>]*?))?\s*-->", re.I)
 
 
 def extract_themes(markdown: str) -> list:
-    """Elenco dei temi (### dentro le aree ##) con la frase "In una riga"."""
+    """Elenco dei temi (### dentro le aree ##) con la frase "In una riga" e l'eventuale etichetta dossier."""
     themes, area = [], ""
     lines = markdown.split("\n")
     for i, line in enumerate(lines):
         if line.startswith("## "):
             area = re.sub(r"^\d+[.)]\s*", "", line[3:].strip())
         elif line.startswith("### ") and area and not area.lower().startswith(SPECIAL_SECTIONS):
-            title = re.sub(r"^\d+[.)]\s*", "", line[4:].strip())
+            raw = line[4:]
+            tag = DOSSIER_TAG_RE.search(raw)
+            title = re.sub(r"^\d+[.)]\s*", "", DOSSIER_TAG_RE.sub("", raw).strip())
             summary = ""
             for nxt in lines[i + 1:i + 8]:
-                m = re.match(r"\*\*In una riga\*\*\s*:?\s*(.+)", nxt.strip())
-                if m:
-                    summary = re.sub(r"\s*\[(ascolta|fonte|qui|link)\]\([^)]+\)", "", m.group(1), flags=re.I)
-                    summary = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", summary).strip()
-                    break
                 if nxt.startswith("#"):
                     break
-            themes.append({"area": area, "title": title, "summary": summary[:300], "id": slugify(title)})
+                if not tag:
+                    tag = DOSSIER_TAG_RE.search(nxt)
+                m = re.match(r"\*\*In una riga\*\*\s*:?\s*(.+)", nxt.strip())
+                if m and not summary:
+                    summary = re.sub(r"\s*\[(ascolta|fonte|qui|link)\]\([^)]+\)", "", m.group(1), flags=re.I)
+                    summary = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", summary).strip()
+            t = {"area": area, "title": title, "summary": summary[:300], "id": slugify(title)}
+            if tag:
+                t["tag"] = slugify(tag.group(1))
+                if tag.group(2):
+                    t["tag_label"] = tag.group(2).strip()[:80]
+            themes.append(t)
     if not themes:
         # digest del formato precedente: i temi erano "## 1. Titolo"
         for line in lines:
@@ -742,8 +835,94 @@ def extract_themes(markdown: str) -> list:
     return themes
 
 
+# --------------------------------------------------------------------------- #
+#  Dossier: lo stesso tema seguito giorno per giorno
+# --------------------------------------------------------------------------- #
+# Numeri degli atti: identificano con certezza la stessa vicenda anche se il titolo cambia.
+ACT_PATTERNS = [
+    (re.compile(r"\b(?:decreto[\s-]*legge|d\.?\s?l\.?)\s*(?:n\.?\s*)?(\d{1,3})\s*/\s*(\d{4})", re.I), "dl-{0}-{1}"),
+    (re.compile(r"\bd\.?\s?lgs\.?\s*(?:n\.?\s*)?(\d{1,3})\s*/\s*(\d{4})", re.I), "dlgs-{0}-{1}"),
+    (re.compile(r"\b(?:A\.?\s?G\.?|atto\s+(?:del\s+)?governo)\s*(?:n\.?\s*)?(\d{2,4})\b", re.I), "atto-governo-{0}"),
+    (re.compile(r"\b(?:A\.?\s?C\.?|C\.)\s*(?:n\.?\s*)?(\d{2,5})(?:-[A-Z])?\b"), "camera-{0}"),
+    (re.compile(r"\b(?:d\.?\s?d\.?\s?l\.?|A\.?\s?S\.?|S\.)\s*(?:n\.?\s*)?(\d{2,5})(?:-[A-Z])?\b", re.I), "ddl-{0}"),
+]
+STOPWORDS = set("""
+a ad al alla alle allo agli ai all anche che chi con cui da dal dalla dalle dai degli dei del della delle dello
+di e ed fra gli i il in la le lo nel nella nelle nei negli o per su sul sulla sulle sui tra un una uno
+seguito discussione esame audizione audizioni sul sulla presentazione libro convegno incontro dibattito
+seduta proposta disegno legge ddl decreto materia tema temi nuovo nuova parte prima seconda giornata
+""".split())
+
+
+def act_key(text: str) -> str:
+    for rx, fmt in ACT_PATTERNS:
+        m = rx.search(text)
+        if m:
+            return fmt.format(*m.groups())
+    return ""
+
+
+def words_of(text: str) -> set:
+    import unicodedata
+    t = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode().lower()
+    return {w[:7] for w in re.findall(r"[a-z]{3,}", t) if w not in STOPWORDS}
+
+
+def assign_dossiers(themes: list) -> None:
+    """Dà a ogni tema la chiave del suo dossier. Ordine di preferenza:
+    1) l'etichetta scritta da Gemini nel digest; 2) il numero dell'atto (legge, decreto, atto del governo);
+    3) il nome del processo; 4) un titolo molto simile a un tema delle tre settimane precedenti."""
+    by_key = {}          # chiave -> {"words": set, "last": data}
+    act_to_key = {}      # numero dell'atto -> chiave dossier usata
+    for t in sorted(themes, key=lambda x: x["date"]):
+        text = t["title"] + " " + t.get("summary", "")
+        act = act_key(t["title"]) or act_key(t.get("summary", ""))
+        key = t.get("tag", "")
+        if not key and act:
+            key = act_to_key.get(act, act)
+        if not key:
+            m = re.match(r"processo\s+(?:d['’]appello\s+|di\s+appello\s+)?(?:a\s+)?([A-Za-zÀ-ÿ']+)", t["title"], re.I)
+            if m and m.group(1).lower() not in ("per", "sulla", "sul", "contro"):
+                key = "processo-" + slugify(m.group(1))
+        if not key:
+            w = words_of(t["title"])
+            best, best_score = "", 0.0
+            limit = (datetime.strptime(t["date"], "%Y-%m-%d") - timedelta(days=21)).strftime("%Y-%m-%d")
+            for k, info in by_key.items():
+                if info["last"] < limit or info["last"] >= t["date"] or not w or not info["words"]:
+                    continue
+                score = len(w & info["words"]) / len(w | info["words"])
+                if score > best_score:
+                    best, best_score = k, score
+            key = best if best_score >= 0.5 else slugify(t["title"])
+        if act and act not in act_to_key:
+            act_to_key[act] = key
+        t["dossier"] = key
+        info = by_key.setdefault(key, {"words": set(), "last": ""})
+        info["words"] = words_of(t["title"]) | (info["words"] if not t.get("tag") else set())
+        info["last"] = t["date"]
+
+
+def build_dossiers(themes: list) -> list:
+    groups = {}
+    for t in themes:
+        groups.setdefault(t["dossier"], []).append(t)
+    out = []
+    for key, items in groups.items():
+        items.sort(key=lambda x: x["date"])
+        labels = [i["tag_label"] for i in items if i.get("tag_label")]
+        label = labels[-1] if labels else items[-1]["title"]
+        if not labels and ":" in label and len(label.split(":")[0]) >= 10:
+            label = label.split(":")[0].strip()   # "Legge elettorale: fiducia sull'art. 3" -> "Legge elettorale"
+        dates = sorted({i["date"] for i in items})
+        out.append({"key": key, "label": label, "area": items[-1]["area"],
+                    "first": dates[0], "last": dates[-1], "days": len(dates)})
+    out.sort(key=lambda d: (d["last"], d["days"]), reverse=True)
+    return out
+
+
 def save_themes_index() -> None:
-    """digests/themes.json: tutti i temi di tutti i giorni, per l'archivio e la ricerca nella pagina."""
+    """digests/themes.json (tutti i temi) e digests/dossiers.json (i temi raggruppati per vicenda)."""
     out = []
     for name in sorted(os.listdir(DIGESTS_DIR), reverse=True):
         if not re.match(r"\d{4}-\d{2}-\d{2}\.json$", name):
@@ -755,38 +934,157 @@ def save_themes_index() -> None:
             continue
         for t in extract_themes(d.get("markdown", "")):
             out.append({"date": d.get("date", name[:10]), **t})
+    assign_dossiers(out)
+    dossiers = build_dossiers(out)
+    for t in out:
+        t.pop("tag", None)
+        t.pop("tag_label", None)
+    out.sort(key=lambda t: t["date"], reverse=True)
     with open(os.path.join(DIGESTS_DIR, "themes.json"), "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=0)
-    print(f"🗂️ Archivio dei temi: {len(out)} temi.")
+    with open(os.path.join(DIGESTS_DIR, "dossiers.json"), "w", encoding="utf-8") as f:
+        json.dump(dossiers, f, ensure_ascii=False, indent=0)
+    multi = sum(1 for d in dossiers if d["days"] > 1)
+    print(f"🗂️ Archivio dei temi: {len(out)} temi, {multi} dossier seguiti per più giorni.")
+
+
+# --------------------------------------------------------------------------- #
+#  Pagine di condivisione (anteprima su WhatsApp, Telegram, social)
+# --------------------------------------------------------------------------- #
+def _plain(md: str) -> str:
+    s = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", md)
+    s = re.sub(r"[*_`#>]", "", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def share_description(markdown: str, limit: int = 280) -> str:
+    """I primi punti di "In breve", per il testo dell'anteprima."""
+    m = re.search(r"^##\s*In breve.*?$(.*?)(?=^##\s)", markdown, re.M | re.S)
+    block = m.group(1) if m else markdown
+    points = [_plain(l[2:]) for l in block.split("\n") if l.strip().startswith(("- ", "* "))]
+    text = " · ".join(p for p in points if p)
+    if not text:
+        text = _plain(block)
+    return text[:limit - 1].rsplit(" ", 1)[0] + "…" if len(text) > limit else text
+
+
+def html_attr(s: str) -> str:
+    return (s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+SHARE_TEMPLATE = """<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content="{desc}">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Digest Radio Radicale">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>location.replace({target_js});</script>
+</head>
+<body><p><a href="{target}">{title}</a></p></body>
+</html>
+"""
+
+
+def write_share_page(key: str, title: str, desc: str, target_hash: str) -> None:
+    os.makedirs(SHARE_DIR, exist_ok=True)
+    target = SITE_URL + "#" + target_hash
+    html = SHARE_TEMPLATE.format(
+        title=html_attr(title), desc=html_attr(desc), url=html_attr(f"{SITE_URL}{SHARE_DIR}/{key}.html"),
+        image=html_attr(SITE_URL + "og-image.png"), target=html_attr(target), target_js=json.dumps(target),
+    )
+    with open(os.path.join(SHARE_DIR, f"{key}.html"), "w", encoding="utf-8") as f:
+        f.write(html)
+
+
+def save_share_pages() -> None:
+    """Una piccola pagina statica per ogni giorno e per ogni dossier: WhatsApp non esegue JavaScript,
+    quindi l'anteprima (titolo e testo) deve stare già scritta nell'HTML. Chi apre il link viene
+    portato subito al digest vero."""
+    n = 0
+    for item in load_index():
+        path = os.path.join(DIGESTS_DIR, item["date"] + ".json")
+        try:
+            with open(path, encoding="utf-8") as f:
+                d = json.load(f)
+        except Exception:
+            continue
+        dt = datetime.strptime(item["date"], "%Y-%m-%d")
+        title = f"Radio Radicale, {GIORNI[dt.weekday()]} {dt.day} {MESI[dt.month - 1]} {dt.year}"
+        write_share_page(item["date"], title, share_description(d.get("markdown", "")), item["date"])
+        n += 1
+    try:
+        with open(os.path.join(DIGESTS_DIR, "dossiers.json"), encoding="utf-8") as f:
+            dossiers = json.load(f)
+    except Exception:
+        dossiers = []
+    for ds in dossiers:
+        if ds.get("days", 0) < 2:
+            continue
+        first = datetime.strptime(ds["first"], "%Y-%m-%d")
+        last = datetime.strptime(ds["last"], "%Y-%m-%d")
+        desc = (f"Dossier di Radio Radicale: {ds['days']} giorni seguiti, "
+                f"dal {first.day} {MESI[first.month - 1]} al {last.day} {MESI[last.month - 1]} {last.year}.")
+        write_share_page("dossier-" + ds["key"], f"Dossier: {ds['label']}", desc, "dossier/" + ds["key"])
+        n += 1
+    print(f"🔗 Pagine di condivisione aggiornate: {n}.")
+
+
+GIORNI = ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica"]
+MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto",
+        "settembre", "ottobre", "novembre", "dicembre"]
+
+
+def write_status(status: dict) -> None:
+    if not STATUS_PATH:
+        return
+    with open(STATUS_PATH, "w", encoding="utf-8") as f:
+        json.dump(status, f, ensure_ascii=False, indent=2)
 
 
 def main():
+    status = {"generated": [], "failed": [], "empty_agenda": []}
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
+        status["fatal"] = "GEMINI_API_KEY non trovata nei Secrets del repository."
+        write_status(status)
         raise ValueError("GEMINI_API_KEY non trovata nelle variabili d'ambiente!")
     client = genai.Client(api_key=api_key)
     os.makedirs(DIGESTS_DIR, exist_ok=True)
 
-    print(f"🚀 build_digest versione {SCRIPT_VERSION} (con fonti, schede e ascolto audio)")
+    print(f"🚀 build_digest versione {SCRIPT_VERSION} (con fonti, schede, dossier e ascolto audio)")
     print("🗓️  Giorni da generare o aggiornare:")
     dates = dates_to_generate()
     if not dates:
         print("Nessun digest da generare: sono già tutti presenti e aggiornati.")
-        save_index(load_index())
-        save_themes_index()
-        return
 
-    failures = 0
     for d in dates:
         try:
             generate_for_date(client, d)
+            status["generated"].append(d.strftime("%Y-%m-%d"))
+            with open(os.path.join(DIGESTS_DIR, d.strftime("%Y-%m-%d") + ".json"), encoding="utf-8") as f:
+                if not json.load(f).get("recordings"):
+                    status["empty_agenda"].append(d.strftime("%Y-%m-%d"))
         except Exception as e:
-            failures += 1
+            status["failed"].append({"date": d.strftime("%Y-%m-%d"), "error": str(e)[:500]})
             print(f"❌ Digest del {d.strftime('%d.%m.%Y')} non generato: {e}")
 
+    save_index(load_index())
     save_themes_index()
+    save_share_pages()
+    write_status(status)
     print("\n✨ Fatto.")
-    if failures == len(dates):
+    if dates and len(status["failed"]) == len(dates):
         raise SystemExit(1)
 
 

@@ -6,6 +6,26 @@
 <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
 <title>Digest Radio Radicale</title>
+<meta name="description" content="Ogni giorno le registrazioni di Radio Radicale analizzate per tema: Parlamento, giustizia, politica, esteri. Con dossier che seguono le vicende giorno per giorno.">
+<!-- Anteprima quando il link viene condiviso (WhatsApp, Telegram, social) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Digest Radio Radicale">
+<meta property="og:title" content="Digest Radio Radicale">
+<meta property="og:description" content="Ogni giorno le registrazioni di Radio Radicale analizzate per tema, con i dossier che seguono le vicende giorno per giorno.">
+<meta property="og:url" content="https://fulgei-a11y.github.io/digest-radicale/">
+<meta property="og:image" content="https://fulgei-a11y.github.io/digest-radicale/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- App installabile -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Digest RR">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -28,6 +48,7 @@
     }
   }
   * { box-sizing:border-box; }
+  [hidden] { display:none !important; }
   html { scroll-behavior:smooth; }
   body { margin:0; background:var(--bg); color:var(--fg); font:16.5px/1.7 var(--sans);
          -webkit-font-smoothing:antialiased; }
@@ -196,8 +217,56 @@
   .tres .ss { display:block; color:var(--muted); font-size:.92rem; }
   .tres mark { background:var(--accent-soft); color:inherit; border-radius:3px; }
 
+  /* Dossier: collegamento dentro un tema */
+  .dchip { display:inline-flex; align-items:center; gap:8px; margin:2px 0 6px; padding:6px 12px 6px 10px;
+           border-radius:999px; background:var(--accent-soft); color:var(--accent) !important;
+           text-decoration:none !important; font:600 .84rem/1.3 var(--sans); }
+  .dchip svg { width:16px; height:16px; flex:none; }
+  .dchip:hover { box-shadow:0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent); }
+
+  /* Dossier: pagina */
+  .dossier-meta { color:var(--muted); margin:-.2em 0 1.2em; }
+  .timeline { list-style:none; padding:0; margin:0; position:relative; }
+  .timeline::before { content:""; position:absolute; left:11px; top:14px; bottom:14px; width:2px; background:var(--line); }
+  .timeline > li { position:relative; padding-left:36px; margin:0 0 14px; }
+  .timeline > li::before { content:""; position:absolute; left:5px; top:24px; width:14px; height:14px; border-radius:50%;
+                           background:var(--surface); border:3px solid var(--accent); }
+  .timeline > li.last::before { background:var(--accent); }
+  .timeline .block { margin:0; padding:16px 18px; }
+  .timeline details > summary { list-style:none; cursor:pointer; position:relative; padding-right:26px; }
+  .timeline details > summary::-webkit-details-marker { display:none; }
+  .timeline details > summary::after { content:"+"; position:absolute; right:0; top:-2px; font:600 1.4rem var(--sans); color:var(--accent); }
+  .timeline details[open] > summary::after { content:"–"; }
+  .timeline .when { display:block; font:700 .74rem var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+  .timeline .tt { display:block; font-family:var(--serif); font-weight:700; font-size:1.1rem; line-height:1.3; margin-top:2px; }
+  .timeline .ss { display:block; color:var(--muted); font-size:.95rem; margin-top:4px; }
+  .timeline details[open] .ss { display:none; }
+  .timeline .goto { display:inline-block; margin-top:8px; font-weight:600; font-size:.9rem; }
+  .dlist { list-style:none; padding:0; margin:0; }
+  .dlist li { border-bottom:1px solid var(--line); }
+  .dlist a { display:flex; gap:12px; align-items:center; padding:12px 2px; text-decoration:none; color:var(--fg); }
+  .dlist .n { flex:none; min-width:44px; text-align:center; padding:4px 0; border-radius:10px; background:var(--accent-soft);
+              color:var(--accent); font:700 .95rem/1.1 var(--sans); }
+  .dlist .n small { display:block; font-size:.62rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; }
+  .dlist .tt { display:block; font-weight:700; line-height:1.3; }
+  .dlist .d { display:block; color:var(--muted); font-size:.85rem; }
+  .backlink { display:inline-flex; align-items:center; gap:6px; color:var(--muted); text-decoration:none; font-weight:600; font-size:.9rem; cursor:pointer;
+              background:none; border:0; padding:0; }
+  .backlink:hover { color:var(--fg); }
+
+  /* Avviso discreto (copia del link) */
+  #toast { position:fixed; left:50%; top:76px; transform:translate(-50%, -20px); opacity:0; pointer-events:none; z-index:40;
+           background:var(--fg); color:var(--bg); padding:10px 16px; border-radius:999px; font-weight:600; font-size:.9rem;
+           transition:opacity .2s, transform .2s; box-shadow:var(--shadow); max-width:calc(100% - 32px); text-align:center; }
+  #toast.show { opacity:1; transform:translate(-50%, 0); }
+
   /* Pulsanti della testata */
   .actions { display:flex; gap:8px; }
+  .brand { cursor:pointer; }
+  @media (max-width:480px) {
+    .actions .icon-btn .lbl { display:none; }
+    .actions .icon-btn { padding:9px 11px; }
+  }
   .icon-btn.ghost { background:var(--surface); color:var(--fg); border:1px solid var(--line); }
 
   /* Lettura vocale */
@@ -245,7 +314,9 @@
     @page { margin:18mm 16mm; }
     :root { --bg:#fff; --surface:#fff; --fg:#000; --muted:#444; --line:#ccc; --accent:#000; --link:#000; --accent-soft:#fff; }
     body { font:11pt/1.5 Georgia, "Times New Roman", serif; background:#fff; color:#000; }
-    .topbar, .datenav, #archive, #totop, #progress, footer, #player { display:none !important; }
+    .topbar, .datenav, #archive, #totop, #progress, footer, #player, #toast, .dchip, .backlink, .timeline .goto { display:none !important; }
+    .timeline::before, .timeline > li::before { display:none; }
+    .timeline > li { padding-left:0; }
     .speaking { background:none; box-shadow:none; }
     .toc .tools, details.theme > summary::after { display:none !important; }
     details.theme > summary .s { display:none; }
@@ -268,18 +339,26 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand">
+    <div class="brand" id="home" role="link" tabindex="0" aria-label="Torna al digest più recente">
       <span class="onair" aria-hidden="true"></span>
       <div>Digest<small>Radio Radicale</small></div>
     </div>
     <div class="actions">
+      <button id="install" class="icon-btn ghost" hidden aria-label="Installa come app">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span class="lbl">Installa</span>
+      </button>
+      <button id="share" class="icon-btn ghost" disabled aria-label="Condividi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+        <span class="lbl">Condividi</span>
+      </button>
       <button id="listen" class="icon-btn ghost" disabled aria-label="Ascolta il digest">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
-        Ascolta
+        <span class="lbl">Ascolta</span>
       </button>
       <button id="print" class="icon-btn" disabled aria-label="Stampa o salva in PDF">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7" rx="1"/><path d="M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/></svg>
-        PDF
+        <span class="lbl">PDF</span>
       </button>
     </div>
   </div>
@@ -307,6 +386,7 @@
     <div class="tabs">
       <button class="chipbtn on" id="tabDays" type="button">Per giorno</button>
       <button class="chipbtn" id="tabThemes" type="button">Per tema</button>
+      <button class="chipbtn" id="tabDossiers" type="button">Dossier</button>
     </div>
     <div id="paneDays">
       <p>Tutti i giorni disponibili.</p>
@@ -315,6 +395,10 @@
     <div id="paneThemes" hidden>
       <input id="themeSearch" type="search" placeholder="Cerca un tema in tutti i giorni (es. legge elettorale, carcere)" autocomplete="off">
       <ul class="tres" id="themeResults"></ul>
+    </div>
+    <div id="paneDossiers" hidden>
+      <p>Le vicende seguite per più giorni: una legge lungo il suo iter, un processo, un'indagine.</p>
+      <ul class="dlist" id="dossierList"></ul>
     </div>
   </section>
 
@@ -351,6 +435,8 @@
   <div class="hint" id="pHint" hidden></div>
 </div>
 
+<div id="toast" role="status" aria-live="polite"></div>
+
 <button id="totop" aria-label="Torna su">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
@@ -361,6 +447,141 @@
   const daysList = $('days'), printBtn = $('print'), kicker = $('kicker');
   const SKELETON = content.innerHTML;
   let list = [];
+  let currentDate = null, currentDossier = null;
+  let allThemes = null, dossiers = [];
+  const dossierByKey = {}, themeIndex = {};
+  const SITE = new URL('./', location.href).href;
+
+  // Temi e dossier di tutti i giorni: servono per i collegamenti "Dossier" dentro ogni tema
+  const metaReady = (async () => {
+    const get = f => fetch('digests/' + f, { cache: 'no-store' }).then(r => r.ok ? r.json() : []).catch(() => []);
+    const [t, d] = await Promise.all([get('themes.json'), get('dossiers.json')]);
+    allThemes = Array.isArray(t) ? t : [];
+    dossiers = Array.isArray(d) ? d : [];
+    dossiers.forEach(x => { dossierByKey[x.key] = x; });
+    allThemes.forEach(x => { if (x.dossier) themeIndex[x.date + '/' + x.id] = x.dossier; });
+  })();
+
+  function shortDate(iso) {
+    const d = new Date(iso + 'T12:00:00');
+    return isNaN(d) ? iso : d.toLocaleDateString('it-IT', { day:'numeric', month:'long' });
+  }
+  function dossierFor(date, id) {
+    const ds = dossierByKey[themeIndex[date + '/' + id]];
+    return ds && ds.days > 1 ? ds : null;
+  }
+  const ICON_DOSSIER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 13h8"/></svg>';
+  function dossierChip(ds) {
+    const a = document.createElement('a');
+    a.className = 'dchip';
+    a.href = '#dossier/' + ds.key;
+    a.innerHTML = ICON_DOSSIER + '<span>Segui il dossier · ' + ds.days + ' giorni</span>';
+    a.onclick = ev => { ev.preventDefault(); loadDossier(ds.key); };
+    return a;
+  }
+
+  // Il pezzo di Markdown di un tema (dal suo ### al tema successivo)
+  function extractSection(md, id) {
+    const lines = (md || '').split('\n');
+    let out = null;
+    for (const line of lines) {
+      if (out) {
+        if (/^#{2,3}\s/.test(line)) break;
+        out.push(line);
+      } else if (line.startsWith('### ')) {
+        const title = line.slice(4).replace(/<!--[\s\S]*?-->/g, '').replace(/^\d+[.)]\s*/, '').trim();
+        if (slugify(title) === id) out = [];
+      }
+    }
+    return out ? out.join('\n').replace(/<!--[\s\S]*?-->/g, '').trim() : '';
+  }
+
+  function tidyLabels(root) {
+    root.querySelectorAll('p > strong:first-child').forEach(s => {
+      if (s.previousSibling && s.previousSibling.textContent.trim()) return;
+      s.textContent = s.textContent.replace(/\s*:\s*$/, '');
+      const next = s.nextSibling;
+      if (next && next.nodeType === 3) next.textContent = next.textContent.replace(/^\s*:\s*/, '');
+    });
+    root.querySelectorAll('a[href^="http"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
+  }
+
+  async function loadDossier(key) {
+    if (typeof stopReading === 'function') stopReading(true);
+    currentDossier = key; currentDate = null;
+    printBtn.disabled = true; listenBtn.disabled = true; $('share').disabled = true;
+    kicker.textContent = 'Dossier';
+    daysList.querySelectorAll('a').forEach(a => a.classList.remove('current'));
+    content.innerHTML = SKELETON;
+    window.scrollTo({ top: 0 });
+    await metaReady;
+    if (currentDossier !== key) return;
+    const ds = dossierByKey[key];
+    const items = allThemes.filter(t => t.dossier === key).sort((a, b) => a.date.localeCompare(b.date));
+    if (!ds || !items.length) {
+      content.innerHTML = '<p class="msg">Dossier non trovato. Forse è stato rinominato: cercalo nell\'archivio qui sotto.</p>';
+      return;
+    }
+    const days = [...new Set(items.map(i => i.date))];
+    const md = {};
+    await Promise.all(days.map(d => fetch('digests/' + d + '.json')
+      .then(r => r.ok ? r.json() : null).then(j => { if (j) md[d] = j.markdown || ''; }).catch(() => {})));
+    if (currentDossier !== key) return;
+
+    const range = ds.first === ds.last ? longDate(ds.first)
+      : 'dal ' + shortDate(ds.first) + ' al ' + longDate(ds.last).replace(/^\S+\s/, '');
+    let html = '<button class="backlink" type="button" id="dossierBack">← Torna al digest</button>' +
+      '<h1>' + esc(ds.label) + '</h1>' +
+      '<p class="dossier-meta">' + esc(ds.area) + ' · seguito in ' + ds.days + (ds.days === 1 ? ' giorno' : ' giorni') +
+      ', ' + esc(range) + '. Ogni tappa riporta il tema così come è stato raccontato quel giorno.</p><ol class="timeline">';
+    items.forEach((t, n) => {
+      const last = n === items.length - 1;
+      const body = extractSection(md[t.date], t.id);
+      html += '<li class="' + (last ? 'last' : '') + '"><section class="block"><details' + (last ? ' open' : '') + '>' +
+        '<summary><span class="when">' + esc(longDate(t.date)) + '</span>' +
+        '<span class="tt">' + esc(t.title) + '</span>' +
+        (t.summary ? '<span class="ss">' + esc(t.summary) + '</span>' : '') + '</summary>' +
+        '<div class="body">' + (body ? marked.parse(body) : '<p class="note">' + esc(t.summary || 'Testo non disponibile.') + '</p>') +
+        '<a class="goto" href="#' + t.date + '/' + esc(t.id) + '" data-d="' + t.date + '" data-t="' + esc(t.id) + '">Apri il digest del ' + esc(shortDate(t.date)) + ' →</a>' +
+        '</div></details></section></li>';
+    });
+    html += '</ol>';
+    content.innerHTML = html;
+    tidyLabels(content);
+    content.querySelectorAll('a.goto').forEach(a => a.onclick = ev => { ev.preventDefault(); loadDigest(a.dataset.d, a.dataset.t); });
+    $('dossierBack').onclick = () => loadDigest(items[items.length - 1].date, items[items.length - 1].id);
+    document.title = 'Dossier: ' + ds.label;
+    const h = '#dossier/' + key;
+    if (location.hash !== h) history.pushState(null, '', h);
+    printBtn.disabled = false; listenBtn.disabled = false; $('share').disabled = false;
+  }
+
+  function toast(msg) {
+    const t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => t.classList.remove('show'), 2600);
+  }
+
+  // Condivisione: si usa la piccola pagina in d/ che contiene l'anteprima per WhatsApp
+  async function shareCurrent() {
+    let url, title;
+    if (currentDossier) {
+      const ds = dossierByKey[currentDossier];
+      title = 'Dossier: ' + (ds ? ds.label : currentDossier);
+      url = ds && ds.days > 1 ? SITE + 'd/dossier-' + currentDossier + '.html' : SITE + '#dossier/' + currentDossier;
+    } else if (currentDate) {
+      title = 'Digest Radio Radicale, ' + longDate(currentDate);
+      url = SITE + 'd/' + currentDate + '.html';
+    } else return;
+    if (navigator.share) {
+      try { await navigator.share({ title, url }); } catch (e) {}
+      return;
+    }
+    try { await navigator.clipboard.writeText(url); toast('Link copiato: incollalo su WhatsApp'); }
+    catch (e) { window.prompt('Copia il link', url); }
+  }
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, c =>
@@ -414,17 +635,11 @@
     root.appendChild(frag);
     buildThemes(root);
 
-    // Etichette "Per capire:" → toglie i due punti, ora che l'etichetta va a capo
-    root.querySelectorAll('p > strong:first-child').forEach(s => {
-      if (s.previousSibling && s.previousSibling.textContent.trim()) return;
-      s.textContent = s.textContent.replace(/\s*:\s*$/, '');
-      const next = s.nextSibling;
-      if (next && next.nodeType === 3) next.textContent = next.textContent.replace(/^\s*:\s*/, '');
-    });
+    tidyLabels(root);
   }
 
   function slugify(t) {
-    return t.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    return t.normalize('NFKD').replace(/[^\x00-\x7f]/g, '').toLowerCase()
             .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
   }
 
@@ -457,6 +672,8 @@
         }
         det.innerHTML = '<summary><span class="t">' + esc(title) + '</span>' +
                         (summary ? '<span class="s">' + esc(summary) + '</span>' : '') + '</summary>';
+        const ds = dossierFor(currentDate, det.id);
+        if (ds) body.prepend(dossierChip(ds));
         det.appendChild(body);
         h3.replaceWith(det);
         entry.themes.push({ id: det.id, title });
@@ -499,6 +716,9 @@
   }
 
   async function loadDigest(date, themeId) {
+    currentDate = date; currentDossier = null;
+    $('share').disabled = true;
+    await metaReady;
     updateNav(date);
     if (typeof stopReading === 'function') stopReading(true);
     printBtn.disabled = true;
@@ -519,6 +739,7 @@
       document.title = 'Digest Radio Radicale ' + (d.label || date);
       printBtn.disabled = false;
       listenBtn.disabled = false;
+      $('share').disabled = false;
       const h = '#' + date + (themeId ? '/' + themeId : '');
       if (location.hash !== h) history.pushState(null, '', h);
       if (themeId) setTimeout(() => openTheme(themeId), 50);
@@ -565,45 +786,50 @@
       picker.onchange = () => loadDigest(picker.value);
       prevBtn.onclick = () => step(1);
       nextBtn.onclick = () => step(-1);
-      window.onpopstate = () => {
-        const [h, t] = location.hash.slice(1).split('/');
-        if (list.some(x => x.date === h)) loadDigest(h, t);
-      };
+      window.onpopstate = route;
       setupThemeArchive();
-
-      const [wanted, wantedTheme] = location.hash.slice(1).split('/');
-      if (list.some(x => x.date === wanted)) loadDigest(wanted, wantedTheme);
-      else loadDigest(list[0].date);
+      route();
     } catch (e) {
       kicker.textContent = '';
       content.innerHTML = '<p class="msg">Impossibile leggere digests/index.json (' + esc(e.message) + ').</p>';
     }
   }
 
-  printBtn.onclick = () => window.print();
-  window.addEventListener('beforeprint', () => content.querySelectorAll('details.theme').forEach(d => d.open = true));
+  // Decide cosa mostrare in base all'indirizzo: #AAAA-MM-GG, #AAAA-MM-GG/tema, #dossier/chiave
+  function route() {
+    const [h, t] = decodeURIComponent(location.hash.slice(1)).split('/');
+    if (h === 'dossier' && t) return loadDossier(t);
+    if (list.some(x => x.date === h)) return loadDigest(h, t);
+    loadDigest(list[0].date);
+  }
 
-  /* Archivio per tema: tutti i temi di tutti i giorni (digests/themes.json) */
-  let allThemes = null;
+  printBtn.onclick = () => window.print();
+  window.addEventListener('beforeprint', () => content.querySelectorAll('details').forEach(d => d.open = true));
+
+  /* Archivio per tema (digests/themes.json) e per dossier (digests/dossiers.json) */
   function setupThemeArchive() {
-    const tabD = $('tabDays'), tabT = $('tabThemes');
+    const tabs = { d: $('tabDays'), t: $('tabThemes'), x: $('tabDossiers') };
+    const panes = { d: $('paneDays'), t: $('paneThemes'), x: $('paneDossiers') };
     const show = which => {
-      tabD.classList.toggle('on', which === 'd'); tabT.classList.toggle('on', which === 't');
-      $('paneDays').hidden = which !== 'd'; $('paneThemes').hidden = which !== 't';
-      if (which === 't') loadThemes();
+      Object.keys(tabs).forEach(k => { tabs[k].classList.toggle('on', k === which); panes[k].hidden = k !== which; });
+      if (which === 't') metaReady.then(renderThemes);
+      if (which === 'x') metaReady.then(renderDossierList);
     };
-    tabD.onclick = () => show('d');
-    tabT.onclick = () => show('t');
+    Object.keys(tabs).forEach(k => tabs[k].onclick = () => show(k));
     let timer;
     $('themeSearch').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(renderThemes, 150); });
   }
-  async function loadThemes() {
-    if (allThemes) return renderThemes();
-    try {
-      const r = await fetch('digests/themes.json', { cache: 'no-store' });
-      allThemes = r.ok ? await r.json() : [];
-    } catch (e) { allThemes = []; }
-    renderThemes();
+  function renderDossierList() {
+    const rows = dossiers.filter(d => d.days > 1);
+    $('dossierList').innerHTML = rows.length ? rows.map(d =>
+      '<li><a href="#dossier/' + esc(d.key) + '" data-k="' + esc(d.key) + '">' +
+      '<span class="n">' + d.days + '<small>giorni</small></span><span>' +
+      '<span class="tt">' + esc(d.label) + '</span>' +
+      '<span class="d">' + esc(d.area) + ' · dal ' + esc(shortDate(d.first)) + ' al ' + esc(shortDate(d.last)) + '</span>' +
+      '</span></a></li>').join('')
+      : '<li class="msg">I dossier compaiono quando un tema viene seguito per almeno due giorni.</li>';
+    $('dossierList').querySelectorAll('a[data-k]').forEach(a => a.onclick = ev => {
+      ev.preventDefault(); loadDossier(a.dataset.k); });
   }
   function renderThemes() {
     const q = $('themeSearch').value.trim().toLowerCase();
@@ -783,6 +1009,26 @@
     $('progress').style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
     $('totop').classList.toggle('show', h.scrollTop > 600);
   }, { passive: true });
+
+  $('share').onclick = shareCurrent;
+  const goHome = () => list.length && loadDigest(list[0].date);
+  $('home').onclick = goHome;
+  $('home').onkeydown = ev => { if (ev.key === 'Enter') goHome(); };
+
+  /* App installabile */
+  let installPrompt = null;
+  window.addEventListener('beforeinstallprompt', ev => { ev.preventDefault(); installPrompt = ev; $('install').hidden = false; });
+  window.addEventListener('appinstalled', () => { $('install').hidden = true; installPrompt = null; });
+  $('install').onclick = async () => {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    try { await installPrompt.userChoice; } catch (e) {}
+    installPrompt = null;
+    $('install').hidden = true;
+  };
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  }
 
   init();
 </script>

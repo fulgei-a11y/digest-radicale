@@ -4,8 +4,104 @@
 "label": "Legge elettorale",
 "area": "Parlamento e governo",
 "first": "2026-10-06",
-"last": "2026-10-07",
+"last": "2026-10-08",
+"days": 3
+},
+{
+"key": "processo-mezzarano",
+"label": "Processo Mezzarano Salvatore ed altri per presunte torture a Santa Maria Capua V",
+"area": "Giustizia e diritti",
+"first": "2026-10-07",
+"last": "2026-10-08",
 "days": 2
+},
+{
+"key": "interrogazioni-senato",
+"label": "Interrogazioni a risposta immediata al Senato",
+"area": "Parlamento e governo",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "violenza-di-genere",
+"label": "Violenza di genere",
+"area": "Giustizia e diritti",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "processo-hydra",
+"label": "Processo Hydra",
+"area": "Giustizia e diritti",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "processo-strage-piazza-loggia",
+"label": "Processo a Roberto Zorzi per la strage di Piazza della Loggia",
+"area": "Giustizia e diritti",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "gaza-senza-tregua",
+"label": "Gaza Senza Tregua",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "premio-ossigeno-arte-ambiente",
+"label": "Premio Ossigeno: incontro tra arte e ambiente",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "libro-sindacato-spa",
+"label": "Presentazione del libro \"Sindacato S.p.A.\"",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "war-room-manovra-bilancio",
+"label": "War Room: Manovra di Bilancio",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "libro-il-futuro-rubato",
+"label": "Presentazione del libro \"Il futuro rubato\"",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "anniversario-deportazione-ebrei-roma",
+"label": "83° anniversario della deportazione degli ebrei da Roma",
+"area": "Società, salute e cultura",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "libro-la-cura-e-l-algoritmo",
+"label": "Presentazione del libro \"La cura e l'algoritmo\"",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
 },
 {
 "key": "dl-154-2026",
@@ -106,14 +202,6 @@
 {
 "key": "consiglio-di-presidenza-della-giustizia-amministrativa",
 "label": "Consiglio di Presidenza della Giustizia Amministrativa",
-"area": "Giustizia e diritti",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "processo-mezzarano",
-"label": "Processo Mezzarano Salvatore ed altri per presunte torture a Santa Maria Capua Vetere",
 "area": "Giustizia e diritti",
 "first": "2026-10-07",
 "last": "2026-10-07",

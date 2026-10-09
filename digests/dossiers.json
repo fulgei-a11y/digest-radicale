@@ -1,0 +1,426 @@
+[
+{
+"key": "camera-2822",
+"label": "Legge elettorale",
+"area": "Parlamento e governo",
+"first": "2026-10-06",
+"last": "2026-10-07",
+"days": 2
+},
+{
+"key": "dl-154-2026",
+"label": "Decreto-legge 154/2026",
+"area": "Parlamento e governo",
+"first": "2026-10-06",
+"last": "2026-10-07",
+"days": 2
+},
+{
+"key": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici",
+"label": "Indagine conoscitiva sull'impatto dell'intelligenza artificiale nel settore della giustizia",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-07",
+"days": 2
+},
+{
+"key": "ddl-1875",
+"label": "Istituzione del Registro unico nazionale dei dispositivi medici impiantabili (DDL 1875)",
+"area": "Parlamento e governo",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "delega-al-governo-per-la-riforma-e-il-riordino-della-legisla",
+"label": "Delega al Governo per la riforma e il riordino della legislazione farmaceutica",
+"area": "Parlamento e governo",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "atto-governo-439",
+"label": "Audizioni su schema d.lgs. Vigili del fuoco (AG n. 439)",
+"area": "Parlamento e governo",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "atto-governo-435",
+"label": "Audizioni su qualità dell'aria (AG n. 435)",
+"area": "Parlamento e governo",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "interrogazioni-a-risposta-immediata-al-ministero-dellistruzi",
+"label": "Interrogazioni a risposta immediata al Ministero dell’Istruzione e del merito",
+"area": "Parlamento e governo",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "audizioni-sulla-crisi-aziendale-di-ericsson-telecomunicazion",
+"label": "Audizioni sulla crisi aziendale di Ericsson Telecomunicazioni S.p.A.",
+"area": "Parlamento e governo",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "interrogazioni-a-risposta-immediata-al-ministero-delleconomi",
+"label": "Interrogazioni a risposta immediata al Ministero dell’Economia e delle Finanze",
+"area": "Parlamento e governo",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "audizione-di-rappresentanti-dellagenzia-europea-per-l-uguagl",
+"label": "Audizione di rappresentanti dell’Agenzia europea per l'uguaglianza di genere (Eige) sul femminicidio",
+"area": "Giustizia e diritti",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "audizioni-sui-progetti-di-legge-in-materia-di-imputabilita-d",
+"label": "Audizioni sui progetti di legge in materia di imputabilità del minore",
+"area": "Giustizia e diritti",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "plenum-del-consiglio-superiore-della-magistratura-csm",
+"label": "Plenum del Consiglio Superiore della Magistratura (CSM)",
+"area": "Giustizia e diritti",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "consiglio-di-presidenza-della-giustizia-amministrativa",
+"label": "Consiglio di Presidenza della Giustizia Amministrativa",
+"area": "Giustizia e diritti",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "processo-mezzarano",
+"label": "Processo Mezzarano Salvatore ed altri per presunte torture a Santa Maria Capua Vetere",
+"area": "Giustizia e diritti",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "processo-aronica",
+"label": "Processo d'appello Aronica ed altri per l'assalto alla sede della CGIL del 9 ottobre 2021 - Sentenza",
+"area": "Giustizia e diritti",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "audizione-del-garante-privacy-su-eurojust-ed-europol",
+"label": "Audizione del Garante Privacy su Eurojust ed Europol",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "inchiesta-parlamentare-sulla-morte-di-david-rossi",
+"label": "Inchiesta parlamentare sulla morte di David Rossi",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "udienza-pubblica-della-corte-costituzionale",
+"label": "Udienza pubblica della Corte costituzionale",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "ddl-167",
+"label": "Audizioni sul DDL 167 in materia di legittima difesa",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "presentazione-del-film-zustissia-e-il-tema-dell-errore-giudi",
+"label": "Presentazione del film \"Zustissia\" e il tema dell'errore giudiziario",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "antisemitismo-dal-disegno-di-legge-ai-comuni",
+"label": "Antisemitismo",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i",
+"label": "Commemorazione vittime attacco terroristico 7 ottobre 2023 in Israele",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "convegno-quale-europa-di-fronte-alle-sfide-globali-seconda-g",
+"label": "Convegno \"Quale Europa di fronte alle sfide globali?\" (Seconda giornata)",
+"area": "Politica e partiti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "presentazione-del-libro-il-regista-di-berlusconi-di-paola-za",
+"label": "Presentazione del libro \"Il regista di Berlusconi\" di Paola Zanca e Roberto Gasparotti",
+"area": "Politica e partiti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "presentazione-del-libro-i-nuovi-antisemiti-di-nora-bussigny",
+"label": "Presentazione del libro \"I nuovi antisemiti\" di Nora Bussigny",
+"area": "Politica e partiti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "indagine-conoscitiva-sui-diritti-umani-nel-mondo",
+"label": "Indagine conoscitiva sui diritti umani nel mondo",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "ddl-2028",
+"label": "Audizioni sul DDL 2028 per il rafforzamento della difesa nazionale",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "war-room-piazze-di-spagna-e-di-francia",
+"label": "War Room: Piazze di Spagna e di Francia",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "il-piano-mattei-e-la-crisi-degli-aiuti-rapporti-con-l-africa",
+"label": "Il Piano Mattei e la crisi degli aiuti",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "ddl-1693",
+"label": "Audizioni sul DDL 1693",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "indagine-conoscitiva-sull-inquinamento-atmosferico-nella-pia",
+"label": "Indagine conoscitiva sull'inquinamento atmosferico nella Pianura Padana",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "presentazione-del-cortometraggio-sociale-l-ultimo-giorno",
+"label": "Presentazione del cortometraggio sociale \"L'ultimo giorno\"",
+"area": "Società, salute e cultura",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "ddl-2035",
+"label": "Audizioni sul DDL 2035 in materia di cinema",
+"area": "Società, salute e cultura",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "presentazione-della-iv-edizione-del-festival-e-cultura",
+"label": "Presentazione della IV edizione del Festival \"è cultura!\"",
+"area": "Società, salute e cultura",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "celebrazioni-per-il-50-anniversario-della-fondazione-villa-m",
+"label": "Celebrazioni per il 50° Anniversario della Fondazione Villa Maraini Croce Rossa Italiana",
+"area": "Società, salute e cultura",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "ddl-1990",
+"label": "Audizioni sul DDL 1990",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "presentazione-del-libro-lia-ci-ruba-il-lavoro-e-ci-restituis",
+"label": "Presentazione del libro \"L’IA ci ruba il lavoro e ci restituisce l’anima\" di Laura Cappello",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "conferenza-stampa-su-ai-agentica-autonomia-cyber-e-resilienz",
+"label": "Conferenza stampa su AI agentica, autonomia cyber e resilienza del Paese",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "war-room-innovaction-reti-per-la-medicina",
+"label": "War Room InnovAction",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "manager-e-aziende-nell-era-dell-ai-e-degli-algoritmi",
+"label": "Manager e aziende nell'era dell'AI e degli algoritmi",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "riforma-della-legge-elettorale",
+"label": "Riforma della Legge Elettorale",
+"area": "Temi del giorno",
+"first": "2026-10-05",
+"last": "2026-10-05",
+"days": 1
+},
+{
+"key": "politica-interna-i-tormenti-del-campo-largo",
+"label": "Politica Interna",
+"area": "Temi del giorno",
+"first": "2026-10-05",
+"last": "2026-10-05",
+"days": 1
+},
+{
+"key": "europa-e-geopolitica",
+"label": "Europa e Geopolitica",
+"area": "Temi del giorno",
+"first": "2026-10-05",
+"last": "2026-10-05",
+"days": 1
+},
+{
+"key": "giustizia-processi-e-diritti-umani",
+"label": "Giustizia: Processi e Diritti Umani",
+"area": "Temi del giorno",
+"first": "2026-10-05",
+"last": "2026-10-05",
+"days": 1
+},
+{
+"key": "economia-e-sviluppo-territoriale",
+"label": "Economia e Sviluppo Territoriale",
+"area": "Temi del giorno",
+"first": "2026-10-05",
+"last": "2026-10-05",
+"days": 1
+},
+{
+"key": "diritti-civili-il-fine-vita",
+"label": "Diritti Civili",
+"area": "Temi del giorno",
+"first": "2026-10-05",
+"last": "2026-10-05",
+"days": 1
+},
+{
+"key": "cultura-e-memoria-marco-pannella",
+"label": "Cultura e Memoria",
+"area": "Temi del giorno",
+"first": "2026-10-05",
+"last": "2026-10-05",
+"days": 1
+},
+{
+"key": "economia-e-intelligenza-artificiale",
+"label": "Economia, Mezzogiorno e Intelligenza Artificiale",
+"area": "Temi del giorno",
+"first": "2026-10-03",
+"last": "2026-10-04",
+"days": 2
+},
+{
+"key": "geopolitica-il-vertice-usa-cina",
+"label": "Geopolitica",
+"area": "Temi del giorno",
+"first": "2026-10-04",
+"last": "2026-10-04",
+"days": 1
+},
+{
+"key": "politica-interna-leopolda-14-e-festa-de-l-unita",
+"label": "Politica Interna",
+"area": "Temi del giorno",
+"first": "2026-10-04",
+"last": "2026-10-04",
+"days": 1
+},
+{
+"key": "confronto-politico-destra-centro-e-sinistra",
+"label": "Confronto Politico",
+"area": "Temi del giorno",
+"first": "2026-10-03",
+"last": "2026-10-03",
+"days": 1
+},
+{
+"key": "cultura-e-societa-digitale",
+"label": "Cultura e Società Digitale",
+"area": "Temi del giorno",
+"first": "2026-10-03",
+"last": "2026-10-03",
+"days": 1
+}
+]

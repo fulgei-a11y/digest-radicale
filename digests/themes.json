@@ -4,398 +4,455 @@
 "area": "Parlamento e governo",
 "title": "Legge elettorale: fiducia sull'articolo 3 e votazione ordini del giorno (A.C. 2822-B)",
 "summary": "La Camera dei Deputati ha approvato l'articolo 3 della proposta di legge elettorale A.C. 2822-B con questione di fiducia posta dal Governo, e ha proseguito con l'esame e le votazioni degli ordini del giorno.",
-"id": "legge-elettorale-fiducia-sull-articolo-3-e-votazione-ordini-"
+"id": "legge-elettorale-fiducia-sull-articolo-3-e-votazione-ordini-",
+"dossier": "camera-2822"
 },
 {
 "date": "2026-10-07",
 "area": "Parlamento e governo",
 "title": "Decreto-legge 154/2026: misure urgenti per impianti strategici nazionali",
 "summary": "Il Senato della Repubblica ha discusso e approvato il disegno di legge per la conversione del decreto-legge 28 agosto 2026, n. 154, riguardante misure urgenti per la continuità operativa di impianti di interesse strategico nazionale.",
-"id": "decreto-legge-154-2026-misure-urgenti-per-impianti-strategic"
+"id": "decreto-legge-154-2026-misure-urgenti-per-impianti-strategic",
+"dossier": "dl-154-2026"
 },
 {
 "date": "2026-10-07",
 "area": "Parlamento e governo",
 "title": "Istituzione del Registro unico nazionale dei dispositivi medici impiantabili (DDL 1875)",
 "summary": "Il Senato ha discusso e approvato con modificazioni il disegno di legge 1875, che istituisce il Registro unico nazionale dei dispositivi medici impiantabili, finalizzato al monitoraggio clinico e alla tracciabilità dei dispositivi.",
-"id": "istituzione-del-registro-unico-nazionale-dei-dispositivi-med"
+"id": "istituzione-del-registro-unico-nazionale-dei-dispositivi-med",
+"dossier": "ddl-1875"
 },
 {
 "date": "2026-10-07",
 "area": "Parlamento e governo",
 "title": "Delega al Governo per la riforma e il riordino della legislazione farmaceutica",
 "summary": "Il Senato ha approvato il disegno di legge di delega al Governo per la riforma e il riordino della legislazione farmaceutica, con l'obiettivo di migliorare l'accesso al farmaco e rafforzare la rete assistenziale territoriale.",
-"id": "delega-al-governo-per-la-riforma-e-il-riordino-della-legisla"
+"id": "delega-al-governo-per-la-riforma-e-il-riordino-della-legisla",
+"dossier": "delega-al-governo-per-la-riforma-e-il-riordino-della-legisla"
 },
 {
 "date": "2026-10-07",
 "area": "Parlamento e governo",
 "title": "Audizioni su schema d.lgs. Vigili del fuoco (AG n. 439)",
 "summary": "La 1ª Commissione Affari costituzionali del Senato ha svolto audizioni sullo schema di decreto legislativo AG n. 439, che disciplina le funzioni, i compiti e il rapporto di impiego del personale del Corpo nazionale dei vigili del fuoco.",
-"id": "audizioni-su-schema-d-lgs-vigili-del-fuoco-ag-n-439"
+"id": "audizioni-su-schema-d-lgs-vigili-del-fuoco-ag-n-439",
+"dossier": "atto-governo-439"
 },
 {
 "date": "2026-10-07",
 "area": "Parlamento e governo",
 "title": "Audizioni su qualità dell'aria (AG n. 435)",
 "summary": "L'8ª Commissione Ambiente del Senato ha svolto audizioni e raccolto contributi sull'Atto del Governo n. 435, riguardante la qualità dell'aria, coinvolgendo diverse associazioni e istituzioni.",
-"id": "audizioni-su-qualita-dell-aria-ag-n-435"
+"id": "audizioni-su-qualita-dell-aria-ag-n-435",
+"dossier": "atto-governo-435"
 },
 {
 "date": "2026-10-07",
 "area": "Parlamento e governo",
 "title": "Interrogazioni a risposta immediata al Ministero dell’Istruzione e del merito",
 "summary": "La Commissione Cultura della Camera ha svolto interrogazioni a risposta immediata su questioni di competenza del Ministero dell’Istruzione e del merito.",
-"id": "interrogazioni-a-risposta-immediata-al-ministero-dellistruzi"
+"id": "interrogazioni-a-risposta-immediata-al-ministero-dellistruzi",
+"dossier": "interrogazioni-a-risposta-immediata-al-ministero-dellistruzi"
 },
 {
 "date": "2026-10-07",
 "area": "Parlamento e governo",
 "title": "Audizioni sulla crisi aziendale di Ericsson Telecomunicazioni S.p.A.",
 "summary": "La Commissione Attività produttive della Camera ha audito i rappresentanti di Cgil, Cisl, Uil e Ugl in merito alla crisi aziendale di Ericsson Telecomunicazioni S.p.A.",
-"id": "audizioni-sulla-crisi-aziendale-di-ericsson-telecomunicazion"
+"id": "audizioni-sulla-crisi-aziendale-di-ericsson-telecomunicazion",
+"dossier": "audizioni-sulla-crisi-aziendale-di-ericsson-telecomunicazion"
 },
 {
 "date": "2026-10-07",
 "area": "Parlamento e governo",
 "title": "Interrogazioni a risposta immediata al Ministero dell’Economia e delle Finanze",
 "summary": "La Commissione Bilancio della Camera ha svolto interrogazioni a risposta immediata su questioni di competenza del Ministero dell’Economia e delle Finanze.",
-"id": "interrogazioni-a-risposta-immediata-al-ministero-delleconomi"
+"id": "interrogazioni-a-risposta-immediata-al-ministero-delleconomi",
+"dossier": "interrogazioni-a-risposta-immediata-al-ministero-delleconomi"
 },
 {
 "date": "2026-10-07",
 "area": "Giustizia e diritti",
 "title": "Indagine conoscitiva sull'impatto dell'intelligenza artificiale nel settore della giustizia",
 "summary": "La 2ª Commissione Giustizia del Senato ha proseguito la sua indagine conoscitiva sull'impatto dell'intelligenza artificiale nel settore della giustizia, audendo l’avvocato Alessandro Gentiloni Silveri.",
-"id": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici"
+"id": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici",
+"dossier": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici"
 },
 {
 "date": "2026-10-07",
 "area": "Giustizia e diritti",
 "title": "Audizione di rappresentanti dell’Agenzia europea per l'uguaglianza di genere (Eige) sul femminicidio",
 "summary": "La Commissione parlamentare di inchiesta sul femminicidio, nonché su ogni forma di violenza di genere, ha audito rappresentanti dell’Agenzia europea per l'uguaglianza di genere (Eige).",
-"id": "audizione-di-rappresentanti-dellagenzia-europea-per-l-uguagl"
+"id": "audizione-di-rappresentanti-dellagenzia-europea-per-l-uguagl",
+"dossier": "audizione-di-rappresentanti-dellagenzia-europea-per-l-uguagl"
 },
 {
 "date": "2026-10-07",
 "area": "Giustizia e diritti",
 "title": "Audizioni sui progetti di legge in materia di imputabilità del minore",
 "summary": "La Commissione Giustizia della Camera ha condotto audizioni con magistrati, avvocati e psicologi nell'ambito dell'esame dei progetti di legge volti a modificare la disciplina dell'imputabilità del minore.",
-"id": "audizioni-sui-progetti-di-legge-in-materia-di-imputabilita-d"
+"id": "audizioni-sui-progetti-di-legge-in-materia-di-imputabilita-d",
+"dossier": "audizioni-sui-progetti-di-legge-in-materia-di-imputabilita-d"
 },
 {
 "date": "2026-10-07",
 "area": "Giustizia e diritti",
 "title": "Plenum del Consiglio Superiore della Magistratura (CSM)",
 "summary": "Il Plenum del Consiglio Superiore della Magistratura si è riunito a Roma per discutere di argomenti relativi alla giustizia e alla magistratura.",
-"id": "plenum-del-consiglio-superiore-della-magistratura-csm"
+"id": "plenum-del-consiglio-superiore-della-magistratura-csm",
+"dossier": "plenum-del-consiglio-superiore-della-magistratura-csm"
 },
 {
 "date": "2026-10-07",
 "area": "Giustizia e diritti",
 "title": "Consiglio di Presidenza della Giustizia Amministrativa",
 "summary": "Il Consiglio di Presidenza della Giustizia Amministrativa si è riunito a Palazzo Spada per discutere di amministrazione, Consiglio di Stato, CPGA e giustizia.",
-"id": "consiglio-di-presidenza-della-giustizia-amministrativa"
+"id": "consiglio-di-presidenza-della-giustizia-amministrativa",
+"dossier": "consiglio-di-presidenza-della-giustizia-amministrativa"
 },
 {
 "date": "2026-10-07",
 "area": "Giustizia e diritti",
 "title": "Processo Mezzarano Salvatore ed altri per presunte torture a Santa Maria Capua Vetere",
 "summary": "A Santa Maria Capua Vetere è proseguita l'udienza del processo \"Mezzarano Salvatore ed altri\", incentrato sulle presunte torture avvenute nell’istituto penitenziario il 6 aprile 2020.",
-"id": "processo-mezzarano-salvatore-ed-altri-per-presunte-torture-a"
+"id": "processo-mezzarano-salvatore-ed-altri-per-presunte-torture-a",
+"dossier": "processo-mezzarano"
 },
 {
 "date": "2026-10-07",
 "area": "Giustizia e diritti",
 "title": "Processo d'appello Aronica ed altri per l'assalto alla sede della CGIL del 9 ottobre 2021 - Sentenza",
 "summary": "La 1° sezione della Corte d'appello di Roma ha emesso la sentenza nel processo d'appello \"Aronica ed altri\", relativo all'assalto alla sede della CGIL avvenuto il 9 ottobre 2021.",
-"id": "processo-d-appello-aronica-ed-altri-per-l-assalto-alla-sede-"
+"id": "processo-d-appello-aronica-ed-altri-per-l-assalto-alla-sede-",
+"dossier": "processo-aronica"
 },
 {
 "date": "2026-10-07",
 "area": "Esteri, Europa e difesa",
 "title": "Audizione del Garante Privacy su Eurojust ed Europol",
 "summary": "La Commissione Politiche UE della Camera ha svolto l'audizione del Presidente del Garante per la protezione dei dati personali nell'ambito dell'esame congiunto delle proposte di regolamento UE relative a Eurojust ed Europol.",
-"id": "audizione-del-garante-privacy-su-eurojust-ed-europol"
+"id": "audizione-del-garante-privacy-su-eurojust-ed-europol",
+"dossier": "audizione-del-garante-privacy-su-eurojust-ed-europol"
 },
 {
 "date": "2026-10-06",
 "area": "Parlamento e governo",
 "title": "Legge elettorale: seguito discussione C. 2822-B",
 "summary": "La Camera dei Deputati ha continuato la discussione della proposta di legge C. 2822-B, già approvata dalla Camera e modificata dal Senato, riguardante le disposizioni in materia di elezioni della Camera e del Senato.",
-"id": "legge-elettorale-seguito-discussione-c-2822-b"
+"id": "legge-elettorale-seguito-discussione-c-2822-b",
+"dossier": "camera-2822"
 },
 {
 "date": "2026-10-06",
 "area": "Parlamento e governo",
 "title": "Decreto-legge 154/2026 su impianti strategici e DDL 1833 su riciclo carta",
 "summary": "Il Senato ha discusso il decreto-legge 28 agosto 2026, n. 154, relativo a misure urgenti per la continuità operativa di impianti di interesse strategico nazionale, e ha approvato il disegno di legge 1833 sull'istituzione della Giornata nazionale del riciclo della carta.",
-"id": "decreto-legge-154-2026-su-impianti-strategici-e-ddl-1833-su-"
+"id": "decreto-legge-154-2026-su-impianti-strategici-e-ddl-1833-su-",
+"dossier": "dl-154-2026"
 },
 {
 "date": "2026-10-06",
 "area": "Giustizia e diritti",
 "title": "Inchiesta parlamentare sulla morte di David Rossi",
 "summary": "La Commissione parlamentare di inchiesta sulla morte di David Rossi ha condotto audizioni di Ivan Catana, persona informata sui fatti, e di Filippo Rossi, fratello della vittima, per acquisire nuovi elementi.",
-"id": "inchiesta-parlamentare-sulla-morte-di-david-rossi"
+"id": "inchiesta-parlamentare-sulla-morte-di-david-rossi",
+"dossier": "inchiesta-parlamentare-sulla-morte-di-david-rossi"
 },
 {
 "date": "2026-10-06",
 "area": "Giustizia e diritti",
 "title": "Udienza pubblica della Corte costituzionale",
 "summary": "La Corte Costituzionale ha esaminato in udienza pubblica diverse questioni, tra cui l'obbligo di versamento dei risparmi delle Camere di commercio allo Stato, norme regionali lombarde sui rifiuti e un conflitto di attribuzione tra la Camera dei Deputati e il Tribunale di Roma in merito a reati minis",
-"id": "udienza-pubblica-della-corte-costituzionale"
+"id": "udienza-pubblica-della-corte-costituzionale",
+"dossier": "udienza-pubblica-della-corte-costituzionale"
 },
 {
 "date": "2026-10-06",
 "area": "Giustizia e diritti",
 "title": "Audizioni sul DDL 167 in materia di legittima difesa",
 "summary": "La 2ª Commissione Giustizia del Senato ha condotto audizioni sul disegno di legge 167 e provvedimenti connessi, che riguardano le disposizioni in materia di legittima difesa.",
-"id": "audizioni-sul-ddl-167-in-materia-di-legittima-difesa"
+"id": "audizioni-sul-ddl-167-in-materia-di-legittima-difesa",
+"dossier": "ddl-167"
 },
 {
 "date": "2026-10-06",
 "area": "Giustizia e diritti",
 "title": "Presentazione del film \"Zustissia\" e il tema dell'errore giudiziario",
 "summary": "È stato presentato a Roma, presso il Cinema Barberini, il film \"Zustissia\", che affronta il tema dell'errore giudiziario, con la partecipazione di Beniamino Zuncheddu, vittima di un errore giudiziario, e di numerosi attori e professionisti del cinema.",
-"id": "presentazione-del-film-zustissia-e-il-tema-dell-errore-giudi"
+"id": "presentazione-del-film-zustissia-e-il-tema-dell-errore-giudi",
+"dossier": "presentazione-del-film-zustissia-e-il-tema-dell-errore-giudi"
 },
 {
 "date": "2026-10-06",
 "area": "Giustizia e diritti",
 "title": "Antisemitismo: dal disegno di legge ai comuni",
 "summary": "Il Partito Liberal Democratico ha organizzato a Roma una conferenza stampa per discutere l'antisemitismo, con un focus sulle iniziative legislative e l'impegno degli enti locali, alla presenza di esponenti politici e della comunità ebraica.",
-"id": "antisemitismo-dal-disegno-di-legge-ai-comuni"
+"id": "antisemitismo-dal-disegno-di-legge-ai-comuni",
+"dossier": "antisemitismo-dal-disegno-di-legge-ai-comuni"
 },
 {
 "date": "2026-10-06",
 "area": "Giustizia e diritti",
 "title": "Commemorazione vittime attacco terroristico 7 ottobre 2023 in Israele",
 "summary": "A Roma, presso il Tempio Maggiore, si è tenuta la commemorazione del terzo anniversario delle vittime dell'attacco terroristico del 7 ottobre 2023 in Israele, con la partecipazione delle Comunità Ebraiche Italiane e dell'Ambasciata di Israele.",
-"id": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i"
+"id": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i",
+"dossier": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i"
 },
 {
 "date": "2026-10-06",
 "area": "Politica e partiti",
 "title": "Convegno \"Quale Europa di fronte alle sfide globali?\" (Seconda giornata)",
 "summary": "La seconda giornata del convegno \"Quale Europa di fronte alle sfide globali?\", organizzato dalla Fondazione Giorgio Napolitano ETS e dalla Luiss Guido Carli - School of Government, ha approfondito temi come la sicurezza, la Costituzione europea e la competitività, con la partecipazione di esponenti ",
-"id": "convegno-quale-europa-di-fronte-alle-sfide-globali-seconda-g"
+"id": "convegno-quale-europa-di-fronte-alle-sfide-globali-seconda-g",
+"dossier": "convegno-quale-europa-di-fronte-alle-sfide-globali-seconda-g"
 },
 {
 "date": "2026-10-06",
 "area": "Politica e partiti",
 "title": "Presentazione del libro \"Il regista di Berlusconi\" di Paola Zanca e Roberto Gasparotti",
 "summary": "L'Associazione Stampa Estera ha ospitato a Roma la presentazione del libro \"Il regista di Berlusconi. I segreti dei miei trent'anni con Silvio\" di Paola Zanca e Roberto Gasparotti, che analizza la comunicazione politica di Silvio Berlusconi.",
-"id": "presentazione-del-libro-il-regista-di-berlusconi-di-paola-za"
+"id": "presentazione-del-libro-il-regista-di-berlusconi-di-paola-za",
+"dossier": "presentazione-del-libro-il-regista-di-berlusconi-di-paola-za"
 },
 {
 "date": "2026-10-06",
 "area": "Politica e partiti",
 "title": "Presentazione del libro \"I nuovi antisemiti\" di Nora Bussigny",
 "summary": "L'Associazione Setteottobre ha organizzato a Roma la presentazione del libro \"I nuovi antisemiti\" di Nora Bussigny, con un dibattito che ha coinvolto Francesco Verderami, Marco Minniti e Pierluigi Battista, analizzando le manifestazioni contemporanee dell'antisemitismo.",
-"id": "presentazione-del-libro-i-nuovi-antisemiti-di-nora-bussigny"
+"id": "presentazione-del-libro-i-nuovi-antisemiti-di-nora-bussigny",
+"dossier": "presentazione-del-libro-i-nuovi-antisemiti-di-nora-bussigny"
 },
 {
 "date": "2026-10-06",
 "area": "Esteri, Europa e difesa",
 "title": "Indagine conoscitiva sui diritti umani nel mondo",
 "summary": "Il Comitato permanente sui diritti umani nel mondo della Commissione Esteri ha svolto audizioni di rappresentanti del Palestinian Centre for Human Rights (PCHR), del Public Committee Against Torture in Israel (PCATI) e di EuroMed Rights, nell'ambito di un'indagine conoscitiva sull'impegno dell'Itali",
-"id": "indagine-conoscitiva-sui-diritti-umani-nel-mondo"
+"id": "indagine-conoscitiva-sui-diritti-umani-nel-mondo",
+"dossier": "indagine-conoscitiva-sui-diritti-umani-nel-mondo"
 },
 {
 "date": "2026-10-06",
 "area": "Esteri, Europa e difesa",
 "title": "Audizioni sul DDL 2028 per il rafforzamento della difesa nazionale",
 "summary": "La 3ª Commissione Affari Esteri e Difesa del Senato ha audito l'ammiraglio di squadra Davide Berna, Comandante del Reparto Informazioni e Sicurezza dello Stato, e il generale di divisione Luciano Antoci, Comandante del Comando per le Operazioni in rete (COR), sul disegno di legge 2028 per il rafforz",
-"id": "audizioni-sul-ddl-2028-per-il-rafforzamento-della-difesa-naz"
+"id": "audizioni-sul-ddl-2028-per-il-rafforzamento-della-difesa-naz",
+"dossier": "ddl-2028"
 },
 {
 "date": "2026-10-06",
 "area": "Esteri, Europa e difesa",
 "title": "War Room: Piazze di Spagna e di Francia",
 "summary": "Enrico Cisnetto ha condotto un dibattito nel programma \"War Room\" con Andrea Bonanni, Adriana Cerretelli e Antonio Villafranca, analizzando le rivolte popolari che hanno portato Madrid al voto e accentuato la crisi politica a Parigi.",
-"id": "war-room-piazze-di-spagna-e-di-francia"
+"id": "war-room-piazze-di-spagna-e-di-francia",
+"dossier": "war-room-piazze-di-spagna-e-di-francia"
 },
 {
 "date": "2026-10-06",
 "area": "Esteri, Europa e difesa",
 "title": "Il Piano Mattei e la crisi degli aiuti: rapporti con l'Africa",
 "summary": "L'Istituto per gli Studi di Politica Internazionale (ISPI) ha organizzato a Roma una tavola rotonda sul Piano Mattei e la crisi degli aiuti, in occasione della pubblicazione del Policy Paper ISPI \"La terza via? Il Piano Mattei nella crisi degli aiuti\", analizzando la trasformazione dei rapporti con ",
-"id": "il-piano-mattei-e-la-crisi-degli-aiuti-rapporti-con-l-africa"
+"id": "il-piano-mattei-e-la-crisi-degli-aiuti-rapporti-con-l-africa",
+"dossier": "il-piano-mattei-e-la-crisi-degli-aiuti-rapporti-con-l-africa"
 },
 {
 "date": "2026-10-06",
 "area": "Economia, lavoro e ambiente",
 "title": "Audizioni sul DDL 1693: Istituzione del Parco nazionale dell'Etna",
 "summary": "L'8ª Commissione Ambiente del Senato ha condotto audizioni sul disegno di legge 1693, relativo all'istituzione del Parco nazionale dell'Etna, coinvolgendo sindaci, assessori regionali e rappresentanti di enti locali e associazioni ambientaliste.",
-"id": "audizioni-sul-ddl-1693-istituzione-del-parco-nazionale-dell-"
+"id": "audizioni-sul-ddl-1693-istituzione-del-parco-nazionale-dell-",
+"dossier": "ddl-1693"
 },
 {
 "date": "2026-10-06",
 "area": "Economia, lavoro e ambiente",
 "title": "Indagine conoscitiva sull'inquinamento atmosferico nella Pianura Padana",
 "summary": "L'8ª Commissione Ambiente del Senato ha avviato un'indagine conoscitiva sullo stato dell'inquinamento atmosferico e della qualità dell'aria nella Pianura Padana, audendo rappresentanti di Greenpeace e ASviS – Alleanza per lo sviluppo sostenibile.",
-"id": "indagine-conoscitiva-sull-inquinamento-atmosferico-nella-pia"
+"id": "indagine-conoscitiva-sull-inquinamento-atmosferico-nella-pia",
+"dossier": "indagine-conoscitiva-sull-inquinamento-atmosferico-nella-pia"
 },
 {
 "date": "2026-10-06",
 "area": "Società, salute e cultura",
 "title": "Presentazione del cortometraggio sociale \"L'ultimo giorno\"",
 "summary": "È stato presentato a Roma, presso la Sala Caduti di Nassirya del Senato, il cortometraggio sociale \"L'ultimo giorno\" di Igor Maltagliati, con la partecipazione di Andrea De Priamo, Maria Grazia Cucinotta e Massimiliano Dau.",
-"id": "presentazione-del-cortometraggio-sociale-l-ultimo-giorno"
+"id": "presentazione-del-cortometraggio-sociale-l-ultimo-giorno",
+"dossier": "presentazione-del-cortometraggio-sociale-l-ultimo-giorno"
 },
 {
 "date": "2026-10-06",
 "area": "Società, salute e cultura",
 "title": "Audizioni sul DDL 2035 in materia di cinema",
 "summary": "La 7ª Commissione Cultura del Senato ha svolto audizioni sul disegno di legge 2035, recante disposizioni in materia di cinema, coinvolgendo numerose associazioni di categoria del settore cinematografico e audiovisivo.",
-"id": "audizioni-sul-ddl-2035-in-materia-di-cinema"
+"id": "audizioni-sul-ddl-2035-in-materia-di-cinema",
+"dossier": "ddl-2035"
 },
 {
 "date": "2026-10-06",
 "area": "Società, salute e cultura",
 "title": "Presentazione della IV edizione del Festival \"è cultura!\"",
 "summary": "È stata presentata a Roma, presso la sede ABI, la IV edizione del Festival \"è cultura!\", organizzato da Associazione di Fondazioni e Casse di Risparmio e Associazione Bancaria Italiana, che si terrà dal 16 al 24 ottobre per valorizzare il patrimonio artistico e culturale.",
-"id": "presentazione-della-iv-edizione-del-festival-e-cultura"
+"id": "presentazione-della-iv-edizione-del-festival-e-cultura",
+"dossier": "presentazione-della-iv-edizione-del-festival-e-cultura"
 },
 {
 "date": "2026-10-06",
 "area": "Società, salute e cultura",
 "title": "Celebrazioni per il 50° Anniversario della Fondazione Villa Maraini Croce Rossa Italiana",
 "summary": "Si sono tenute a Roma, presso la Sala Solferino, le celebrazioni per il 50° Anniversario della Fondazione Villa Maraini Croce Rossa Italiana, con interventi di Emma D'Aquino, Francesco Rocca e Luigi Ciotti, ripercorrendo l'impegno nella lotta alla tossicodipendenza.",
-"id": "celebrazioni-per-il-50-anniversario-della-fondazione-villa-m"
+"id": "celebrazioni-per-il-50-anniversario-della-fondazione-villa-m",
+"dossier": "celebrazioni-per-il-50-anniversario-della-fondazione-villa-m"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
 "title": "Audizioni sul DDL 1990: sicurezza, disagio giovanile e Forze di polizia",
 "summary": "La 1ª Commissione Affari Costituzionali del Senato ha svolto audizioni sul disegno di legge 1990, che riguarda disposizioni in materia di sicurezza, prevenzione del disagio giovanile, nonché l'ordinamento, l'organizzazione e il funzionamento delle Forze di polizia e del Ministero dell'interno.",
-"id": "audizioni-sul-ddl-1990-sicurezza-disagio-giovanile-e-forze-d"
+"id": "audizioni-sul-ddl-1990-sicurezza-disagio-giovanile-e-forze-d",
+"dossier": "ddl-1990"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
 "title": "Indagine conoscitiva sull'impatto dell'intelligenza artificiale nella giustizia",
 "summary": "La 2ª Commissione Giustizia del Senato ha proseguito l'indagine conoscitiva sull'impatto dell'intelligenza artificiale nel settore della giustizia, audendo il dottor Claudio Castelli, già presidente della Corte d'Appello di Brescia.",
-"id": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici"
+"id": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici",
+"dossier": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
 "title": "Presentazione del libro \"L’IA ci ruba il lavoro e ci restituisce l’anima\" di Laura Cappello",
 "summary": "È stato presentato a Roma, presso la Sala Caduti di Nassirya di Palazzo Madama, il libro \"L’IA ci ruba il lavoro e ci restituisce l’anima\" di Laura Cappello, con interventi del Sen. Lucio Malan, del Sen. Alessio Butti e dell'On. Luciano D'Alfonso, discutendo l'impatto dell'Intelligenza Artificiale s",
-"id": "presentazione-del-libro-lia-ci-ruba-il-lavoro-e-ci-restituis"
+"id": "presentazione-del-libro-lia-ci-ruba-il-lavoro-e-ci-restituis",
+"dossier": "presentazione-del-libro-lia-ci-ruba-il-lavoro-e-ci-restituis"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
 "title": "Conferenza stampa su AI agentica, autonomia cyber e resilienza del Paese",
 "summary": "Si è tenuta a Roma, presso la Sala Stampa di Palazzo Montecitorio, una conferenza stampa sul tema \"Quando l'attacco corre più veloce della difesa. AI agentica, autonomia cyber e nuova resilienza del Paese\", focalizzata sulle sfide della difesa nell'era digitale.",
-"id": "conferenza-stampa-su-ai-agentica-autonomia-cyber-e-resilienz"
+"id": "conferenza-stampa-su-ai-agentica-autonomia-cyber-e-resilienz",
+"dossier": "conferenza-stampa-su-ai-agentica-autonomia-cyber-e-resilienz"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
 "title": "War Room InnovAction: Reti per la medicina",
 "summary": "Luca De Biase ha discusso con Lorenzo Farina, Professore di Bioingegneria elettronica e informatica all'Università Sapienza e autore di \"La medicina delle reti\", sul rilancio dell'innovazione nel sistema della salute attraverso le reti per la medicina.",
-"id": "war-room-innovaction-reti-per-la-medicina"
+"id": "war-room-innovaction-reti-per-la-medicina",
+"dossier": "war-room-innovaction-reti-per-la-medicina"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
 "title": "Manager e aziende nell'era dell'AI e degli algoritmi",
 "summary": "Si è tenuto a Roma, presso Comin & Partners, un convegno sulle nuove sfide per leader e organizzazioni nell'era dell'AI e degli algoritmi, con interventi di Gianluca Giansante, Paola Mascaro e Giulia Pastorella, analizzando l'impatto dell'intelligenza artificiale sul mondo aziendale.",
-"id": "manager-e-aziende-nell-era-dell-ai-e-degli-algoritmi"
+"id": "manager-e-aziende-nell-era-dell-ai-e-degli-algoritmi",
+"dossier": "manager-e-aziende-nell-era-dell-ai-e-degli-algoritmi"
 },
 {
 "date": "2026-10-05",
 "area": "Temi del giorno",
 "title": "Riforma della Legge Elettorale",
 "summary": "",
-"id": "riforma-della-legge-elettorale"
+"id": "riforma-della-legge-elettorale",
+"dossier": "riforma-della-legge-elettorale"
 },
 {
 "date": "2026-10-05",
 "area": "Temi del giorno",
 "title": "Politica Interna: I Tormenti del \"Campo Largo\"",
 "summary": "",
-"id": "politica-interna-i-tormenti-del-campo-largo"
+"id": "politica-interna-i-tormenti-del-campo-largo",
+"dossier": "politica-interna-i-tormenti-del-campo-largo"
 },
 {
 "date": "2026-10-05",
 "area": "Temi del giorno",
 "title": "Europa e Geopolitica",
 "summary": "",
-"id": "europa-e-geopolitica"
+"id": "europa-e-geopolitica",
+"dossier": "europa-e-geopolitica"
 },
 {
 "date": "2026-10-05",
 "area": "Temi del giorno",
 "title": "Giustizia: Processi e Diritti Umani",
 "summary": "",
-"id": "giustizia-processi-e-diritti-umani"
+"id": "giustizia-processi-e-diritti-umani",
+"dossier": "giustizia-processi-e-diritti-umani"
 },
 {
 "date": "2026-10-05",
 "area": "Temi del giorno",
 "title": "Economia e Sviluppo Territoriale",
 "summary": "",
-"id": "economia-e-sviluppo-territoriale"
+"id": "economia-e-sviluppo-territoriale",
+"dossier": "economia-e-sviluppo-territoriale"
 },
 {
 "date": "2026-10-05",
 "area": "Temi del giorno",
 "title": "Diritti Civili: Il Fine Vita",
 "summary": "",
-"id": "diritti-civili-il-fine-vita"
+"id": "diritti-civili-il-fine-vita",
+"dossier": "diritti-civili-il-fine-vita"
 },
 {
 "date": "2026-10-05",
 "area": "Temi del giorno",
 "title": "Cultura e Memoria: Marco Pannella",
 "summary": "",
-"id": "cultura-e-memoria-marco-pannella"
+"id": "cultura-e-memoria-marco-pannella",
+"dossier": "cultura-e-memoria-marco-pannella"
 },
 {
 "date": "2026-10-04",
 "area": "Temi del giorno",
 "title": "Geopolitica: il vertice USA-Cina",
 "summary": "",
-"id": "geopolitica-il-vertice-usa-cina"
+"id": "geopolitica-il-vertice-usa-cina",
+"dossier": "geopolitica-il-vertice-usa-cina"
 },
 {
 "date": "2026-10-04",
 "area": "Temi del giorno",
 "title": "Politica Interna: Leopolda 14 e Festa de l'Unità",
 "summary": "",
-"id": "politica-interna-leopolda-14-e-festa-de-l-unita"
+"id": "politica-interna-leopolda-14-e-festa-de-l-unita",
+"dossier": "politica-interna-leopolda-14-e-festa-de-l-unita"
 },
 {
 "date": "2026-10-04",
 "area": "Temi del giorno",
 "title": "Economia, Mezzogiorno e Intelligenza Artificiale",
 "summary": "",
-"id": "economia-mezzogiorno-e-intelligenza-artificiale"
+"id": "economia-mezzogiorno-e-intelligenza-artificiale",
+"dossier": "economia-e-intelligenza-artificiale"
 },
 {
 "date": "2026-10-03",
 "area": "Temi del giorno",
 "title": "Confronto Politico: Destra, Centro e Sinistra",
 "summary": "",
-"id": "confronto-politico-destra-centro-e-sinistra"
+"id": "confronto-politico-destra-centro-e-sinistra",
+"dossier": "confronto-politico-destra-centro-e-sinistra"
 },
 {
 "date": "2026-10-03",
 "area": "Temi del giorno",
 "title": "Economia e Intelligenza Artificiale",
 "summary": "",
-"id": "economia-e-intelligenza-artificiale"
+"id": "economia-e-intelligenza-artificiale",
+"dossier": "economia-e-intelligenza-artificiale"
 },
 {
 "date": "2026-10-03",
 "area": "Temi del giorno",
 "title": "Cultura e Società Digitale",
 "summary": "",
-"id": "cultura-e-societa-digitale"
+"id": "cultura-e-societa-digitale",
+"dossier": "cultura-e-societa-digitale"
 }
 ]

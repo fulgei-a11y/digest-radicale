@@ -160,152 +160,72 @@
 "days": 1
 },
 {
+"key": "udienza-pubblica-della-corte-costituzionale",
+"label": "Udienza pubblica della Corte costituzionale",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-07",
+"days": 2
+},
+{
+"key": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i",
+"label": "Commemorazione vittime attacco terroristico 7 ottobre 2023 in Israele",
+"area": "Società, salute e cultura",
+"first": "2026-10-06",
+"last": "2026-10-07",
+"days": 2
+},
+{
+"key": "legge-elettorale",
+"label": "Legge elettorale",
+"area": "Parlamento e governo",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "ex-ilva",
+"label": "Ex Ilva",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "registro-dispositivi-medici",
+"label": "Registro unico nazionale dispositivi medici impiantabili",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
+"key": "riforma-legislazione-farmaceutica",
+"label": "Riforma legislazione farmaceutica",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
 "key": "camera-2822",
 "label": "Legge elettorale",
 "area": "Parlamento e governo",
-"first": "2026-10-06",
-"last": "2026-10-07",
-"days": 2
-},
-{
-"key": "dl-154-2026",
-"label": "Decreto-legge 154/2026",
-"area": "Parlamento e governo",
-"first": "2026-10-06",
-"last": "2026-10-07",
-"days": 2
-},
-{
-"key": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici",
-"label": "Indagine conoscitiva sull'impatto dell'intelligenza artificiale nel settore della giustizia",
-"area": "Giustizia e diritti",
-"first": "2026-10-06",
-"last": "2026-10-07",
-"days": 2
-},
-{
-"key": "ddl-1875",
-"label": "Istituzione del Registro unico nazionale dei dispositivi medici impiantabili (DDL 1875)",
-"area": "Parlamento e governo",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "delega-al-governo-per-la-riforma-e-il-riordino-della-legisla",
-"label": "Delega al Governo per la riforma e il riordino della legislazione farmaceutica",
-"area": "Parlamento e governo",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "atto-governo-439",
-"label": "Audizioni su schema d.lgs. Vigili del fuoco (AG n. 439)",
-"area": "Parlamento e governo",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "atto-governo-435",
-"label": "Audizioni su qualità dell'aria (AG n. 435)",
-"area": "Parlamento e governo",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "interrogazioni-a-risposta-immediata-al-ministero-dellistruzi",
-"label": "Interrogazioni a risposta immediata al Ministero dell’Istruzione e del merito",
-"area": "Parlamento e governo",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "audizioni-sulla-crisi-aziendale-di-ericsson-telecomunicazion",
-"label": "Audizioni sulla crisi aziendale di Ericsson Telecomunicazioni S.p.A.",
-"area": "Parlamento e governo",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "interrogazioni-a-risposta-immediata-al-ministero-delleconomi",
-"label": "Interrogazioni a risposta immediata al Ministero dell’Economia e delle Finanze",
-"area": "Parlamento e governo",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "audizione-di-rappresentanti-dellagenzia-europea-per-l-uguagl",
-"label": "Audizione di rappresentanti dell’Agenzia europea per l'uguaglianza di genere (Eige) sul femminicidio",
-"area": "Giustizia e diritti",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "audizioni-sui-progetti-di-legge-in-materia-di-imputabilita-d",
-"label": "Audizioni sui progetti di legge in materia di imputabilità del minore",
-"area": "Giustizia e diritti",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "plenum-del-consiglio-superiore-della-magistratura-csm",
-"label": "Plenum del Consiglio Superiore della Magistratura (CSM)",
-"area": "Giustizia e diritti",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "consiglio-di-presidenza-della-giustizia-amministrativa",
-"label": "Consiglio di Presidenza della Giustizia Amministrativa",
-"area": "Giustizia e diritti",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "processo-mezzarano",
-"label": "Processo Mezzarano Salvatore ed altri per presunte torture a Santa Maria Capua Vetere",
-"area": "Giustizia e diritti",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "processo-aronica",
-"label": "Processo d'appello Aronica ed altri per l'assalto alla sede della CGIL del 9 ottobre 2021 - Sentenza",
-"area": "Giustizia e diritti",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "audizione-del-garante-privacy-su-eurojust-ed-europol",
-"label": "Audizione del Garante Privacy su Eurojust ed Europol",
-"area": "Esteri, Europa e difesa",
-"first": "2026-10-07",
-"last": "2026-10-07",
-"days": 1
-},
-{
-"key": "inchiesta-parlamentare-sulla-morte-di-david-rossi",
-"label": "Inchiesta parlamentare sulla morte di David Rossi",
-"area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "udienza-pubblica-della-corte-costituzionale",
-"label": "Udienza pubblica della Corte costituzionale",
+"key": "dl-154-2026",
+"label": "Decreto-legge 154/2026 su impianti strategici e DDL 1833 su riciclo carta",
+"area": "Parlamento e governo",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "inchiesta-parlamentare-sulla-morte-di-david-rossi",
+"label": "Inchiesta parlamentare sulla morte di David Rossi",
 "area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",
@@ -330,14 +250,6 @@
 {
 "key": "antisemitismo-dal-disegno-di-legge-ai-comuni",
 "label": "Antisemitismo",
-"area": "Giustizia e diritti",
-"first": "2026-10-06",
-"last": "2026-10-06",
-"days": 1
-},
-{
-"key": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i",
-"label": "Commemorazione vittime attacco terroristico 7 ottobre 2023 in Israele",
 "area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",
@@ -442,6 +354,14 @@
 {
 "key": "ddl-1990",
 "label": "Audizioni sul DDL 1990",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici",
+"label": "Indagine conoscitiva sull'impatto dell'intelligenza artificiale nella giustizia",
 "area": "Scienza, tecnologia e informazione",
 "first": "2026-10-06",
 "last": "2026-10-06",

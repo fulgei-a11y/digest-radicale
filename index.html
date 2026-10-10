@@ -217,6 +217,18 @@
   .tres .ss { display:block; color:var(--muted); font-size:.92rem; }
   .tres mark { background:var(--accent-soft); color:inherit; border-radius:3px; }
 
+  /* Data di aggiornamento e durata dell'audio */
+  .updated { margin:6px 0 0; color:var(--muted); font-size:.85rem; display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; }
+  .updated:empty { display:none; }
+  .atag { display:inline-block; padding:2px 9px; border-radius:999px; background:var(--accent-soft); color:var(--accent);
+          font-weight:700; font-size:.74rem; letter-spacing:.04em; }
+  /* "Ascolta da qui" */
+  .speaking, section.brief { scroll-margin-top:84px; }
+  .lchip { display:inline-flex; align-items:center; gap:6px; margin:2px 6px 6px 0; padding:6px 12px 6px 9px; border-radius:999px;
+           border:1px solid var(--line); background:var(--surface-2); color:var(--fg); font:600 .84rem/1.3 var(--sans); cursor:pointer; }
+  .lchip svg { width:14px; height:14px; color:var(--accent); }
+  .lchip:hover { border-color:var(--accent); }
+
   /* Dossier: collegamento dentro un tema */
   .dchip { display:inline-flex; align-items:center; gap:8px; margin:2px 0 6px; padding:6px 12px 6px 10px;
            border-radius:999px; background:var(--accent-soft); color:var(--accent) !important;
@@ -314,7 +326,7 @@
     @page { margin:18mm 16mm; }
     :root { --bg:#fff; --surface:#fff; --fg:#000; --muted:#444; --line:#ccc; --accent:#000; --link:#000; --accent-soft:#fff; }
     body { font:11pt/1.5 Georgia, "Times New Roman", serif; background:#fff; color:#000; }
-    .topbar, .datenav, #archive, #totop, #progress, footer, #player, #toast, .dchip, .backlink, .timeline .goto { display:none !important; }
+    .topbar, .datenav, #archive, #totop, #progress, footer, #player, #toast, .dchip, .lchip, .atag, .backlink, .timeline .goto { display:none !important; }
     .timeline::before, .timeline > li::before { display:none; }
     .timeline > li { padding-left:0; }
     .speaking { background:none; box-shadow:none; }
@@ -375,7 +387,10 @@
     </button>
   </nav>
 
-  <div class="hero"><span class="kicker" id="kicker">Caricamento</span></div>
+  <div class="hero">
+    <span class="kicker" id="kicker">Caricamento</span>
+    <p class="updated"><span id="updated"></span><span class="atag" id="audioTag" hidden></span></p>
+  </div>
   <article id="content">
     <div class="skeleton"><div class="t"></div><div></div><div></div><div style="width:70%"></div></div>
   </article>
@@ -436,6 +451,7 @@
 </div>
 
 <div id="toast" role="status" aria-live="polite"></div>
+<audio id="audio" preload="none" playsinline></audio>
 
 <button id="totop" aria-label="Torna su">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
@@ -461,6 +477,21 @@
     dossiers.forEach(x => { dossierByKey[x.key] = x; });
     allThemes.forEach(x => { if (x.dossier) themeIndex[x.date + '/' + x.id] = x.dossier; });
   })();
+
+  // "Aggiornato sabato 10 ottobre alle 07:54" (ora italiana), dal campo "generated" del digest
+  function updatedText(d) {
+    const fmt = s => {
+      const t = new Date(s);
+      if (isNaN(t)) return '';
+      return t.toLocaleDateString('it-IT', { weekday:'long', day:'numeric', month:'long', timeZone:'Europe/Rome' }) +
+             ' alle ' + t.toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit', timeZone:'Europe/Rome' });
+    };
+    if (!d.generated) return '';
+    const last = fmt(d.generated);
+    if (d.first_generated && d.first_generated !== d.generated)
+      return 'Pubblicato ' + fmt(d.first_generated) + ' · aggiornato ' + last;
+    return 'Aggiornato ' + last;
+  }
 
   function shortDate(iso) {
     const d = new Date(iso + 'T12:00:00');
@@ -507,10 +538,11 @@
   }
 
   async function loadDossier(key) {
-    if (typeof stopReading === 'function') stopReading(true);
+    if (typeof stopReading === 'function' && !(typeof mp3 !== 'undefined' && mp3.active)) stopReading(true);
     currentDossier = key; currentDate = null;
     printBtn.disabled = true; listenBtn.disabled = true; $('share').disabled = true;
     kicker.textContent = 'Dossier';
+    $('updated').textContent = ''; $('audioTag').hidden = true; audioMeta = null;
     daysList.querySelectorAll('a').forEach(a => a.classList.remove('current'));
     content.innerHTML = SKELETON;
     window.scrollTo({ top: 0 });
@@ -720,10 +752,11 @@
     $('share').disabled = true;
     await metaReady;
     updateNav(date);
-    if (typeof stopReading === 'function') stopReading(true);
+    if (typeof stopReading === 'function' && !(typeof mp3 !== 'undefined' && mp3.active)) stopReading(true);
     printBtn.disabled = true;
     listenBtn.disabled = true;
     kicker.textContent = longDate(date);
+    $('updated').textContent = ''; $('audioTag').hidden = true;
     content.innerHTML = SKELETON;
     try {
       const r = await fetch('digests/' + date + '.json', { cache: 'no-store' });
@@ -737,6 +770,8 @@
       buildBlocks(content);
       content.querySelectorAll('a[href^="http"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
       document.title = 'Digest Radio Radicale ' + (d.label || date);
+      $('updated').textContent = updatedText(d);
+      loadAudioMeta(date);
       printBtn.disabled = false;
       listenBtn.disabled = false;
       $('share').disabled = false;
@@ -957,13 +992,176 @@
   function stopReading(close) {
     reader.playing = false;
     if (synth) synth.cancel();
+    if (mp3.active) audioEl.pause();
     setPlayingUI(false);
     content.querySelectorAll('.speaking').forEach(e => e.classList.remove('speaking'));
-    if (close) { player.classList.remove('open'); document.body.classList.remove('player-open'); }
+    if (close) {
+      player.classList.remove('open'); document.body.classList.remove('player-open');
+      if (mp3.active) { audioEl.removeAttribute('src'); audioEl.load(); mp3.active = false; mp3.seg = -1; }
+    }
   }
 
-  function openPlayer() {
-    if (!synth) { alert('Questo browser non supporta la lettura vocale.'); return; }
+  /* ---------------- MP3 con la voce Paola (audio/AAAA-MM-GG.mp3) ---------------- */
+  // A differenza della voce del browser, un file audio continua a suonare a schermo spento
+  // e si comanda dalla schermata di blocco e dalle cuffie.
+  const audioEl = $('audio');
+  const mp3 = { active: false, meta: null, date: null, seg: -1 };
+  let audioMeta = null;   // metadati dell'MP3 del giorno aperto (null se non c'è)
+
+  async function loadAudioMeta(date) {
+    audioMeta = null;
+    try {
+      const r = await fetch('audio/' + date + '.json', { cache: 'no-store' });
+      if (r.ok) {
+        const m = await r.json();
+        if (m && Array.isArray(m.segments)) audioMeta = m;
+      }
+    } catch (e) {}
+    if (currentDate !== date) return;
+    addListenChips();
+    const tag = $('audioTag');
+    tag.hidden = !audioMeta;
+    if (audioMeta) tag.textContent = 'Audio · ' + Math.round(audioMeta.duration / 60) + ' min';
+  }
+
+  // "Ascolta da qui" dentro ogni tema che ha un pezzo nell'MP3
+  function addListenChips() {
+    if (!audioMeta) return;
+    audioMeta.segments.forEach((s, i) => {
+      const det = s.id === 'brief' ? content.querySelector('section.brief') : document.getElementById(s.id);
+      if (!det || det.querySelector('.lchip')) return;
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'lchip';
+      b.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Ascolta da qui</span>';
+      b.onclick = ev => { ev.stopPropagation(); playMp3From(i); };
+      const body = det.querySelector('.body') || det;
+      const anchor = body.querySelector('.dchip');
+      if (s.id === 'brief') { const h = det.querySelector('h2'); h ? h.after(b) : det.prepend(b); }
+      else anchor ? anchor.after(b) : body.prepend(b);
+    });
+  }
+
+  function segAt(t) {
+    const s = mp3.meta.segments;
+    let i = -1;
+    for (let k = 0; k < s.length; k++) if (s[k].t <= t + 0.3) i = k;
+    return i;
+  }
+
+  function showSeg(i) {
+    if (i === mp3.seg && content.querySelector('.speaking')) return;
+    mp3.seg = i;
+    if (currentDate !== mp3.date) { $('pNow').textContent = (mp3.meta.segments[i] || {}).title || ''; return; }
+    const s = mp3.meta.segments[i];
+    content.querySelectorAll('.speaking').forEach(e => e.classList.remove('speaking'));
+    $('pNow').textContent = s ? s.title : 'Introduzione';
+    if (!s) return;
+    const el = s.id === 'brief' ? content.querySelector('section.brief') : document.getElementById(s.id);
+    if (el) {
+      if (el.tagName === 'DETAILS') el.open = true;
+      const target = el.querySelector('summary') || el;
+      target.classList.add('speaking');
+      if (document.visibilityState === 'visible') target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    if ('mediaSession' in navigator && navigator.mediaSession.metadata) {
+      try { navigator.mediaSession.metadata.artist = s.title; } catch (e) {}
+    }
+  }
+
+  function setupMediaSession() {
+    if (!('mediaSession' in navigator)) return;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: 'Digest Radio Radicale · ' + longDate(mp3.date),
+        artist: 'Radio Radicale', album: 'Digest',
+        artwork: [{ src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+                  { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }]
+      });
+    } catch (e) {}
+    const h = {
+      play: () => audioEl.play(),
+      pause: () => audioEl.pause(),
+      previoustrack: () => mp3Step(-1),
+      nexttrack: () => mp3Step(1),
+      seekbackward: d => { audioEl.currentTime = Math.max(0, audioEl.currentTime - ((d && d.seekOffset) || 15)); },
+      seekforward: d => { audioEl.currentTime = Math.min(audioEl.duration || 1e9, audioEl.currentTime + ((d && d.seekOffset) || 15)); },
+      seekto: d => { if (d && d.seekTime != null) audioEl.currentTime = d.seekTime; }
+    };
+    for (const k in h) { try { navigator.mediaSession.setActionHandler(k, h[k]); } catch (e) {} }
+  }
+
+  function updatePosition() {
+    if (!('mediaSession' in navigator) || !navigator.mediaSession.setPositionState || !audioEl.duration) return;
+    try {
+      navigator.mediaSession.setPositionState({ duration: audioEl.duration, playbackRate: audioEl.playbackRate,
+                                                position: Math.min(audioEl.currentTime, audioEl.duration) });
+    } catch (e) {}
+  }
+
+  function playMp3From(segIndex) {
+    if (!audioMeta) return;
+    if (synth) synth.cancel();
+    reader.playing = false;
+    if (!mp3.active || mp3.date !== audioMeta.date) {
+      mp3.active = true; mp3.meta = audioMeta; mp3.date = audioMeta.date; mp3.seg = -1;
+      audioEl.src = audioMeta.audio || ('audio/' + audioMeta.date + '.mp3');
+      $('pVoice').hidden = true;
+      $('pHint').hidden = false;
+      $('pHint').textContent = 'Voce Paola · ' + Math.round(audioMeta.duration / 60) +
+        ' minuti. Continua anche a schermo spento.';
+      setupMediaSession();
+    }
+    audioEl.playbackRate = reader.rate;
+    player.classList.add('open');
+    document.body.classList.add('player-open');
+    const seek = () => {
+      if (segIndex != null && mp3.meta.segments[segIndex]) audioEl.currentTime = Math.max(0, mp3.meta.segments[segIndex].t - 0.2);
+    };
+    // play() va chiamato subito, dentro il tocco dell'utente (su iPhone altrimenti non parte)
+    if (audioEl.readyState >= 1) seek(); else audioEl.addEventListener('loadedmetadata', seek, { once: true });
+    audioEl.play().catch(() => setPlayingUI(false));
+  }
+
+  function mp3Step(delta) {
+    const s = mp3.meta.segments;
+    let i = segAt(audioEl.currentTime);
+    if (delta < 0 && i >= 0 && audioEl.currentTime - s[i].t > 4) delta = 0;   // prima torna all'inizio del tema
+    i = Math.min(Math.max(i + delta, 0), s.length - 1);
+    audioEl.currentTime = s[i].t;
+  }
+
+  audioEl.addEventListener('play', () => {
+    setPlayingUI(true);
+    if ('mediaSession' in navigator) try { navigator.mediaSession.playbackState = 'playing'; } catch (e) {}
+  });
+  audioEl.addEventListener('pause', () => {
+    setPlayingUI(false);
+    if ('mediaSession' in navigator) try { navigator.mediaSession.playbackState = 'paused'; } catch (e) {}
+  });
+  audioEl.addEventListener('timeupdate', () => {
+    if (!mp3.active) return;
+    if (audioEl.duration) $('pBar').style.width = (audioEl.currentTime / audioEl.duration * 100) + '%';
+    showSeg(segAt(audioEl.currentTime));
+    if (Math.floor(audioEl.currentTime) % 5 === 0) {
+      updatePosition();
+      try { localStorage.setItem('pos-' + mp3.date, String(Math.floor(audioEl.currentTime))); } catch (e) {}
+    }
+  });
+  audioEl.addEventListener('ended', () => {
+    $('pNow').textContent = 'Ascolto terminato';
+    try { localStorage.removeItem('pos-' + mp3.date); } catch (e) {}
+  });
+  audioEl.addEventListener('error', () => {
+    if (!mp3.active || !audioEl.getAttribute('src')) return;
+    mp3.active = false;
+    toast('Audio non disponibile: uso la voce del dispositivo');
+    $('pVoice').hidden = false;
+    openSpeech();
+  });
+
+  function openSpeech() {
+    if (!synth) { toast('Questo browser non supporta la lettura vocale.'); return; }
     fillVoices();
     reader.chunks = buildChunks();
     player.classList.add('open');
@@ -971,18 +1169,38 @@
     speakFrom(0);
   }
 
-  if (synth) {
-    synth.onvoiceschanged = () => { if (player.classList.contains('open')) fillVoices(); };
-    const r = parseFloat(load('rate'));
-    if (r) { reader.rate = r; $('pRate').value = String(r); }
-  } else {
-    listenBtn.style.display = 'none';
+  function openPlayer() {
+    if (audioMeta && currentDate && audioMeta.date === currentDate) {
+      // riprende da dove si era interrotto l'ascolto di questo giorno
+      let pos = 0;
+      try { pos = parseInt(localStorage.getItem('pos-' + currentDate) || '0', 10); } catch (e) {}
+      if (pos > 10 && (!mp3.active || mp3.date !== currentDate)) {
+        playMp3From(null);
+        const seek = () => { audioEl.currentTime = Math.max(0, pos - 3); };
+        if (audioEl.readyState >= 1) seek(); else audioEl.addEventListener('loadedmetadata', seek, { once: true });
+        toast('Riprendo da dove avevi lasciato');
+      } else if (mp3.active && mp3.date === currentDate) {
+        player.classList.add('open'); document.body.classList.add('player-open');
+        audioEl.play();
+      } else playMp3From(0);
+      return;
+    }
+    if (mp3.active) stopReading(true);
+    openSpeech();
   }
 
+  if (synth) {
+    synth.onvoiceschanged = () => { if (player.classList.contains('open') && !mp3.active) fillVoices(); };
+  }
+  { const r = parseFloat(load('rate')); if (r) { reader.rate = r; $('pRate').value = String(r); } }
+
   listenBtn.onclick = openPlayer;
-  $('pPlay').onclick = () => reader.playing ? pauseReading() : speakFrom(reader.i);
-  $('pNext').onclick = () => speakFrom(Math.min(reader.i + 1, reader.chunks.length - 1));
-  $('pPrev').onclick = () => speakFrom(Math.max(reader.i - 1, 0));
+  $('pPlay').onclick = () => {
+    if (mp3.active) return audioEl.paused ? audioEl.play() : audioEl.pause();
+    reader.playing ? pauseReading() : speakFrom(reader.i);
+  };
+  $('pNext').onclick = () => mp3.active ? mp3Step(1) : speakFrom(Math.min(reader.i + 1, reader.chunks.length - 1));
+  $('pPrev').onclick = () => mp3.active ? mp3Step(-1) : speakFrom(Math.max(reader.i - 1, 0));
   $('pClose').onclick = () => stopReading(true);
   $('pVoice').onchange = e => {
     reader.voice = italianVoices().find(v => v.name === e.target.value) || null;
@@ -992,11 +1210,12 @@
   $('pRate').onchange = e => {
     reader.rate = parseFloat(e.target.value) || 1;
     store('rate', String(reader.rate));
-    if (reader.playing) speakFrom(reader.i);
+    if (mp3.active) { audioEl.playbackRate = reader.rate; updatePosition(); }
+    else if (reader.playing) speakFrom(reader.i);
   };
-  // Tocca un paragrafo mentre il lettore è aperto per partire da lì
+  // Con la voce del dispositivo: tocca un paragrafo mentre il lettore è aperto per partire da lì
   content.addEventListener('click', e => {
-    if (!player.classList.contains('open') || e.target.closest('a')) return;
+    if (mp3.active || !player.classList.contains('open') || e.target.closest('a, button')) return;
     const idx = reader.chunks.findIndex(c => c.el.contains(e.target));
     if (idx >= 0) speakFrom(idx);
   });

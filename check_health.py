@@ -17,6 +17,7 @@ DAYS_LAG = max(1, int(os.environ.get("DAYS_LAG", "1") or "1"))
 # Quanti giorni di ritardo in più si tollerano prima di segnalare che il sito è fermo
 STALE_TOLERANCE = int(os.environ.get("STALE_TOLERANCE", "1"))
 GEN_OUTCOME = os.environ.get("GEN_OUTCOME", "")
+AUDIO_OUTCOME = os.environ.get("AUDIO_OUTCOME", "")
 RUN_URL = os.environ.get("RUN_URL", "")
 SITE_URL = os.environ.get("SITE_URL", "https://fulgei-a11y.github.io/digest-radicale/")
 
@@ -55,6 +56,13 @@ def main():
 
     if GEN_OUTCOME and GEN_OUTCOME != "success" and not problems:
         problems.append(f"Il passaggio di generazione è terminato con esito '{GEN_OUTCOME}'.")
+
+    if AUDIO_OUTCOME and AUDIO_OUTCOME not in ("success", "skipped"):
+        problems.append("Il digest scritto è stato pubblicato, ma l'MP3 con la voce Paola non è stato generato.")
+    if status and status.get("steno_missing"):
+        notes.append("Stenografico della Camera non ancora pubblicato per: " +
+                     ", ".join(it_date(d) for d in status["steno_missing"]) +
+                     ". Il digest verrà rifatto quando sarà disponibile.")
 
     # Il sito è fermo? Si guarda il digest più recente in archivio.
     try:

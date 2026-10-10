@@ -2,7 +2,8 @@
 // - pagina e dati (digests/*.json): prima la rete, così si vede sempre l'ultimo digest;
 //   se la rete manca si usa la copia salvata (i giorni già aperti restano leggibili offline).
 // - icone, font e librerie: prima la copia salvata.
-const VERSION = 'digest-v1';
+// - audio (MP3 e indici): sempre dalla rete, mai salvato.
+const VERSION = 'digest-v2';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/favicon-32.png'];
 
 self.addEventListener('install', event => {
@@ -45,6 +46,8 @@ self.addEventListener('fetch', event => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   const sameOrigin = url.origin === self.location.origin;
+  // l'audio va sempre in rete: gli MP3 sono grandi e il lettore chiede pezzi del file (Range)
+  if (req.headers.has('range') || url.pathname.includes('/audio/')) return;
   if (req.mode === 'navigate' || (sameOrigin && /\/(digests\/[^/]+\.json|index\.html)?$/.test(url.pathname))) {
     event.respondWith(networkFirst(req));
   } else if (sameOrigin || /fonts\.(googleapis|gstatic)\.com|cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net/.test(url.host)) {

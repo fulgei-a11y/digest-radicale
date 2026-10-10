@@ -39,6 +39,8 @@ DAYS_LAG = max(1, int(os.environ.get("DAYS_LAG", "1")))
 # Il giorno dopo si ricontrolla l'agenda: se nel frattempo sono comparse molte registrazioni
 # nuove (schede pubblicate in ritardo), il digest viene rifatto una volta sola.
 RECHECK_MIN_NEW = int(os.environ.get("RECHECK_MIN_NEW", "3"))
+# Testo massimo dello stenografico di una seduta passato a Gemini (caratteri)
+STENO_MAX_CHARS = int(os.environ.get("STENO_MAX_CHARS", "180000"))
 # Indirizzo pubblico del sito (serve per le anteprime su WhatsApp e social)
 SITE_URL = os.environ.get("SITE_URL", "https://fulgei-a11y.github.io/digest-radicale/").rstrip("/") + "/"
 SHARE_DIR = "d"
@@ -263,6 +265,8 @@ def scrape_scheda(url: str) -> dict:
         return {}
     m3u8 = re.findall(r"https?://[^\s\"'<>]+?\.m3u8", html)
     mp3 = re.findall(r"https?://[^\s\"'<>]+?\.mp3", html)
+    # seduta dell'Aula della Camera: la scheda rimanda a camera.it/leg19/410?idSeduta=0723
+    cam = re.search(r"camera\.it/leg(\d+)/410\?idSeduta=(\d+)", html)
 
     soup = BeautifulSoup(html, "html.parser")
     for tag in soup(["script", "style", "noscript", "nav", "footer", "header", "form", "iframe"]):
@@ -306,7 +310,59 @@ def scrape_scheda(url: str) -> dict:
         "interventions": interventions[:150],
         "transcript": transcript[:20000],
         "stream": (mp3 or m3u8 or [""])[0],
+        "camera_seduta": (cam.group(1), cam.group(2)) if cam else None,
     }
+
+
+# --------------------------------------------------------------------------- #
+#  1b. Resoconti stenografici (testo integrale degli interventi in Aula)
+# --------------------------------------------------------------------------- #
+def fetch_text_page(url: str, timeout: int = 60) -> str:
+    try:
+        r = HTTP.get(url, timeout=timeout)
+    except requests.RequestException as e:
+        print(f"   ⚠️ {url} → {e}")
+        return ""
+    if r.status_code != 200:
+        print(f"   ⚠️ {url} → HTTP {r.status_code}")
+        return ""
+    if url.lower().endswith(".pdf") or r.headers.get("content-type", "").startswith("application/pdf"):
+        try:
+            import io
+            from pypdf import PdfReader
+            return "\n".join((pg.extract_text() or "") for pg in PdfReader(io.BytesIO(r.content)).pages)
+        except Exception as e:
+            print(f"   ⚠️ PDF non leggibile ({e})")
+            return ""
+    if not r.encoding or r.encoding.lower() == "iso-8859-1":
+        r.encoding = r.apparent_encoding or "utf-8"
+    soup = BeautifulSoup(r.text, "html.parser")
+    for tag in soup(["script", "style", "noscript", "nav", "header", "footer", "form"]):
+        tag.decompose()
+    return clean_text((soup.body or soup).get_text("\n"))
+
+
+def camera_stenografico(leg: str, seduta: str) -> str:
+    """Resoconto stenografico di una seduta dell'Aula della Camera (prima HTML, poi PDF)."""
+    n = f"{int(seduta):04d}"
+    base = f"https://documenti.camera.it/leg{leg}/resoconti/assemblea/html/sed{n}/"
+    for url in (base + "stenografico.htm", base + "stenografico.pdf"):
+        text = fetch_text_page(url)
+        if len(text) > 5000:   # sotto questa soglia di solito è solo l'intestazione: testo non ancora pubblicato
+            print(f"   📜 Stenografico della Camera, seduta {int(seduta)}: {len(text) // 1000}k caratteri")
+            if len(text) > STENO_MAX_CHARS:
+                # si tengono l'inizio (ordine dei lavori) e soprattutto la fine, dove ci sono
+                # le dichiarazioni di voto e le votazioni finali
+                head = STENO_MAX_CHARS // 5
+                text = text[:head] + "\n[...parte centrale omessa...]\n" + text[-(STENO_MAX_CHARS - head):]
+            return text
+    print(f"   ⏳ Stenografico della Camera, seduta {int(seduta)}: non ancora disponibile")
+    return ""
+
+
+def is_senato_aula(item: dict) -> bool:
+    t = (item.get("title", "") + " " + item.get("place", "") + " " + item.get("text", "")[:600]).lower()
+    return bool(re.search(r"seduta\s+\d+", t)) and "senato" in t and "commission" not in item.get("title", "").lower()
 
 
 # --------------------------------------------------------------------------- #
@@ -318,8 +374,10 @@ def audio_score(item: dict) -> int:
         return -1
     score = sum(5 for k in AUDIO_PRIORITY if k in t)
     score += min(len(item.get("interventions", [])), 30)  # più oratori = più contenuto
-    if len(item.get("transcript", "")) > 3000:
-        score -= 20  # c'è già una trascrizione corposa, l'audio serve meno
+    if len(item.get("transcript", "")) > 3000 or item.get("steno"):
+        return -1  # c'è già il testo integrale: l'audio non serve
+    if is_senato_aula(item):
+        score -= 15  # per l'Aula del Senato Gemini cerca il resoconto ufficiale
     return score
 
 
@@ -407,6 +465,10 @@ def build_dossier(items: list) -> str:
             p.append("Interventi (ora, durata, oratore):\n" + "\n".join(it["interventions"]))
         if it.get("transcript"):
             p.append(f"Trascrizione automatica (estratto):\n{it['transcript']}")
+        if it.get("steno"):
+            p.append(f"RESOCONTO STENOGRAFICO UFFICIALE (testo integrale degli interventi, fonte: {it['steno_url']}):\n{it['steno']}")
+        elif it.get("steno_hint"):
+            p.append(it["steno_hint"])
         if it.get("audio_notes"):
             p.append(f"APPUNTI DALL'ASCOLTO DELL'AUDIO:\n{it['audio_notes']}")
         parts.append("\n".join(p))
@@ -462,6 +524,15 @@ REGOLE DI CONTENUTO
   con argomenti, dati e proposte. Se dagli appunti audio emergono contenuti, riportali in dettaglio.
 - Se di una registrazione conosci solo titolo e oratori, mettila in "Le altre registrazioni" invece di
   creare un tema vuoto.
+- ORARI E DURATE NON SONO CONTENUTO. Non scrivere mai a che ora ha iniziato a parlare qualcuno o quanto
+  è durato il suo intervento, e non scrivere frasi vuote come "ha espresso la posizione del suo gruppo"
+  o "è intervenuto nel dibattito". Nelle "Le posizioni" metti SOLO chi ha detto qualcosa di cui conosci
+  il contenuto (dal resoconto stenografico, dagli appunti audio, dal testo della scheda o da fonti web
+  verificabili). Gli altri vanno in una riga finale: "**Sono intervenuti anche**: Nome (gruppo), Nome (gruppo)...".
+  Se non conosci il contenuto di nessun intervento, ometti del tutto "Le posizioni".
+- Quando c'è il RESOCONTO STENOGRAFICO usalo come fonte principale per le posizioni: riporta per ciascun
+  oratore la tesi, gli argomenti, i dati citati e, se utile, una breve frase testuale tra virgolette.
+  Aggiungi il link allo stenografico in "Per verificare".
 - Cita numeri degli atti (es. C. 2822-B), articoli, voti, cifre, date.
 - Vietate le frasi vuote: "momento significativo", "tema centrale", "ampio spazio", "offre approfondimenti",
   "punto di vista critico e informato", "scenari complessi e in evoluzione".
@@ -614,6 +685,21 @@ def generate_for_date(client: genai.Client, ref_date: datetime) -> None:
         it.update(scrape_scheda(it["url"]))
         time.sleep(0.5)  # gentilezza verso il sito
 
+    steno_missing = []
+    for it in items:
+        if it.get("camera_seduta"):
+            leg, sed = it["camera_seduta"]
+            it["steno"] = camera_stenografico(leg, sed)
+            it["steno_url"] = f"https://documenti.camera.it/leg{leg}/resoconti/assemblea/html/sed{int(sed):04d}/stenografico.htm"
+            if not it["steno"]:
+                steno_missing.append([leg, sed])
+        elif is_senato_aula(it):
+            m = re.search(r"seduta\s+(\d+)", it["title"], re.I)
+            it["steno_hint"] = (
+                "Per questa seduta dell'Aula del Senato cerca con la ricerca web il resoconto stenografico ufficiale "
+                f"su senato.it (seduta n. {m.group(1) if m else '?'} del {date_it}) e usalo per le posizioni degli oratori. "
+                "Se non lo trovi, non inventare: elenca solo i nomi in \"Sono intervenuti anche\".")
+
     if AUDIO_MAX_RECORDINGS > 0 and items:
         candidates = [i for i in items if i.get("stream") and audio_score(i) >= 0]
         candidates.sort(key=audio_score, reverse=True)
@@ -657,20 +743,23 @@ def generate_for_date(client: genai.Client, ref_date: datetime) -> None:
     digest_md = clean_dead_links(digest_md, known_good)
 
     out_path = os.path.join(DIGESTS_DIR, f"{date_iso}.json")
-    rechecked = False
+    rechecked, first_generated = False, ""
     if os.path.exists(out_path):
         try:
             with open(out_path, encoding="utf-8") as f:
-                rechecked = bool(json.load(f).get("rechecked"))
+                old = json.load(f)
+            rechecked = bool(old.get("rechecked"))
+            first_generated = old.get("first_generated") or old.get("generated", "")
         except Exception:
             pass
+    now_stamp = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(
             {"version": SCRIPT_VERSION,
              "date": date_iso, "label": date_it, "markdown": digest_md, "sources": unique,
              "recordings": len(items), "listened": sum(1 for i in items if i.get("audio_notes")),
-             "generated": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-             "rechecked": rechecked},
+             "generated": now_stamp, "first_generated": first_generated or now_stamp,
+             "rechecked": rechecked, "steno_missing": steno_missing},
             f, ensure_ascii=False, indent=2,
         )
     print(f"   💾 Salvato con {len(unique)} fonti.")
@@ -710,7 +799,7 @@ def save_index(index_data: list) -> None:
         json.dump(ordered, f, ensure_ascii=False, indent=2)
 
 
-SCRIPT_VERSION = 4
+SCRIPT_VERSION = 5
 
 
 def needs_update(path: str) -> bool:
@@ -777,6 +866,11 @@ def recheck_needed(d: datetime) -> bool:
     if not now:
         return False  # agenda non leggibile adesso: si riprova alla prossima esecuzione
     redo = now >= before + RECHECK_MIN_NEW
+    if not redo and data.get("steno_missing"):
+        leg, sed = data["steno_missing"][0]
+        if camera_stenografico(leg, sed):
+            print(f"   • {d.strftime('%d.%m.%Y')}: ora c'è lo stenografico della Camera che mancava")
+            redo = True
     data["rechecked"] = True
     if redo:
         data["rechecked_from"] = before
@@ -1053,7 +1147,7 @@ def write_status(status: dict) -> None:
 
 
 def main():
-    status = {"generated": [], "failed": [], "empty_agenda": []}
+    status = {"generated": [], "failed": [], "empty_agenda": [], "steno_missing": []}
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         status["fatal"] = "GEMINI_API_KEY non trovata nei Secrets del repository."
@@ -1073,8 +1167,11 @@ def main():
             generate_for_date(client, d)
             status["generated"].append(d.strftime("%Y-%m-%d"))
             with open(os.path.join(DIGESTS_DIR, d.strftime("%Y-%m-%d") + ".json"), encoding="utf-8") as f:
-                if not json.load(f).get("recordings"):
-                    status["empty_agenda"].append(d.strftime("%Y-%m-%d"))
+                saved = json.load(f)
+            if not saved.get("recordings"):
+                status["empty_agenda"].append(d.strftime("%Y-%m-%d"))
+            if saved.get("steno_missing"):
+                status["steno_missing"].append(d.strftime("%Y-%m-%d"))
         except Exception as e:
             status["failed"].append({"date": d.strftime("%Y-%m-%d"), "error": str(e)[:500]})
             print(f"❌ Digest del {d.strftime('%d.%m.%Y')} non generato: {e}")

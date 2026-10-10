@@ -1,107 +1,243 @@
 [
 {
+"date": "2026-10-09",
+"area": "Parlamento e governo",
+"title": "Interpellanze urgenti alla Camera",
+"summary": "La Camera dei Deputati ha discusso interpellanze urgenti riguardanti le pratiche commerciali di Eni Plenitude e lo stato di avanzamento delle infrastrutture in Romagna.",
+"id": "interpellanze-urgenti-alla-camera",
+"dossier": "interpellanze-urgenti-camera"
+},
+{
+"date": "2026-10-09",
+"area": "Giustizia e diritti",
+"title": "Contrasto alla violenza di genere e prospettiva di genere nella giurisdizione",
+"summary": "La seconda giornata del convegno del CSM ha approfondito il principio di non discriminazione e la prospettiva di genere nella giurisdizione, con proposte concrete per la modifica normativa e l'organizzazione degli uffici giudiziari.",
+"id": "contrasto-alla-violenza-di-genere-e-prospettiva-di-genere-ne",
+"dossier": "violenza-di-genere"
+},
+{
+"date": "2026-10-09",
+"area": "Giustizia e diritti",
+"title": "Fenomeno mafioso: aspetti antropo-psichici e giuridici",
+"summary": "A Palermo, un convegno ha esplorato gli aspetti antropo-psichici e giuridici del fenomeno mafioso, con un focus sulle esperienze e la progettazione per contrastarlo.",
+"id": "fenomeno-mafioso-aspetti-antropo-psichici-e-giuridici",
+"dossier": "fenomeno-mafioso"
+},
+{
+"date": "2026-10-09",
+"area": "Economia, lavoro e ambiente",
+"title": "Biennale dell'Economia Cooperativa",
+"summary": "Legacoop ha organizzato a Milano la Biennale dell'Economia Cooperativa \"Far crescere l’Italia, insieme\", un evento che ha visto la partecipazione di esponenti istituzionali, politici e sindacali per discutere le proposte del movimento cooperativo per il paese.",
+"id": "biennale-dell-economia-cooperativa",
+"dossier": "economia-cooperativa"
+},
+{
 "date": "2026-10-08",
 "area": "Parlamento e governo",
-"title": "Legge elettorale: approvazione definitiva alla Camera",
-"summary": "La Camera dei Deputati ha concluso l'iter legislativo della proposta di legge C. 2822-B, approvando in via definitiva le nuove disposizioni in materia di elezioni della Camera e del Senato.",
-"id": "legge-elettorale-approvazione-definitiva-alla-camera",
-"dossier": "camera-2822"
+"title": "Riforma della Legge Elettorale (C. 2822-B)",
+"summary": "La Camera dei Deputati ha approvato in via definitiva la proposta di legge C. 2822-B, introducendo un nuovo sistema elettorale con premio di maggioranza e preferenze, dopo un acceso dibattito e l'applicazione di tre voti di fiducia.",
+"id": "riforma-della-legge-elettorale-c-2822-b",
+"dossier": "riforma-della-legge-elettorale"
 },
 {
 "date": "2026-10-08",
 "area": "Parlamento e governo",
 "title": "Interrogazioni a risposta immediata al Senato",
-"summary": "Il Senato della Repubblica ha dedicato la seduta mattutina allo svolgimento di interrogazioni a risposta immediata, ai sensi dell'articolo 151-bis del Regolamento, affrontando diverse questioni poste dai senatori al Governo.",
+"summary": "Il Senato ha affrontato interrogazioni sulla carenza di personale UNEP ad Avezzano e sulle modalità di trattenimento in servizio dei segretari comunali, con risposte del Governo e repliche dei senatori.",
 "id": "interrogazioni-a-risposta-immediata-al-senato",
-"dossier": "interrogazioni-senato"
+"dossier": "interrogazioni-a-risposta-immediata-senato"
+},
+{
+"date": "2026-10-08",
+"area": "Parlamento e governo",
+"title": "Question Time al Senato",
+"summary": "Il Question Time del Senato ha visto il Governo rispondere a interrogazioni su valorizzazione dei borghi, costo dell'energia, crisi automotive, concessioni idroelettriche, consumo di suolo e povertà energetica nelle isole.",
+"id": "question-time-al-senato",
+"dossier": "question-time-senato"
+},
+{
+"date": "2026-10-08",
+"area": "Parlamento e governo",
+"title": "Audizioni sui disegni di legge nn. 1816 e 1905 (Disciplina del condominio negli edifici)",
+"summary": "La 2ª Commissione Giustizia del Senato ha tenuto audizioni sui disegni di legge nn. 1816 e 1905, entrambi riguardanti la disciplina del condominio negli edifici.",
+"id": "audizioni-sui-disegni-di-legge-nn-1816-e-1905-disciplina-del",
+"dossier": "ddl-condominio"
 },
 {
 "date": "2026-10-08",
 "area": "Giustizia e diritti",
-"title": "Violenza di genere: la risposta delle istituzioni e della società civile",
-"summary": "Il Consiglio Superiore della Magistratura (CSM) ha organizzato la prima giornata del convegno \"Violenza di genere - La risposta delle istituzioni e della società civile\" a Roma, affrontando temi come educazione, formazione, linguaggio e collaborazione istituzionale.",
-"id": "violenza-di-genere-la-risposta-delle-istituzioni-e-della-soc",
-"dossier": "violenza-di-genere"
+"title": "Processo Mezzarano Salvatore ed altri (torture a Santa Maria Capua Vetere)",
+"summary": "È proseguita a Santa Maria Capua Vetere l'udienza del processo \"Mezzarano Salvatore ed altri\", incentrato sulle presunte torture avvenute nell’istituto penitenziario locale il 6 aprile 2020.",
+"id": "processo-mezzarano-salvatore-ed-altri-torture-a-santa-maria-",
+"dossier": "processo-santa-maria-capua-vetere"
 },
 {
 "date": "2026-10-08",
 "area": "Giustizia e diritti",
-"title": "Processo Mezzarano Salvatore ed altri per presunte torture a Santa Maria Capua Vetere",
-"summary": "Presso l'Aula Bunker della Casa Circondariale di Santa Maria Capua Vetere si è svolta un'udienza del processo a Salvatore Mezzarano e altri, imputati per le presunte torture avvenute il 6 aprile 2020 all'interno dell'istituto penitenziario.",
-"id": "processo-mezzarano-salvatore-ed-altri-per-presunte-torture-a",
-"dossier": "processo-mezzarano"
-},
-{
-"date": "2026-10-08",
-"area": "Giustizia e diritti",
-"title": "Processo Hydra a Milano",
-"summary": "L'Aula bunker della Casa di Reclusione Opera di Milano ha ospitato un'udienza del \"Processo Hydra\", incentrato sull'omonima operazione.",
-"id": "processo-hydra-a-milano",
+"title": "Processo Hydra",
+"summary": "Si è tenuta a Milano un'udienza del \"Processo Hydra\", un procedimento giudiziario legato all'omonima operazione.",
+"id": "processo-hydra",
 "dossier": "processo-hydra"
 },
 {
 "date": "2026-10-08",
 "area": "Giustizia e diritti",
-"title": "Processo per la strage di Piazza della Loggia a Brescia",
-"summary": "A Brescia, presso la Prima Sezione Penale della Corte di Assise del Tribunale, si è tenuta un'udienza del processo a Roberto Zorzi per la strage di Piazza della Loggia, avvenuta il 28 maggio 1974.",
-"id": "processo-per-la-strage-di-piazza-della-loggia-a-brescia",
-"dossier": "processo-strage-piazza-loggia"
+"title": "Processo a Roberto Zorzi per la strage di Piazza della Loggia",
+"summary": "È proseguito a Brescia il processo a Roberto Zorzi, imputato per la strage di Piazza della Loggia avvenuta il 28 maggio 1974.",
+"id": "processo-a-roberto-zorzi-per-la-strage-di-piazza-della-loggi",
+"dossier": "processo-piazza-della-loggia"
+},
+{
+"date": "2026-10-08",
+"area": "Giustizia e diritti",
+"title": "Violenza di genere: la risposta delle istituzioni e della società civile",
+"summary": "Il Consiglio Superiore della Magistratura ha organizzato la prima giornata di un convegno sulla violenza di genere, analizzando la risposta delle istituzioni e della società civile attraverso sessioni dedicate a educazione, linguaggio e collaborazione inter-istituzionale.",
+"id": "violenza-di-genere-la-risposta-delle-istituzioni-e-della-soc",
+"dossier": "violenza-di-genere"
 },
 {
 "date": "2026-10-08",
 "area": "Esteri, Europa e difesa",
-"title": "'Gaza Senza Tregua': iniziativa del MoVimento 5 Stelle",
-"summary": "Il MoVimento 5 Stelle ha organizzato a Roma, presso la Sala Caduti di Nassirya del Senato, la conferenza stampa \"'Gaza Senza Tregua'\", per richiamare l'attenzione sulla situazione nella Striscia di Gaza.",
-"id": "gaza-senza-tregua-iniziativa-del-movimento-5-stelle",
+"title": "'Gaza Senza Tregua'",
+"summary": "Il Movimento 5 Stelle ha organizzato una conferenza stampa al Senato per chiedere una tregua a Gaza e discutere della situazione umanitaria e della pace.",
+"id": "gaza-senza-tregua",
 "dossier": "gaza-senza-tregua"
 },
 {
 "date": "2026-10-08",
+"area": "Esteri, Europa e difesa",
+"title": "Audizioni sul DDL 2028 (Rafforzamento e adeguamento capacità di difesa nazionale)",
+"summary": "La 3ª Commissione Affari esteri e difesa del Senato ha condotto audizioni di rappresentanti dei sindacati militari sul disegno di legge 2028, riguardante il rafforzamento e l'adeguamento delle capacità di difesa nazionale.",
+"id": "audizioni-sul-ddl-2028-rafforzamento-e-adeguamento-capacita-",
+"dossier": "ddl-2028"
+},
+{
+"date": "2026-10-08",
 "area": "Economia, lavoro e ambiente",
-"title": "Presentazione del Premio Ossigeno: incontro tra arte e ambiente",
-"summary": "A Roma, presso la Sala dell'Istituto di Santa Maria in Aquiro, è stato presentato il \"Premio Ossigeno\", un progetto che mira a creare un incontro tra arte e ambiente.",
+"title": "Audizione di Claudia Cattani e Elena Goitini (BNL BNP Paribas)",
+"summary": "La Commissione parlamentare di inchiesta sul sistema bancario, finanziario e assicurativo ha audito la Presidente e l'Amministratore delegato di BNL BNP Paribas.",
+"id": "audizione-di-claudia-cattani-e-elena-goitini-bnl-bnp-paribas",
+"dossier": "commissione-inchiesta-bancaria"
+},
+{
+"date": "2026-10-08",
+"area": "Economia, lavoro e ambiente",
+"title": "Presentazione del Premio Ossigeno: Incontro tra arte e ambiente",
+"summary": "È stata presentata la nuova edizione del \"Premio Ossigeno – L’arte che incontra l’ambiente\", un'iniziativa che promuove la sostenibilità attraverso le arti e che ha annunciato un bando per opere d'arte nelle nuove stazioni della metropolitana di Roma.",
 "id": "presentazione-del-premio-ossigeno-incontro-tra-arte-e-ambien",
-"dossier": "premio-ossigeno-arte-ambiente"
+"dossier": "premio-ossigeno"
+},
+{
+"date": "2026-10-08",
+"area": "Economia, lavoro e ambiente",
+"title": "Dibattito sulla Legge di Bilancio 2027: prudente o elettorale?",
+"summary": "Il programma \"War Room\" ha ospitato un dibattito sulle caratteristiche della Legge di Bilancio 2027, analizzando se sarà una manovra prudente o di stampo elettorale, in un contesto di pressione fiscale al 43,5%.",
+"id": "dibattito-sulla-legge-di-bilancio-2027-prudente-o-elettorale",
+"dossier": "manovra-di-bilancio-2027"
 },
 {
 "date": "2026-10-08",
 "area": "Economia, lavoro e ambiente",
 "title": "Presentazione del libro \"Sindacato S.p.A. CGIL, CISL, UIL (e gli altri). Diktat, affari e miracoli della nuova casta\"",
-"summary": "A Roma, presso la Sala Convegni “l’AltrascuolA”, è stato presentato il libro di Stefano D'Errico \"Sindacato S.p.A. CGIL, CISL, UIL (e gli altri). Diktat, affari e miracoli della nuova casta\", edito da Paper First, che analizza il ruolo e le dinamiche delle principali organizzazioni sindacali italian",
+"summary": "A Roma è stato presentato il libro di Stefano D'Errico \"Sindacato S.p.A.\", che analizza il ruolo e le dinamiche delle principali organizzazioni sindacali italiane.",
 "id": "presentazione-del-libro-sindacato-s-p-a-cgil-cisl-uil-e-gli-",
 "dossier": "libro-sindacato-spa"
 },
 {
 "date": "2026-10-08",
 "area": "Economia, lavoro e ambiente",
-"title": "War Room: Manovra, prudente o elettorale?",
-"summary": "Il dibattito \"War Room\" ha analizzato le caratteristiche della Legge di Bilancio 2027, interrogandosi sulla sua natura prudente o elettorale, in un contesto di pressione fiscale al 43,5%.",
-"id": "war-room-manovra-prudente-o-elettorale",
-"dossier": "war-room-manovra-bilancio"
-},
-{
-"date": "2026-10-08",
-"area": "Economia, lavoro e ambiente",
-"title": "Presentazione del libro \"Il futuro rubato. Pensioni, lavoro, giovani\" di Antonio Mastrapasqua",
-"summary": "A Roma, presso Palazzo Wedekind, è stato presentato il libro di Antonio Mastrapasqua \"Il futuro rubato. Pensioni, lavoro, giovani. Come invertire la rotta del declino\", edito da Solferino Libri, che affronta le sfide demografiche ed economiche italiane.",
+"title": "Presentazione del libro \"Il futuro rubato. Pensioni, lavoro, giovani. Come invertire la rotta del declino\"",
+"summary": "A Roma è stato presentato il libro di Antonio Mastrapasqua \"Il futuro rubato\", che affronta le sfide legate a pensioni, lavoro e giovani in Italia.",
 "id": "presentazione-del-libro-il-futuro-rubato-pensioni-lavoro-gio",
 "dossier": "libro-il-futuro-rubato"
 },
 {
 "date": "2026-10-08",
 "area": "Società, salute e cultura",
-"title": "83° anniversario della deportazione degli ebrei da Roma: eventi della Fondazione Museo della Shoah",
-"summary": "La Fondazione Museo della Shoah ha presentato a Roma, presso la Casina dei Vallati, gli eventi e i progetti in occasione dell’83° anniversario della deportazione degli ebrei da Roma, avvenuta il 16 ottobre 1943.",
-"id": "83-anniversario-della-deportazione-degli-ebrei-da-roma-event",
-"dossier": "anniversario-deportazione-ebrei-roma"
+"title": "Presentazione degli eventi e dei progetti della Fondazione Museo della Shoah",
+"summary": "La Fondazione Museo della Shoah ha presentato a Roma gli eventi e i progetti in occasione dell’83° anniversario della deportazione degli ebrei da Roma, avvenuta il 16 ottobre 1943.",
+"id": "presentazione-degli-eventi-e-dei-progetti-della-fondazione-m",
+"dossier": "museo-della-shoah"
 },
 {
 "date": "2026-10-08",
 "area": "Scienza, tecnologia e informazione",
-"title": "Presentazione del libro \"La cura e l'algoritmo. Intelligenza artificiale e sanità\" di Alessio D'Amato",
-"summary": "A Roma, presso la Sala del Carroccio in Campidoglio, è stato presentato il libro di Alessio D'Amato \"La cura e l'algoritmo. Intelligenza artificiale e sanità, una rivoluzione per il bene comune\", edito da Paesi Edizioni, che esplora l'impatto dell'intelligenza artificiale nel settore sanitario.",
+"title": "Presentazione del libro \"La cura e l'algoritmo. Intelligenza artificiale e sanità, una rivoluzione per il bene comune\"",
+"summary": "A Roma è stato presentato il libro di Alessio D'Amato \"La cura e l'algoritmo\", che esplora il rapporto tra intelligenza artificiale e sanità come potenziale rivoluzione per il bene comune.",
 "id": "presentazione-del-libro-la-cura-e-l-algoritmo-intelligenza-a",
 "dossier": "libro-la-cura-e-l-algoritmo"
+},
+{
+"date": "2026-10-08",
+"area": "Parlamento e governo",
+"title": "Riforma della Legge Elettorale (C. 2822-B)",
+"summary": "La Camera dei Deputati ha approvato in via definitiva la proposta di legge C. 2822-B, introducendo un nuovo sistema elettorale con premio di maggioranza e preferenze, dopo un acceso dibattito e l'applicazione di tre voti di fiducia da parte del Governo.",
+"id": "riforma-della-legge-elettorale-c-2822-b",
+"dossier": "riforma-della-legge-elettorale"
+},
+{
+"date": "2026-10-08",
+"area": "Parlamento e governo",
+"title": "Interrogazioni a risposta immediata al Senato",
+"summary": "Il Senato ha affrontato interrogazioni sulla carenza di personale UNEP ad Avezzano e sulle modalità di trattenimento in servizio dei segretari comunali, con risposte del Governo e repliche dei senatori.",
+"id": "interrogazioni-a-risposta-immediata-al-senato",
+"dossier": "interrogazioni-a-risposta-immediata-senato"
+},
+{
+"date": "2026-10-08",
+"area": "Parlamento e governo",
+"title": "Question Time al Senato",
+"summary": "Il Question Time del Senato ha visto il Governo rispondere a interrogazioni su valorizzazione dei borghi, costo dell'energia, crisi automotive, concessioni idroelettriche, consumo di suolo e povertà energetica nelle isole.",
+"id": "question-time-al-senato",
+"dossier": "question-time-senato"
+},
+{
+"date": "2026-10-08",
+"area": "Parlamento e governo",
+"title": "Audizioni sui disegni di legge nn. 1816 e 1905 (Disciplina del condominio negli edifici)",
+"summary": "La 2ª Commissione Giustizia del Senato ha tenuto audizioni sui disegni di legge nn. 1816 e 1905, entrambi riguardanti la disciplina del condominio negli edifici.",
+"id": "audizioni-sui-disegni-di-legge-nn-1816-e-1905-disciplina-del",
+"dossier": "ddl-condominio"
+},
+{
+"date": "2026-10-08",
+"area": "Giustizia e diritti",
+"title": "Processo Mezzarano Salvatore ed altri (torture a Santa Maria Capua Vetere)",
+"summary": "È proseguita a Santa Maria Capua Vetere l'udienza del processo \"Mezzarano Salvatore ed altri\", incentrato sulle presunte torture avvenute nell’istituto penitenziario locale il 6 aprile 2020.",
+"id": "processo-mezzarano-salvatore-ed-altri-torture-a-santa-maria-",
+"dossier": "processo-santa-maria-capua-vetere"
+},
+{
+"date": "2026-10-08",
+"area": "Giustizia e diritti",
+"title": "Processo Hydra",
+"summary": "Si è tenuta a Milano un'udienza del \"Processo Hydra\", un procedimento giudiziario legato all'omonima operazione.",
+"id": "processo-hydra",
+"dossier": "processo-hydra"
+},
+{
+"date": "2026-10-08",
+"area": "Giustizia e diritti",
+"title": "Processo a Roberto Zorzi per la strage di Piazza della Loggia",
+"summary": "È proseguito a Brescia il processo a Roberto Zorzi, imputato per la strage di Piazza della Loggia avvenuta il 28 maggio 1974.",
+"id": "processo-a-roberto-zorzi-per-la-strage-di-piazza-della-loggi",
+"dossier": "processo-piazza-della-loggia"
+},
+{
+"date": "2026-10-08",
+"area": "Giustizia e diritti",
+"title": "Violenza di genere: la risposta delle istituzioni e della società civile",
+"summary": "Il Consiglio Superiore della Magistratura ha organizzato la prima giornata di un convegno sulla violenza di genere, analizzando la risposta delle istituzioni e della società civile attraverso sessioni dedicate a educazione, linguaggio e collaborazione inter-istituzionale.",
+"id": "violenza-di-genere-la-risposta-delle-istituzioni-e-della-soc",
+"dossier": "violenza-di-genere"
+},
+{
+"date": "2026-10-08",
+"area": "Esteri, Europa e difesa",
+"title": "'Gaza Senza Tregua'",
+"summary": "Il Movimento 5 Stelle ha organizzato una conferenza stampa al Senato per chiedere una tregua a Gaza e discutere della situazione umanitaria e della pace.",
+"id": "gaza-senza-tregua",
+"dossier": "gaza-senza-tregua"
 },
 {
 "date": "2026-10-07",

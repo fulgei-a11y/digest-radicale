@@ -1,22 +1,54 @@
 [
 {
-"key": "camera-2822",
-"label": "Legge elettorale",
-"area": "Parlamento e governo",
-"first": "2026-10-06",
-"last": "2026-10-08",
-"days": 3
+"key": "violenza-di-genere",
+"label": "Violenza di genere",
+"area": "Giustizia e diritti",
+"first": "2026-10-08",
+"last": "2026-10-09",
+"days": 2
 },
 {
-"key": "processo-mezzarano",
-"label": "Processo Mezzarano Salvatore ed altri per presunte torture a Santa Maria Capua V",
+"key": "interpellanze-urgenti-camera",
+"label": "Interpellanze urgenti alla Camera",
+"area": "Parlamento e governo",
+"first": "2026-10-09",
+"last": "2026-10-09",
+"days": 1
+},
+{
+"key": "fenomeno-mafioso",
+"label": "Fenomeno mafioso: aspetti antropo-psichici e giuridici",
 "area": "Giustizia e diritti",
-"first": "2026-10-07",
+"first": "2026-10-09",
+"last": "2026-10-09",
+"days": 1
+},
+{
+"key": "economia-cooperativa",
+"label": "Biennale dell'Economia Cooperativa",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-09",
+"last": "2026-10-09",
+"days": 1
+},
+{
+"key": "riforma-della-legge-elettorale",
+"label": "Riforma della Legge Elettorale",
+"area": "Parlamento e governo",
+"first": "2026-10-05",
 "last": "2026-10-08",
 "days": 2
 },
 {
-"key": "interrogazioni-senato",
+"key": "ddl-2028",
+"label": "Audizioni sul DDL 2028 per il rafforzamento della difesa nazionale",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-06",
+"last": "2026-10-08",
+"days": 2
+},
+{
+"key": "interrogazioni-a-risposta-immediata-senato",
 "label": "Interrogazioni a risposta immediata al Senato",
 "area": "Parlamento e governo",
 "first": "2026-10-08",
@@ -24,8 +56,24 @@
 "days": 1
 },
 {
-"key": "violenza-di-genere",
-"label": "Violenza di genere",
+"key": "question-time-senato",
+"label": "Question Time al Senato",
+"area": "Parlamento e governo",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "ddl-condominio",
+"label": "Disciplina del condominio negli edifici",
+"area": "Parlamento e governo",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "processo-santa-maria-capua-vetere",
+"label": "Processo Santa Maria Capua Vetere",
 "area": "Giustizia e diritti",
 "first": "2026-10-08",
 "last": "2026-10-08",
@@ -40,8 +88,8 @@
 "days": 1
 },
 {
-"key": "processo-strage-piazza-loggia",
-"label": "Processo a Roberto Zorzi per la strage di Piazza della Loggia",
+"key": "processo-piazza-della-loggia",
+"label": "Processo Strage Piazza della Loggia",
 "area": "Giustizia e diritti",
 "first": "2026-10-08",
 "last": "2026-10-08",
@@ -56,8 +104,24 @@
 "days": 1
 },
 {
-"key": "premio-ossigeno-arte-ambiente",
-"label": "Premio Ossigeno: incontro tra arte e ambiente",
+"key": "commissione-inchiesta-bancaria",
+"label": "Commissione parlamentare di inchiesta sul sistema bancario, finanziario e assicu",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "premio-ossigeno",
+"label": "Premio Ossigeno",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "manovra-di-bilancio-2027",
+"label": "Manovra di Bilancio 2027",
 "area": "Economia, lavoro e ambiente",
 "first": "2026-10-08",
 "last": "2026-10-08",
@@ -65,15 +129,7 @@
 },
 {
 "key": "libro-sindacato-spa",
-"label": "Presentazione del libro \"Sindacato S.p.A.\"",
-"area": "Economia, lavoro e ambiente",
-"first": "2026-10-08",
-"last": "2026-10-08",
-"days": 1
-},
-{
-"key": "war-room-manovra-bilancio",
-"label": "War Room: Manovra di Bilancio",
+"label": "Sindacato S.p.A.",
 "area": "Economia, lavoro e ambiente",
 "first": "2026-10-08",
 "last": "2026-10-08",
@@ -81,15 +137,15 @@
 },
 {
 "key": "libro-il-futuro-rubato",
-"label": "Presentazione del libro \"Il futuro rubato\"",
+"label": "Il futuro rubato",
 "area": "Economia, lavoro e ambiente",
 "first": "2026-10-08",
 "last": "2026-10-08",
 "days": 1
 },
 {
-"key": "anniversario-deportazione-ebrei-roma",
-"label": "83° anniversario della deportazione degli ebrei da Roma",
+"key": "museo-della-shoah",
+"label": "Fondazione Museo della Shoah",
 "area": "Società, salute e cultura",
 "first": "2026-10-08",
 "last": "2026-10-08",
@@ -97,11 +153,19 @@
 },
 {
 "key": "libro-la-cura-e-l-algoritmo",
-"label": "Presentazione del libro \"La cura e l'algoritmo\"",
+"label": "La cura e l'algoritmo",
 "area": "Scienza, tecnologia e informazione",
 "first": "2026-10-08",
 "last": "2026-10-08",
 "days": 1
+},
+{
+"key": "camera-2822",
+"label": "Legge elettorale",
+"area": "Parlamento e governo",
+"first": "2026-10-06",
+"last": "2026-10-07",
+"days": 2
 },
 {
 "key": "dl-154-2026",
@@ -208,6 +272,14 @@
 "days": 1
 },
 {
+"key": "processo-mezzarano",
+"label": "Processo Mezzarano Salvatore ed altri per presunte torture a Santa Maria Capua Vetere",
+"area": "Giustizia e diritti",
+"first": "2026-10-07",
+"last": "2026-10-07",
+"days": 1
+},
+{
 "key": "processo-aronica",
 "label": "Processo d'appello Aronica ed altri per l'assalto alla sede della CGIL del 9 ottobre 2021 - Sentenza",
 "area": "Giustizia e diritti",
@@ -298,14 +370,6 @@
 {
 "key": "indagine-conoscitiva-sui-diritti-umani-nel-mondo",
 "label": "Indagine conoscitiva sui diritti umani nel mondo",
-"area": "Esteri, Europa e difesa",
-"first": "2026-10-06",
-"last": "2026-10-06",
-"days": 1
-},
-{
-"key": "ddl-2028",
-"label": "Audizioni sul DDL 2028 per il rafforzamento della difesa nazionale",
 "area": "Esteri, Europa e difesa",
 "first": "2026-10-06",
 "last": "2026-10-06",
@@ -413,14 +477,6 @@
 "area": "Scienza, tecnologia e informazione",
 "first": "2026-10-06",
 "last": "2026-10-06",
-"days": 1
-},
-{
-"key": "riforma-della-legge-elettorale",
-"label": "Riforma della Legge Elettorale",
-"area": "Temi del giorno",
-"first": "2026-10-05",
-"last": "2026-10-05",
 "days": 1
 },
 {

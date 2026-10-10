@@ -16,7 +16,7 @@ on:
       audio_recordings:
         description: 'Quante registrazioni ascoltare (0 = nessuna)'
         required: false
-        default: '0'
+        default: '2'
       digest_from:
         description: 'Recupero di un periodo: dal giorno (AAAA-MM-GG). Vuoto = no'
         required: false
@@ -29,6 +29,11 @@ on:
         description: 'Quanti giorni generare al massimo in questa esecuzione'
         required: false
         default: '2'
+
+# due esecuzioni insieme (una manuale durante quella programmata) si accodano invece di scontrarsi
+concurrency:
+  group: digest
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -56,10 +61,14 @@ jobs:
       - name: Controlla che lo script sia completo
         run: |
           echo "Righe di build_digest.py: $(wc -l < build_digest.py)"
-          if ! grep -q "SCRIPT_VERSION = 4" build_digest.py || ! tail -3 build_digest.py | grep -q "main()"; then
+          if ! grep -q "SCRIPT_VERSION = 5" build_digest.py || ! tail -3 build_digest.py | grep -q "main()"; then
             echo "❌ build_digest.py è incompleto o vecchio: ricaricalo per intero (deve finire con main())."
             exit 1
           fi
+          for f in build_digest.py check_health.py tools/build_audio.py; do
+            python -m py_compile "$f" || { echo "❌ $f non è valido: ricaricalo per intero."; exit 1; }
+            tail -3 "$f" | grep -q "main()" || { echo "❌ $f è incompleto: ricaricalo per intero."; exit 1; }
+          done
 
       - name: Installa dipendenze
         run: pip install -r requirements.txt
@@ -71,20 +80,26 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DIGEST_DATE: ${{ github.event.inputs.digest_date }}
           BACKFILL_DAYS: ${{ github.event.inputs.backfill_days || '7' }}
-          AUDIO_MAX_RECORDINGS: ${{ github.event.inputs.audio_recordings || '0' }}
+          AUDIO_MAX_RECORDINGS: ${{ github.event.inputs.audio_recordings || '2' }}
           AUDIO_MAX_MINUTES: '60'
           MAX_PER_RUN: ${{ github.event.inputs.max_per_run || '2' }}
           DIGEST_FROM: ${{ github.event.inputs.digest_from }}
           DIGEST_TO: ${{ github.event.inputs.digest_to }}
         run: python build_digest.py
 
+      # Se l'MP3 non riesce, il digest scritto viene pubblicato lo stesso (e arriva l'avviso)
+      - name: Genera l'audio MP3 con la voce Paola
+        id: audio
+        continue-on-error: true
+        run: python tools/build_audio.py --auto 3
+
       - name: Salva e carica le modifiche sul repository
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add digests/ d/ 2>/dev/null || git add digests/
+          git add -A digests/ d/ audio/ 2>/dev/null || git add digests/
           echo "File modificati:"
-          git status --short digests/ d/
+          git status --short digests/ d/ audio/
           if git diff --cached --quiet; then
             echo "Nessun digest nuovo da salvare."
             exit 0
@@ -99,6 +114,7 @@ jobs:
         if: always()
         env:
           GEN_OUTCOME: ${{ steps.gen.outcome }}
+          AUDIO_OUTCOME: ${{ steps.audio.outcome }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: python check_health.py
 
@@ -109,11 +125,12 @@ jobs:
         run: |
           gh label create digest-errore --color d6332f --description "Aggiornamento automatico non riuscito" 2>/dev/null || true
           n=$(gh issue list --label digest-errore --state open --json number -q '.[0].number')
+          { echo "@${{ github.repository_owner }}"; echo; cat health.md; } > body.md
           if [ -n "$n" ]; then
-            gh issue comment "$n" --body-file health.md
+            gh issue comment "$n" --body-file body.md
           else
             gh issue create --title "⚠️ Digest Radio Radicale: aggiornamento non riuscito" \
-              --label digest-errore --body-file health.md
+              --label digest-errore --body-file body.md
           fi
           echo "::error::Aggiornamento non riuscito: vedi la segnalazione nella scheda Issues."
           exit 1

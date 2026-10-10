@@ -255,7 +255,35 @@ def clean_markdown(md: str, date_it: str) -> str:
         md = md[m.start():]
     if not md.lstrip().startswith("# "):
         md = f"# Radio Radicale, {date_it}\n*Analisi tematica delle registrazioni della giornata.*\n\n" + md
+    md = cut_repetition(md)
+    return fix_bare_urls(md)
+
+
+def cut_repetition(md: str) -> str:
+    """A volte il modello, finito il digest, ricomincia da capo: si taglia alla prima sezione ## ripetuta."""
+    seen = set()
+    for m in re.finditer(r"^##\s+(.+?)\s*$", md, re.M):
+        key = m.group(1).strip().lower()
+        if key in seen:
+            print(f"   ✂️ Il digest si ripeteva da \"## {m.group(1).strip()}\": tolta la parte ripetuta.")
+            return md[:m.start()].rstrip() + "\n"
+        seen.add(key)
     return md
+
+
+MD_LINK_OR_URL = re.compile(r"(\[[^\]]*\]\([^)\s]+\))|\[(https?://[^\]\s]+)\]|<?(https?://[^\s<>()\[\]]+[^\s<>()\[\].,;:])>?")
+
+
+def fix_bare_urls(md: str) -> str:
+    """Gli indirizzi scritti per intero (anche tra parentesi quadre) diventano link brevi:
+    sul telefono una stringa lunga senza spazi allarga la pagina."""
+    def sub(m):
+        if m.group(1):
+            return m.group(1)            # link Markdown già corretto
+        url = m.group(2) or m.group(3)
+        host = urlparse(url).netloc.replace("www.", "")
+        return f"[{host or 'fonte'}]({url})"
+    return MD_LINK_OR_URL.sub(sub, md)
 
 
 def scrape_scheda(url: str) -> dict:
@@ -542,6 +570,7 @@ REGOLE SUI LINK (obbligatorie)
   in formato Markdown: [ascolta](https://www.radioradicale.it/scheda/...).
 - Per i fatti di contesto presi dalla ricerca web aggiungi il link alla pagina da cui li hai presi.
 - Non inventare mai un URL.
+- Scrivi SEMPRE i link nella forma [testo breve](indirizzo): mai l'indirizzo da solo o tra parentesi quadre.
 
 DOSSIER (per seguire un tema giorno per giorno)
 - Subito sotto il titolo ### di ogni tema scrivi una riga così, da sola:
@@ -595,6 +624,7 @@ STRUTTURA (Markdown)
 ## Cosa non è stato possibile ricostruire
 
 Restituisci SOLO il digest in italiano: la prima riga deve essere "# Radio Radicale, {date_it}".
+Scrivi il digest una volta sola: dopo "## Cosa non è stato possibile ricostruire" fermati.
 Non scrivere ragionamenti, piani, note di lavoro o commenti prima o dopo il digest, e niente blocchi di codice.
 Usa solo le registrazioni dell'agenda di questo giorno.
 """

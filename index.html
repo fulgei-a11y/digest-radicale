@@ -48,6 +48,9 @@
     }
   }
   * { box-sizing:border-box; }
+  /* niente scorrimento laterale sul telefono, anche se nel testo c'è una parola o un indirizzo lunghissimo */
+  html, body { overflow-x:clip; }
+  #content p, #content li, #content td, #content th, #content h1, #content h2, #content h3 { overflow-wrap:anywhere; }
   [hidden] { display:none !important; }
   html { scroll-behavior:smooth; }
   body { margin:0; background:var(--bg); color:var(--fg); font:16.5px/1.7 var(--sans);

@@ -1,35 +1,91 @@
 [
 {
+"date": "2026-10-10",
+"area": "Parlamento e governo",
+"title": "Proposta di Legge di iniziativa popolare “Misure per la rigenerazione urbana del commercio e dei servizi di prossimità”",
+"summary": "Confesercenti ha consegnato le firme per una proposta di legge di iniziativa popolare volta a sostenere il commercio e i servizi di prossimità per la rigenerazione urbana.",
+"id": "proposta-di-legge-di-iniziativa-popolare-misure-per-la-rigen",
+"dossier": "rigenerazione-urbana-commercio"
+},
+{
+"date": "2026-10-10",
+"area": "Politica e partiti",
+"title": "Assemblea nazionale \"Più Uno. La politica dell'uguaglianza\"",
+"summary": "L'assemblea nazionale di \"Più Uno\", moderata da Giorgia Rombolà, ha visto Ernesto Maria Ruffini e Franco Gabrielli criticare la legge elettorale e il premierato, proporre soluzioni per l'emergenza casa e la progressività fiscale, e discutere la crisi della democrazia e le sfide geopolitiche.",
+"id": "assemblea-nazionale-piu-uno-la-politica-dell-uguaglianza",
+"dossier": "piu-uno-politica-uguaglianza"
+},
+{
+"date": "2026-10-10",
+"area": "Esteri, Europa e difesa",
+"title": "Patto della Mecca e politica estera turca",
+"summary": "Il ministro degli Esteri turco Hakan Fidan ha delineato la posizione di Turchia e Siria riguardo al \"patto della Mecca\" con Pakistan e Arabia Saudita, indicando un supporto a Riad senza un coinvolgimento diretto in offensive contro gli Houthi.",
+"id": "patto-della-mecca-e-politica-estera-turca",
+"dossier": "patto-della-mecca-turchia"
+},
+{
+"date": "2026-10-10",
+"area": "Economia, lavoro e ambiente",
+"title": "Confesercenti Forum 2026: Ristorazione e storie di successo",
+"summary": "L'incontro \"Ristorazione e storie di successo\" al Confesercenti Forum 2026 ha esplorato l'organizzazione aziendale, la gestione del personale, la formazione e l'innovazione tecnologica nel settore, con interventi di Massimiliano Carpanese di *Parma Menù* e Raffaele Trovato di *IFSE*.",
+"id": "confesercenti-forum-2026-ristorazione-e-storie-di-successo",
+"dossier": "confesercenti-forum-ristorazione"
+},
+{
+"date": "2026-10-10",
+"area": "Economia, lavoro e ambiente",
+"title": "Inquinanti eterni (PFAS)",
+"summary": "La rubrica \"FaiNotizia\" ha analizzato i PFAS, definiti \"inquinanti eterni\", discutendo il loro utilizzo industriale dagli anni Cinquanta, le conseguenze sulla salute e il dibattito in corso in Europa e Italia.",
+"id": "inquinanti-eterni-pfas",
+"dossier": "inquinanti-eterni-pfas"
+},
+{
+"date": "2026-10-10",
+"area": "Società, salute e cultura",
+"title": "Conservazione della lingua e cultura Arbëreshë",
+"summary": "Un'intervista con Maria De Rosa e Pinuccia Campofredano ha messo in luce il valore della lingua arbëreshë come strumento di identità e comunicazione, evidenziando il suo utilizzo nello sportello bilingue del Comune di Ururi e l'inserimento nell'offerta formativa scolastica.",
+"id": "conservazione-della-lingua-e-cultura-arbereshe",
+"dossier": "albania-italianofona"
+},
+{
+"date": "2026-10-10",
+"area": "Società, salute e cultura",
+"title": "Dibattito sul Fine Vita in Italia e Europa",
+"summary": "La rubrica \"FaiNotizia\" ha continuato il suo approfondimento sul fine vita, analizzando il caso di Domenico Zuccarella in Lombardia, il dibattito internazionale seguito alla legge francese e la rappresentazione teatrale \"E poi ci siamo sedute a guardare il mare\", ispirata al suicidio assistito delle",
+"id": "dibattito-sul-fine-vita-in-italia-e-europa",
+"dossier": "diritti-civili-il-fine-vita"
+},
+{
 "date": "2026-10-09",
 "area": "Parlamento e governo",
-"title": "Interpellanze urgenti alla Camera",
-"summary": "La Camera dei Deputati ha discusso interpellanze urgenti riguardanti le pratiche commerciali di Eni Plenitude e lo stato di avanzamento delle infrastrutture in Romagna.",
-"id": "interpellanze-urgenti-alla-camera",
-"dossier": "interpellanze-urgenti-camera"
+"title": "Seduta 724ª della Camera dei Deputati",
+"summary": "La Camera dei Deputati ha svolto interpellanze urgenti, approvando il processo verbale della seduta precedente e ricevendo un nuovo disegno di legge dal Governo.",
+"id": "seduta-724a-della-camera-dei-deputati",
+"dossier": "seduta-camera-724"
 },
 {
 "date": "2026-10-09",
 "area": "Giustizia e diritti",
-"title": "Contrasto alla violenza di genere e prospettiva di genere nella giurisdizione",
-"summary": "La seconda giornata del convegno del CSM ha approfondito il principio di non discriminazione e la prospettiva di genere nella giurisdizione, con proposte concrete per la modifica normativa e l'organizzazione degli uffici giudiziari.",
-"id": "contrasto-alla-violenza-di-genere-e-prospettiva-di-genere-ne",
+"title": "Violenza di genere: la risposta delle istituzioni e della società civile",
+"summary": "Il Consiglio Superiore della Magistratura ha ospitato la seconda giornata di un convegno sulla violenza di genere, affrontando il principio di non discriminazione, la prospettiva di genere nella giurisdizione e le criticità operative.",
+"id": "violenza-di-genere-la-risposta-delle-istituzioni-e-della-soc",
 "dossier": "violenza-di-genere"
 },
 {
 "date": "2026-10-09",
-"area": "Giustizia e diritti",
-"title": "Fenomeno mafioso: aspetti antropo-psichici e giuridici",
-"summary": "A Palermo, un convegno ha esplorato gli aspetti antropo-psichici e giuridici del fenomeno mafioso, con un focus sulle esperienze e la progettazione per contrastarlo.",
-"id": "fenomeno-mafioso-aspetti-antropo-psichici-e-giuridici",
-"dossier": "fenomeno-mafioso"
+"area": "Economia, lavoro e ambiente",
+"title": "Pratiche commerciali ENI nel mercato libero dell'energia",
+"summary": "La Camera dei Deputati ha discusso un'interpellanza urgente sulle presunte pratiche commerciali scorrette di ENI Plenitude nel mercato libero dell'energia, con il Governo che ha rimarcato la competenza delle autorità indipendenti.",
+"id": "pratiche-commerciali-eni-nel-mercato-libero-dell-energia",
+"dossier": "pratiche-commerciali-eni"
 },
 {
 "date": "2026-10-09",
 "area": "Economia, lavoro e ambiente",
-"title": "Biennale dell'Economia Cooperativa",
-"summary": "Legacoop ha organizzato a Milano la Biennale dell'Economia Cooperativa \"Far crescere l’Italia, insieme\", un evento che ha visto la partecipazione di esponenti istituzionali, politici e sindacali per discutere le proposte del movimento cooperativo per il paese.",
-"id": "biennale-dell-economia-cooperativa",
-"dossier": "economia-cooperativa"
+"title": "Finanziamento e completamento delle infrastrutture viarie e ferroviarie in Romagna",
+"summary": "La Camera dei Deputati ha discusso l'interpellanza urgente sui finanziamenti e il completamento delle infrastrutture in Romagna, con l'opposizione che ha denunciato la mancanza di nuovi stanziamenti del Governo e la Sottosegretaria che ha elencato gli interventi in corso.",
+"id": "finanziamento-e-completamento-delle-infrastrutture-viarie-e-",
+"dossier": "infrastrutture-romagna"
 },
 {
 "date": "2026-10-08",

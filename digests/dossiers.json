@@ -1,5 +1,61 @@
 [
 {
+"key": "diritti-civili-il-fine-vita",
+"label": "Dibattito sul Fine Vita in Italia e Europa",
+"area": "Società, salute e cultura",
+"first": "2026-10-05",
+"last": "2026-10-10",
+"days": 2
+},
+{
+"key": "rigenerazione-urbana-commercio",
+"label": "Proposta di Legge di iniziativa popolare per la rigenerazione urbana del commerc",
+"area": "Parlamento e governo",
+"first": "2026-10-10",
+"last": "2026-10-10",
+"days": 1
+},
+{
+"key": "piu-uno-politica-uguaglianza",
+"label": "Assemblea nazionale \"Più Uno. La politica dell'uguaglianza\"",
+"area": "Politica e partiti",
+"first": "2026-10-10",
+"last": "2026-10-10",
+"days": 1
+},
+{
+"key": "patto-della-mecca-turchia",
+"label": "Patto della Mecca e politica estera turca",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-10",
+"last": "2026-10-10",
+"days": 1
+},
+{
+"key": "confesercenti-forum-ristorazione",
+"label": "Confesercenti Forum 2026: Ristorazione e storie di successo",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-10",
+"last": "2026-10-10",
+"days": 1
+},
+{
+"key": "inquinanti-eterni-pfas",
+"label": "Inquinanti eterni (PFAS)",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-10",
+"last": "2026-10-10",
+"days": 1
+},
+{
+"key": "albania-italianofona",
+"label": "Conservazione della lingua e cultura Arbëreshë",
+"area": "Società, salute e cultura",
+"first": "2026-10-10",
+"last": "2026-10-10",
+"days": 1
+},
+{
 "key": "violenza-di-genere",
 "label": "Violenza di genere",
 "area": "Giustizia e diritti",
@@ -8,24 +64,24 @@
 "days": 2
 },
 {
-"key": "interpellanze-urgenti-camera",
-"label": "Interpellanze urgenti alla Camera",
+"key": "seduta-camera-724",
+"label": "Seduta 724ª della Camera dei Deputati",
 "area": "Parlamento e governo",
 "first": "2026-10-09",
 "last": "2026-10-09",
 "days": 1
 },
 {
-"key": "fenomeno-mafioso",
-"label": "Fenomeno mafioso: aspetti antropo-psichici e giuridici",
-"area": "Giustizia e diritti",
+"key": "pratiche-commerciali-eni",
+"label": "Pratiche commerciali ENI",
+"area": "Economia, lavoro e ambiente",
 "first": "2026-10-09",
 "last": "2026-10-09",
 "days": 1
 },
 {
-"key": "economia-cooperativa",
-"label": "Biennale dell'Economia Cooperativa",
+"key": "infrastrutture-romagna",
+"label": "Infrastrutture in Romagna",
 "area": "Economia, lavoro e ambiente",
 "first": "2026-10-09",
 "last": "2026-10-09",
@@ -426,14 +482,6 @@
 {
 "key": "economia-e-sviluppo-territoriale",
 "label": "Economia e Sviluppo Territoriale",
-"area": "Temi del giorno",
-"first": "2026-10-05",
-"last": "2026-10-05",
-"days": 1
-},
-{
-"key": "diritti-civili-il-fine-vita",
-"label": "Diritti Civili",
 "area": "Temi del giorno",
 "first": "2026-10-05",
 "last": "2026-10-05",

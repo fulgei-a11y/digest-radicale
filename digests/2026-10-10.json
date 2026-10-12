@@ -113,6 +113,6 @@
   "listened": 2,
   "generated": "2026-10-11T05:34:57Z",
   "first_generated": "2026-10-11T05:34:57Z",
-  "rechecked": false,
+  "rechecked": true,
   "steno_missing": []
 }

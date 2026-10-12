@@ -1,5 +1,133 @@
 [
 {
+"date": "2026-10-11",
+"area": "Giustizia e diritti",
+"title": "Riforma della giustizia e CSM",
+"summary": "Il 5º Congresso Nazionale di Area Democratica per la Giustizia ha espresso forte contrarietà alla riforma costituzionale sulla separazione delle carriere e il sorteggio del CSM, considerandola un attacco all'indipendenza della magistratura.",
+"id": "riforma-della-giustizia-e-csm",
+"dossier": "riforma-della-giustizia-e-csm"
+},
+{
+"date": "2026-10-11",
+"area": "Giustizia e diritti",
+"title": "Camera arbitrale islamica a Padova",
+"summary": "Un'intervista a Souad Sbai ha illustrato la recente nascita della Camera arbitrale islamica di Padova e le sue implicazioni su cittadinanza, diritti civili e ruolo della donna.",
+"id": "camera-arbitrale-islamica-a-padova",
+"dossier": "camera-arbitrale-islamica-padova"
+},
+{
+"date": "2026-10-11",
+"area": "Giustizia e diritti",
+"title": "Morti sul lavoro: il libro \"Operaicidio\"",
+"summary": "Il magistrato Bruno Giordano ha presentato il libro \"Operaicidio\", che analizza il grave fenomeno delle morti sul lavoro e le problematiche irrisolte in Italia.",
+"id": "morti-sul-lavoro-il-libro-operaicidio",
+"dossier": "operaicidio-morti-sul-lavoro"
+},
+{
+"date": "2026-10-11",
+"area": "Politica e partiti",
+"title": "Democrazia, stato di diritto e libertà individuali: il progetto \"Rosa nel Pugno\"",
+"summary": "A Torino, un convegno ha discusso la democrazia, lo stato di diritto e le libertà individuali, proponendo un rilancio del progetto \"Rosa nel Pugno\" nel contesto internazionale e nazionale.",
+"id": "democrazia-stato-di-diritto-e-liberta-individuali-il-progett",
+"dossier": "democrazia-stato-di-diritto-liberta-individuali"
+},
+{
+"date": "2026-10-11",
+"area": "Esteri, Europa e difesa",
+"title": "Commemorazione attacco 7 ottobre 2023 e antisemitismo",
+"summary": "A Roma, il convegno \"La storia stravolta e il futuro da costruire\" ha commemorato il secondo anniversario dell'attacco terroristico del 7 ottobre 2023 in Israele, denunciando l'antisemitismo globale e la disinformazione.",
+"id": "commemorazione-attacco-7-ottobre-2023-e-antisemitismo",
+"dossier": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i"
+},
+{
+"date": "2026-10-11",
+"area": "Esteri, Europa e difesa",
+"title": "Declino demografico cinese",
+"summary": "La rubrica \"Rassegna di Geopolitica\" ha analizzato il declino demografico della Cina, basandosi su un articolo di Foreign Affairs, e le sue implicazioni economiche e sociali.",
+"id": "declino-demografico-cinese",
+"dossier": "declino-demografico-cinese"
+},
+{
+"date": "2026-10-11",
+"area": "Esteri, Europa e difesa",
+"title": "Rassegna stampa araba",
+"summary": "Alessia Colonnelli ha curato una rassegna della stampa araba, focalizzandosi su Medio Oriente, conflitto a Gaza e dinamiche politiche regionali.",
+"id": "rassegna-stampa-araba",
+"dossier": "rassegna-stampa-araba"
+},
+{
+"date": "2026-10-11",
+"area": "Esteri, Europa e difesa",
+"title": "Rassegna stampa persiana e diritti umani in Iran",
+"summary": "La rubrica \"Informazione, donna, vita, libertà\" ha offerto una rassegna della stampa in lingua persiana, con un focus sui diritti umani, la giustizia e la situazione in Iran e Afghanistan.",
+"id": "rassegna-stampa-persiana-e-diritti-umani-in-iran",
+"dossier": "rassegna-stampa-persiana-diritti-umani-iran"
+},
+{
+"date": "2026-10-11",
+"area": "Esteri, Europa e difesa",
+"title": "Geopolitica e Intelligenza Artificiale",
+"summary": "La puntata di \"Aria del continente\" ha ospitato Niccolò Rinaldi per discutere di geopolitica, Intelligenza Artificiale e cooperazione internazionale, con riferimenti all'Artico, all'Australia e all'Unione Europea.",
+"id": "geopolitica-e-intelligenza-artificiale",
+"dossier": "geopolitica-intelligenza-artificiale"
+},
+{
+"date": "2026-10-11",
+"area": "Esteri, Europa e difesa",
+"title": "Rassegna delle riviste di politica e storia",
+"summary": "Michele Lembo ha condotto una rassegna delle riviste di politica e storia, toccando argomenti come la storia del PSI, la figura di Craxi e i conflitti internazionali.",
+"id": "rassegna-delle-riviste-di-politica-e-storia",
+"dossier": "rassegna-riviste-politica-storia"
+},
+{
+"date": "2026-10-11",
+"area": "Economia, lavoro e ambiente",
+"title": "Inquinanti eterni (PFAS)",
+"summary": "La puntata di \"FaiNotizia\" ha affrontato il tema dei PFAS, i cosiddetti \"inquinanti eterni\", analizzando le loro conseguenze sulla salute e il dibattito che li riguarda a livello europeo e italiano.",
+"id": "inquinanti-eterni-pfas",
+"dossier": "inquinanti-eterni-pfas"
+},
+{
+"date": "2026-10-11",
+"area": "Economia, lavoro e ambiente",
+"title": "Territorio veneto e cicloturismo",
+"summary": "La rubrica \"Derrick\" ha esplorato il territorio veneto attraverso un itinerario in bicicletta lungo gli argini dei fiumi, evidenziando le opportunità del cicloturismo.",
+"id": "territorio-veneto-e-cicloturismo",
+"dossier": "territorio-veneto-cicloturismo"
+},
+{
+"date": "2026-10-11",
+"area": "Società, salute e cultura",
+"title": "Salute mentale come diritto umano",
+"summary": "La rubrica \"La nuda verità\" ha sottolineato come la tutela della salute fisica e mentale sia un principio fondamentale, denunciando le violazioni e discriminazioni subite da chi soffre di problemi psichici in Italia, in occasione del World Health Mental Day.",
+"id": "salute-mentale-come-diritto-umano",
+"dossier": "salute-mentale-diritto-umano"
+},
+{
+"date": "2026-10-11",
+"area": "Società, salute e cultura",
+"title": "Dibattito sul fine vita",
+"summary": "La puntata settimanale di \"FaiNotizia - Fine Vita\" ha riacceso il dibattito sull'autodeterminazione e il diritto a scegliere come affrontare la fine della propria vita, partendo dal caso di Domenico Zuccarella in Lombardia e da uno spettacolo teatrale ispirato alle gemelle Kessler.",
+"id": "dibattito-sul-fine-vita",
+"dossier": "diritti-civili-il-fine-vita"
+},
+{
+"date": "2026-10-11",
+"area": "Scienza, tecnologia e informazione",
+"title": "IA, scienze umanistiche e linguaggio",
+"summary": "La rubrica \"Puntini sull'AI\" ha esplorato il contributo delle scienze umanistiche alla progettazione dell'Intelligenza Artificiale, con il Prof. Antonio Origlia, focalizzandosi sul dialogo tra persone e sistemi artificiali e il significato del linguaggio nel contesto.",
+"id": "ia-scienze-umanistiche-e-linguaggio",
+"dossier": "ia-scienze-umanistiche-linguaggio"
+},
+{
+"date": "2026-10-11",
+"area": "Scienza, tecnologia e informazione",
+"title": "Media, social media e IA",
+"summary": "La rubrica \"Media e dintorni\" ha analizzato il rapporto tra social media, Intelligenza Artificiale e informazione, con Edoardo Fleischner, discutendo temi come la paura dei social, i nuovi termini dell'IA e il riconoscimento dei volti generati artificialmente.",
+"id": "media-social-media-e-ia",
+"dossier": "media-social-media-ia"
+},
+{
 "date": "2026-10-10",
 "area": "Parlamento e governo",
 "title": "Proposta di Legge di iniziativa popolare “Misure per la rigenerazione urbana del commercio e dei servizi di prossimità”",
@@ -274,218 +402,218 @@
 {
 "date": "2026-10-06",
 "area": "Parlamento e governo",
-"title": "Legge elettorale: seguito discussione C. 2822-B",
-"summary": "La Camera dei Deputati ha continuato la discussione della proposta di legge C. 2822-B, già approvata dalla Camera e modificata dal Senato, riguardante le disposizioni in materia di elezioni della Camera e del Senato.",
-"id": "legge-elettorale-seguito-discussione-c-2822-b",
-"dossier": "camera-2822"
+"title": "Legge elettorale: fiducia sugli articoli 1 e 2 (A.C. 2822-B)",
+"summary": "La Camera dei Deputati ha approvato con voto di fiducia gli articoli 1 e 2 della proposta di legge Bignami e altri (A.C. 2822-B) sulle elezioni della Camera e del Senato, dopo un acceso dibattito sulle preferenze, il premio di maggioranza e le firme per la presentazione delle liste.",
+"id": "legge-elettorale-fiducia-sugli-articoli-1-e-2-a-c-2822-b",
+"dossier": "legge-elettorale"
 },
 {
 "date": "2026-10-06",
 "area": "Parlamento e governo",
-"title": "Decreto-legge 154/2026 su impianti strategici e DDL 1833 su riciclo carta",
-"summary": "Il Senato ha discusso il decreto-legge 28 agosto 2026, n. 154, relativo a misure urgenti per la continuità operativa di impianti di interesse strategico nazionale, e ha approvato il disegno di legge 1833 sull'istituzione della Giornata nazionale del riciclo della carta.",
-"id": "decreto-legge-154-2026-su-impianti-strategici-e-ddl-1833-su-",
-"dossier": "dl-154-2026"
+"title": "Ddl 154/2026 su continuità operativa impianti strategici e Ddl 1833 su Giornata nazionale riciclo carta",
+"summary": "Il Senato ha discusso il decreto-legge 28 agosto 2026, n. 154, riguardante misure urgenti per la continuità operativa di impianti di interesse strategico nazionale, e ha approvato in sede redigente il disegno di legge 1833 sull'istituzione della Giornata nazionale del riciclo della carta.",
+"id": "ddl-154-2026-su-continuita-operativa-impianti-strategici-e-d",
+"dossier": "impianti-strategici-e-riciclo-carta"
 },
 {
 "date": "2026-10-06",
 "area": "Giustizia e diritti",
-"title": "Inchiesta parlamentare sulla morte di David Rossi",
-"summary": "La Commissione parlamentare di inchiesta sulla morte di David Rossi ha condotto audizioni di Ivan Catana, persona informata sui fatti, e di Filippo Rossi, fratello della vittima, per acquisire nuovi elementi.",
-"id": "inchiesta-parlamentare-sulla-morte-di-david-rossi",
-"dossier": "inchiesta-parlamentare-sulla-morte-di-david-rossi"
+"title": "Inchiesta sulla morte di David Rossi: audizione Filippo Rossi",
+"summary": "La Commissione parlamentare di inchiesta sulla morte di David Rossi ha audito Filippo Rossi, fratello di David, che ha ribadito la tesi della famiglia sulla non veridicità del suicidio e ha criticato le indagini.",
+"id": "inchiesta-sulla-morte-di-david-rossi-audizione-filippo-rossi",
+"dossier": "inchiesta-morte-david-rossi"
+},
+{
+"date": "2026-10-06",
+"area": "Giustizia e diritti",
+"title": "Ddl 1990 su sicurezza e disagio giovanile",
+"summary": "La 1ª Commissione Affari costituzionali del Senato ha avviato le audizioni sul Ddl 1990, che introduce disposizioni in materia di sicurezza e prevenzione del disagio giovanile, con il Presidente del Tribunale di Palermo, Piergiorgio Morosini, che ha espresso forti criticità costituzionali sulle misu",
+"id": "ddl-1990-su-sicurezza-e-disagio-giovanile",
+"dossier": "sicurezza-disagio-giovanile"
 },
 {
 "date": "2026-10-06",
 "area": "Giustizia e diritti",
 "title": "Udienza pubblica della Corte costituzionale",
-"summary": "La Corte Costituzionale ha esaminato in udienza pubblica diverse questioni, tra cui l'obbligo di versamento dei risparmi delle Camere di commercio allo Stato, norme regionali lombarde sui rifiuti e un conflitto di attribuzione tra la Camera dei Deputati e il Tribunale di Roma in merito a reati minis",
+"summary": "La Corte Costituzionale ha tenuto un'udienza pubblica per discutere diverse cause, tra cui un'ordinanza della Corte d'appello di Roma sull'obbligo di versamento al bilancio dello Stato dei risparmi di spesa delle Camere di commercio e un conflitto tra poteri dello Stato riguardante una richiesta di ",
 "id": "udienza-pubblica-della-corte-costituzionale",
-"dossier": "udienza-pubblica-della-corte-costituzionale"
+"dossier": "udienza-corte-costituzionale"
 },
 {
 "date": "2026-10-06",
 "area": "Giustizia e diritti",
-"title": "Audizioni sul DDL 167 in materia di legittima difesa",
-"summary": "La 2ª Commissione Giustizia del Senato ha condotto audizioni sul disegno di legge 167 e provvedimenti connessi, che riguardano le disposizioni in materia di legittima difesa.",
-"id": "audizioni-sul-ddl-167-in-materia-di-legittima-difesa",
-"dossier": "ddl-167"
+"title": "Ddl 167 su legittima difesa",
+"summary": "La 2ª Commissione Giustizia del Senato ha svolto audizioni sul disegno di legge 167 e connessi, riguardanti disposizioni in materia di legittima difesa.",
+"id": "ddl-167-su-legittima-difesa",
+"dossier": "legittima-difesa"
 },
 {
 "date": "2026-10-06",
 "area": "Giustizia e diritti",
-"title": "Presentazione del film \"Zustissia\" e il tema dell'errore giudiziario",
-"summary": "È stato presentato a Roma, presso il Cinema Barberini, il film \"Zustissia\", che affronta il tema dell'errore giudiziario, con la partecipazione di Beniamino Zuncheddu, vittima di un errore giudiziario, e di numerosi attori e professionisti del cinema.",
-"id": "presentazione-del-film-zustissia-e-il-tema-dell-errore-giudi",
-"dossier": "presentazione-del-film-zustissia-e-il-tema-dell-errore-giudi"
-},
-{
-"date": "2026-10-06",
-"area": "Giustizia e diritti",
-"title": "Antisemitismo: dal disegno di legge ai comuni",
-"summary": "Il Partito Liberal Democratico ha organizzato a Roma una conferenza stampa per discutere l'antisemitismo, con un focus sulle iniziative legislative e l'impegno degli enti locali, alla presenza di esponenti politici e della comunità ebraica.",
-"id": "antisemitismo-dal-disegno-di-legge-ai-comuni",
-"dossier": "antisemitismo-dal-disegno-di-legge-ai-comuni"
-},
-{
-"date": "2026-10-06",
-"area": "Giustizia e diritti",
-"title": "Commemorazione vittime attacco terroristico 7 ottobre 2023 in Israele",
-"summary": "A Roma, presso il Tempio Maggiore, si è tenuta la commemorazione del terzo anniversario delle vittime dell'attacco terroristico del 7 ottobre 2023 in Israele, con la partecipazione delle Comunità Ebraiche Italiane e dell'Ambasciata di Israele.",
-"id": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i",
-"dossier": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i"
+"title": "Presentazione film \"Zustissia\"",
+"summary": "Presso il Cinema Barberini di Roma, è stato presentato il film \"Zustissia\", con la partecipazione di Beniamino Zuncheddu, vittima di errore giudiziario, e di numerosi attori e registi.",
+"id": "presentazione-film-zustissia",
+"dossier": "film-zustissia"
 },
 {
 "date": "2026-10-06",
 "area": "Politica e partiti",
-"title": "Convegno \"Quale Europa di fronte alle sfide globali?\" (Seconda giornata)",
-"summary": "La seconda giornata del convegno \"Quale Europa di fronte alle sfide globali?\", organizzato dalla Fondazione Giorgio Napolitano ETS e dalla Luiss Guido Carli - School of Government, ha approfondito temi come la sicurezza, la Costituzione europea e la competitività, con la partecipazione di esponenti ",
-"id": "convegno-quale-europa-di-fronte-alle-sfide-globali-seconda-g",
-"dossier": "convegno-quale-europa-di-fronte-alle-sfide-globali-seconda-g"
-},
-{
-"date": "2026-10-06",
-"area": "Politica e partiti",
-"title": "Presentazione del libro \"Il regista di Berlusconi\" di Paola Zanca e Roberto Gasparotti",
-"summary": "L'Associazione Stampa Estera ha ospitato a Roma la presentazione del libro \"Il regista di Berlusconi. I segreti dei miei trent'anni con Silvio\" di Paola Zanca e Roberto Gasparotti, che analizza la comunicazione politica di Silvio Berlusconi.",
-"id": "presentazione-del-libro-il-regista-di-berlusconi-di-paola-za",
-"dossier": "presentazione-del-libro-il-regista-di-berlusconi-di-paola-za"
-},
-{
-"date": "2026-10-06",
-"area": "Politica e partiti",
-"title": "Presentazione del libro \"I nuovi antisemiti\" di Nora Bussigny",
-"summary": "L'Associazione Setteottobre ha organizzato a Roma la presentazione del libro \"I nuovi antisemiti\" di Nora Bussigny, con un dibattito che ha coinvolto Francesco Verderami, Marco Minniti e Pierluigi Battista, analizzando le manifestazioni contemporanee dell'antisemitismo.",
-"id": "presentazione-del-libro-i-nuovi-antisemiti-di-nora-bussigny",
-"dossier": "presentazione-del-libro-i-nuovi-antisemiti-di-nora-bussigny"
+"title": "Presentazione libro \"Il regista di Berlusconi\"",
+"summary": "Presso la Sala Stampa Estera di Roma, è stato presentato il libro \"Il regista di Berlusconi. I segreti dei miei trent'anni con Silvio\" di Paola Zanca e Roberto Gasparotti.",
+"id": "presentazione-libro-il-regista-di-berlusconi",
+"dossier": "libro-regista-berlusconi"
 },
 {
 "date": "2026-10-06",
 "area": "Esteri, Europa e difesa",
-"title": "Indagine conoscitiva sui diritti umani nel mondo",
-"summary": "Il Comitato permanente sui diritti umani nel mondo della Commissione Esteri ha svolto audizioni di rappresentanti del Palestinian Centre for Human Rights (PCHR), del Public Committee Against Torture in Israel (PCATI) e di EuroMed Rights, nell'ambito di un'indagine conoscitiva sull'impegno dell'Itali",
-"id": "indagine-conoscitiva-sui-diritti-umani-nel-mondo",
-"dossier": "indagine-conoscitiva-sui-diritti-umani-nel-mondo"
+"title": "Indagine conoscitiva su diritti umani e discriminazioni: audizioni PCHR, PCATI, EuroMed Rights",
+"summary": "Il Comitato permanente sui diritti umani nel mondo della Commissione Esteri della Camera ha svolto audizioni con rappresentanti del Palestinian Centre for Human Rights (PCHR), del Public Committee Against Torture in Israel (PCATI) e di EuroMed Rights, nell'ambito dell'indagine conoscitiva sull'impeg",
+"id": "indagine-conoscitiva-su-diritti-umani-e-discriminazioni-audi",
+"dossier": "diritti-umani-mondo"
 },
 {
 "date": "2026-10-06",
 "area": "Esteri, Europa e difesa",
-"title": "Audizioni sul DDL 2028 per il rafforzamento della difesa nazionale",
-"summary": "La 3ª Commissione Affari Esteri e Difesa del Senato ha audito l'ammiraglio di squadra Davide Berna, Comandante del Reparto Informazioni e Sicurezza dello Stato, e il generale di divisione Luciano Antoci, Comandante del Comando per le Operazioni in rete (COR), sul disegno di legge 2028 per il rafforz",
-"id": "audizioni-sul-ddl-2028-per-il-rafforzamento-della-difesa-naz",
-"dossier": "ddl-2028"
+"title": "Ddl 2028 Rafforzamento capacità di difesa nazionale",
+"summary": "La 3ª Commissione Affari esteri e difesa del Senato ha audito l'ammiraglio di squadra Davide Berna, Comandante del Reparto Informazioni e Sicurezza dello Stato, e il generale di divisione Luciano Antoci, Comandante del Comando per le Operazioni in rete (COR), sul disegno di legge 2028 per il rafforz",
+"id": "ddl-2028-rafforzamento-capacita-di-difesa-nazionale",
+"dossier": "difesa-nazionale"
 },
 {
 "date": "2026-10-06",
 "area": "Esteri, Europa e difesa",
-"title": "War Room: Piazze di Spagna e di Francia",
-"summary": "Enrico Cisnetto ha condotto un dibattito nel programma \"War Room\" con Andrea Bonanni, Adriana Cerretelli e Antonio Villafranca, analizzando le rivolte popolari che hanno portato Madrid al voto e accentuato la crisi politica a Parigi.",
-"id": "war-room-piazze-di-spagna-e-di-francia",
-"dossier": "war-room-piazze-di-spagna-e-di-francia"
+"title": "Convegno \"Quale Europa di fronte alle sfide globali?\"",
+"summary": "La seconda giornata del convegno \"Quale Europa di fronte alle sfide globali?\", organizzato dalla LUISS School of Government e dalla Fondazione Giorgio Napolitano, ha visto un confronto sull'Europa politica, la sua sicurezza, la Costituzione europea e la competitività, con la partecipazione di Giulia",
+"id": "convegno-quale-europa-di-fronte-alle-sfide-globali",
+"dossier": "europa-e-geopolitica"
 },
 {
 "date": "2026-10-06",
 "area": "Esteri, Europa e difesa",
-"title": "Il Piano Mattei e la crisi degli aiuti: rapporti con l'Africa",
-"summary": "L'Istituto per gli Studi di Politica Internazionale (ISPI) ha organizzato a Roma una tavola rotonda sul Piano Mattei e la crisi degli aiuti, in occasione della pubblicazione del Policy Paper ISPI \"La terza via? Il Piano Mattei nella crisi degli aiuti\", analizzando la trasformazione dei rapporti con ",
-"id": "il-piano-mattei-e-la-crisi-degli-aiuti-rapporti-con-l-africa",
-"dossier": "il-piano-mattei-e-la-crisi-degli-aiuti-rapporti-con-l-africa"
+"title": "Dibattito \"Piazze di Spagna e di Francia\"",
+"summary": "War Room ha organizzato un dibattito su YouTube intitolato \"Piazze di Spagna e di Francia\", dove Enrico Cisnetto ha discusso con Andrea Bonanni, Adriana Cerretelli e Antonio Villafranca delle rivolte popolari che hanno portato Madrid al voto e accentuato la crisi politica a Parigi.",
+"id": "dibattito-piazze-di-spagna-e-di-francia",
+"dossier": "piazze-spagna-francia"
+},
+{
+"date": "2026-10-06",
+"area": "Esteri, Europa e difesa",
+"title": "Dibattito su Piano Mattei e rapporti con l'Africa",
+"summary": "L'Istituto per gli Studi di Politica Internazionale (ISPI) ha organizzato a Roma, presso l'Associazione Stampa Estera, una tavola rotonda sul \"Piano Mattei e la crisi degli aiuti. Come si trasformano i rapporti con l'Africa?\", in occasione della pubblicazione del Policy Paper ISPI \"La terza via? Il ",
+"id": "dibattito-su-piano-mattei-e-rapporti-con-l-africa",
+"dossier": "piano-mattei-africa"
 },
 {
 "date": "2026-10-06",
 "area": "Economia, lavoro e ambiente",
-"title": "Audizioni sul DDL 1693: Istituzione del Parco nazionale dell'Etna",
-"summary": "L'8ª Commissione Ambiente del Senato ha condotto audizioni sul disegno di legge 1693, relativo all'istituzione del Parco nazionale dell'Etna, coinvolgendo sindaci, assessori regionali e rappresentanti di enti locali e associazioni ambientaliste.",
-"id": "audizioni-sul-ddl-1693-istituzione-del-parco-nazionale-dell-",
-"dossier": "ddl-1693"
+"title": "Ddl 1693 Istituzione Parco nazionale dell'Etna",
+"summary": "L'8ª Commissione Ambiente del Senato ha svolto audizioni sul disegno di legge 1693 per l'istituzione del Parco nazionale dell'Etna, ascoltando rappresentanti di enti locali e regionali siciliani.",
+"id": "ddl-1693-istituzione-parco-nazionale-dell-etna",
+"dossier": "parco-nazionale-etna"
 },
 {
 "date": "2026-10-06",
 "area": "Economia, lavoro e ambiente",
-"title": "Indagine conoscitiva sull'inquinamento atmosferico nella Pianura Padana",
-"summary": "L'8ª Commissione Ambiente del Senato ha avviato un'indagine conoscitiva sullo stato dell'inquinamento atmosferico e della qualità dell'aria nella Pianura Padana, audendo rappresentanti di Greenpeace e ASviS – Alleanza per lo sviluppo sostenibile.",
-"id": "indagine-conoscitiva-sull-inquinamento-atmosferico-nella-pia",
-"dossier": "indagine-conoscitiva-sull-inquinamento-atmosferico-nella-pia"
+"title": "Inquinamento atmosferico e qualità dell'aria in Pianura Padana",
+"summary": "L'8ª Commissione Ambiente del Senato ha condotto audizioni nell'ambito dell'indagine conoscitiva sullo stato dell'inquinamento atmosferico e della qualità dell'aria nella Pianura Padana, ascoltando rappresentanti di Greenpeace e ASviS – Alleanza per lo sviluppo sostenibile.",
+"id": "inquinamento-atmosferico-e-qualita-dell-aria-in-pianura-pada",
+"dossier": "inquinamento-pianura-padana"
 },
 {
 "date": "2026-10-06",
 "area": "Società, salute e cultura",
-"title": "Presentazione del cortometraggio sociale \"L'ultimo giorno\"",
-"summary": "È stato presentato a Roma, presso la Sala Caduti di Nassirya del Senato, il cortometraggio sociale \"L'ultimo giorno\" di Igor Maltagliati, con la partecipazione di Andrea De Priamo, Maria Grazia Cucinotta e Massimiliano Dau.",
-"id": "presentazione-del-cortometraggio-sociale-l-ultimo-giorno",
-"dossier": "presentazione-del-cortometraggio-sociale-l-ultimo-giorno"
+"title": "Ddl 2035 Disposizioni in materia di cinema",
+"summary": "La 7ª Commissione Cultura del Senato ha tenuto audizioni sul disegno di legge 2035, che introduce disposizioni in materia di cinema, ascoltando rappresentanti di enti regionali e associazioni del settore cinematografico e audiovisivo.",
+"id": "ddl-2035-disposizioni-in-materia-di-cinema",
+"dossier": "ddl-cinema"
 },
 {
 "date": "2026-10-06",
 "area": "Società, salute e cultura",
-"title": "Audizioni sul DDL 2035 in materia di cinema",
-"summary": "La 7ª Commissione Cultura del Senato ha svolto audizioni sul disegno di legge 2035, recante disposizioni in materia di cinema, coinvolgendo numerose associazioni di categoria del settore cinematografico e audiovisivo.",
-"id": "audizioni-sul-ddl-2035-in-materia-di-cinema",
-"dossier": "ddl-2035"
+"title": "Conferenza stampa su antisemitismo",
+"summary": "Il Partito Liberal Democratico ha organizzato una conferenza stampa a Roma, presso l'Albergo del Senato, sul tema \"Antisemitismo, dal disegno di legge ai comuni\", con interventi di Giulia Candelori, Stefano Molini, Fabiana Di Segni, David Meghnagi, Anna Paola Concia, Monique Sasson e il deputato Lui",
+"id": "conferenza-stampa-su-antisemitismo",
+"dossier": "antisemitismo-e-comuni"
 },
 {
 "date": "2026-10-06",
 "area": "Società, salute e cultura",
-"title": "Presentazione della IV edizione del Festival \"è cultura!\"",
-"summary": "È stata presentata a Roma, presso la sede ABI, la IV edizione del Festival \"è cultura!\", organizzato da Associazione di Fondazioni e Casse di Risparmio e Associazione Bancaria Italiana, che si terrà dal 16 al 24 ottobre per valorizzare il patrimonio artistico e culturale.",
-"id": "presentazione-della-iv-edizione-del-festival-e-cultura",
-"dossier": "presentazione-della-iv-edizione-del-festival-e-cultura"
+"title": "Presentazione IV edizione Festival \"è cultura!\"",
+"summary": "Presso la sede ABI di Roma, è stata presentata la IV edizione del Festival \"è cultura!\", organizzato dall'Associazione Bancaria Italiana (ABI) e dall'Associazione di Fondazioni e Casse di Risparmio (ACRI), con interventi del Presidente ABI Antonio Patuelli, del Vicepresidente vicario ACRI Bernabò Bo",
+"id": "presentazione-iv-edizione-festival-e-cultura",
+"dossier": "festival-e-cultura"
 },
 {
 "date": "2026-10-06",
 "area": "Società, salute e cultura",
-"title": "Celebrazioni per il 50° Anniversario della Fondazione Villa Maraini Croce Rossa Italiana",
-"summary": "Si sono tenute a Roma, presso la Sala Solferino, le celebrazioni per il 50° Anniversario della Fondazione Villa Maraini Croce Rossa Italiana, con interventi di Emma D'Aquino, Francesco Rocca e Luigi Ciotti, ripercorrendo l'impegno nella lotta alla tossicodipendenza.",
-"id": "celebrazioni-per-il-50-anniversario-della-fondazione-villa-m",
-"dossier": "celebrazioni-per-il-50-anniversario-della-fondazione-villa-m"
+"title": "Presentazione \"Fauda - 7 ottobre per non dimenticare\"",
+"summary": "Presso l'Aula dei Gruppi parlamentari della Camera, si è tenuta la presentazione di \"Fauda - 7 ottobre per non dimenticare\", con un messaggio del Presidente della Camera Lorenzo Fontana.",
+"id": "presentazione-fauda-7-ottobre-per-non-dimenticare",
+"dossier": "fauda-7-ottobre"
+},
+{
+"date": "2026-10-06",
+"area": "Società, salute e cultura",
+"title": "Presentazione libro \"I nuovi antisemiti\"",
+"summary": "Presso il Piccolo Eliseo di Roma, è stato presentato il libro \"I nuovi antisemiti\" di Nora Bussigny, con interventi di Francesco Verderami, Nora Bussigny, Marco Minniti e Pierluigi Battista.",
+"id": "presentazione-libro-i-nuovi-antisemiti",
+"dossier": "libro-nuovi-antisemiti"
+},
+{
+"date": "2026-10-06",
+"area": "Società, salute e cultura",
+"title": "50° Anniversario Fondazione Villa Maraini",
+"summary": "A Roma, presso la Sala Solferino, si sono tenute le celebrazioni per il 50° Anniversario della Fondazione Villa Maraini Croce Rossa Italiana, con interventi di Gabriele Mori (Presidente della Fondazione), Rosario Maria Gianluca Valastro (Presidente nazionale della Croce Rossa Italiana) e Francesco R",
+"id": "50-anniversario-fondazione-villa-maraini",
+"dossier": "villa-maraini-50-anni"
+},
+{
+"date": "2026-10-06",
+"area": "Società, salute e cultura",
+"title": "Commemorazione vittime attacco 7 ottobre 2023 in Israele",
+"summary": "Presso il Tempio Maggiore di Roma, si è tenuta la commemorazione, nel terzo anniversario, delle vittime dell'attacco terroristico del 7 ottobre 2023 in Israele, organizzata dall'Unione delle Comunità Ebraiche Italiane, dalla Comunità Ebraica di Roma e dall'Ambasciata di Israele in Italia.",
+"id": "commemorazione-vittime-attacco-7-ottobre-2023-in-israele",
+"dossier": "commemorazione-7-ottobre"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
-"title": "Audizioni sul DDL 1990: sicurezza, disagio giovanile e Forze di polizia",
-"summary": "La 1ª Commissione Affari Costituzionali del Senato ha svolto audizioni sul disegno di legge 1990, che riguarda disposizioni in materia di sicurezza, prevenzione del disagio giovanile, nonché l'ordinamento, l'organizzazione e il funzionamento delle Forze di polizia e del Ministero dell'interno.",
-"id": "audizioni-sul-ddl-1990-sicurezza-disagio-giovanile-e-forze-d",
-"dossier": "ddl-1990"
-},
-{
-"date": "2026-10-06",
-"area": "Scienza, tecnologia e informazione",
-"title": "Indagine conoscitiva sull'impatto dell'intelligenza artificiale nella giustizia",
+"title": "Indagine conoscitiva sull'impatto dell'IA nella giustizia",
 "summary": "La 2ª Commissione Giustizia del Senato ha proseguito l'indagine conoscitiva sull'impatto dell'intelligenza artificiale nel settore della giustizia, audendo il dottor Claudio Castelli, già presidente della Corte d'Appello di Brescia.",
-"id": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici",
-"dossier": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici"
+"id": "indagine-conoscitiva-sull-impatto-dell-ia-nella-giustizia",
+"dossier": "ia-e-giustizia"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
-"title": "Presentazione del libro \"L’IA ci ruba il lavoro e ci restituisce l’anima\" di Laura Cappello",
-"summary": "È stato presentato a Roma, presso la Sala Caduti di Nassirya di Palazzo Madama, il libro \"L’IA ci ruba il lavoro e ci restituisce l’anima\" di Laura Cappello, con interventi del Sen. Lucio Malan, del Sen. Alessio Butti e dell'On. Luciano D'Alfonso, discutendo l'impatto dell'Intelligenza Artificiale s",
-"id": "presentazione-del-libro-lia-ci-ruba-il-lavoro-e-ci-restituis",
-"dossier": "presentazione-del-libro-lia-ci-ruba-il-lavoro-e-ci-restituis"
+"title": "Presentazione libro \"L'IA ci ruba il lavoro e ci restituisce l'anima\"",
+"summary": "Presso la Sala Caduti di Nassirya di Palazzo Madama, è stato presentato il libro \"L’IA ci ruba il lavoro e ci restituisce l’anima\" di Laura Cappello, con interventi del Senatore Lucio Malan (FdI) e del Sottosegretario Alessio Butti (FdI).",
+"id": "presentazione-libro-l-ia-ci-ruba-il-lavoro-e-ci-restituisce-",
+"dossier": "ia-lavoro-anima"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
-"title": "Conferenza stampa su AI agentica, autonomia cyber e resilienza del Paese",
-"summary": "Si è tenuta a Roma, presso la Sala Stampa di Palazzo Montecitorio, una conferenza stampa sul tema \"Quando l'attacco corre più veloce della difesa. AI agentica, autonomia cyber e nuova resilienza del Paese\", focalizzata sulle sfide della difesa nell'era digitale.",
-"id": "conferenza-stampa-su-ai-agentica-autonomia-cyber-e-resilienz",
-"dossier": "conferenza-stampa-su-ai-agentica-autonomia-cyber-e-resilienz"
+"title": "Convegno su AI, cyber difesa e resilienza",
+"summary": "Presso la Sala Stampa di Palazzo Montecitorio, si è tenuta una conferenza stampa sul tema \"Quando l'attacco corre più veloce della difesa. AI agentica, autonomia cyber e nuova resilienza del Paese\".",
+"id": "convegno-su-ai-cyber-difesa-e-resilienza",
+"dossier": "ai-cyber-resilienza"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
-"title": "War Room InnovAction: Reti per la medicina",
-"summary": "Luca De Biase ha discusso con Lorenzo Farina, Professore di Bioingegneria elettronica e informatica all'Università Sapienza e autore di \"La medicina delle reti\", sul rilancio dell'innovazione nel sistema della salute attraverso le reti per la medicina.",
-"id": "war-room-innovaction-reti-per-la-medicina",
-"dossier": "war-room-innovaction-reti-per-la-medicina"
+"title": "Dibattito \"Reti per la medicina\"",
+"summary": "War Room InnovAction ha ospitato su YouTube un dibattito intitolato \"Reti per la medicina\", dove Luca De Biase ha discusso con Lorenzo Farina, Professore di Bioingegneria elettronica e informatica dell'Università Sapienza, sul rilancio dell'innovazione nel sistema della salute.",
+"id": "dibattito-reti-per-la-medicina",
+"dossier": "reti-per-la-medicina"
 },
 {
 "date": "2026-10-06",
 "area": "Scienza, tecnologia e informazione",
-"title": "Manager e aziende nell'era dell'AI e degli algoritmi",
-"summary": "Si è tenuto a Roma, presso Comin & Partners, un convegno sulle nuove sfide per leader e organizzazioni nell'era dell'AI e degli algoritmi, con interventi di Gianluca Giansante, Paola Mascaro e Giulia Pastorella, analizzando l'impatto dell'intelligenza artificiale sul mondo aziendale.",
-"id": "manager-e-aziende-nell-era-dell-ai-e-degli-algoritmi",
-"dossier": "manager-e-aziende-nell-era-dell-ai-e-degli-algoritmi"
+"title": "Convegno su AI, manager e aziende",
+"summary": "Comin & Partners ha organizzato a Roma un convegno intitolato \"Manager e aziende nell'era dell'AI e degli algoritmi. Le nuove sfide per leader e organizzazioni\", con la partecipazione di Gianluca Giansante, Paola Mascaro, Antonio Palmieri, la deputata Giulia Pastorella (Azione) e il deputato Alessan",
+"id": "convegno-su-ai-manager-e-aziende",
+"dossier": "manager-aziende-ai"
 },
 {
 "date": "2026-10-05",

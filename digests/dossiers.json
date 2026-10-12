@@ -4,8 +4,128 @@
 "label": "Dibattito sul Fine Vita in Italia e Europa",
 "area": "Società, salute e cultura",
 "first": "2026-10-05",
-"last": "2026-10-10",
+"last": "2026-10-11",
+"days": 3
+},
+{
+"key": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i",
+"label": "Commemorazione vittime attacco terroristico 7 ottobre 2023 in Israele",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-07",
+"last": "2026-10-11",
 "days": 2
+},
+{
+"key": "inquinanti-eterni-pfas",
+"label": "Inquinanti eterni (PFAS)",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-10",
+"last": "2026-10-11",
+"days": 2
+},
+{
+"key": "riforma-della-giustizia-e-csm",
+"label": "Riforma della giustizia e CSM",
+"area": "Giustizia e diritti",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "camera-arbitrale-islamica-padova",
+"label": "Camera arbitrale islamica a Padova",
+"area": "Giustizia e diritti",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "operaicidio-morti-sul-lavoro",
+"label": "Operaicidio, il libro di Bruno Giordano e Marco Patucchi",
+"area": "Giustizia e diritti",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "democrazia-stato-di-diritto-liberta-individuali",
+"label": "Democrazia, stato di diritto e libertà individuali",
+"area": "Politica e partiti",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "declino-demografico-cinese",
+"label": "Declino demografico cinese",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "rassegna-stampa-araba",
+"label": "Rassegna stampa araba",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "rassegna-stampa-persiana-diritti-umani-iran",
+"label": "Rassegna stampa persiana e diritti umani in Iran",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "geopolitica-intelligenza-artificiale",
+"label": "Geopolitica e Intelligenza Artificiale",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "rassegna-riviste-politica-storia",
+"label": "Rassegna delle riviste di politica e storia",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "territorio-veneto-cicloturismo",
+"label": "Territorio veneto e cicloturismo",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "salute-mentale-diritto-umano",
+"label": "Salute mentale come diritto umano",
+"area": "Società, salute e cultura",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "ia-scienze-umanistiche-linguaggio",
+"label": "IA, scienze umanistiche e linguaggio",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
+},
+{
+"key": "media-social-media-ia",
+"label": "Media, social media e IA",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-11",
+"last": "2026-10-11",
+"days": 1
 },
 {
 "key": "rigenerazione-urbana-commercio",
@@ -34,14 +154,6 @@
 {
 "key": "confesercenti-forum-ristorazione",
 "label": "Confesercenti Forum 2026: Ristorazione e storie di successo",
-"area": "Economia, lavoro e ambiente",
-"first": "2026-10-10",
-"last": "2026-10-10",
-"days": 1
-},
-{
-"key": "inquinanti-eterni-pfas",
-"label": "Inquinanti eterni (PFAS)",
 "area": "Economia, lavoro e ambiente",
 "first": "2026-10-10",
 "last": "2026-10-10",
@@ -96,14 +208,6 @@
 "days": 2
 },
 {
-"key": "ddl-2028",
-"label": "Audizioni sul DDL 2028 per il rafforzamento della difesa nazionale",
-"area": "Esteri, Europa e difesa",
-"first": "2026-10-06",
-"last": "2026-10-08",
-"days": 2
-},
-{
 "key": "interrogazioni-a-risposta-immediata-senato",
 "label": "Interrogazioni a risposta immediata al Senato",
 "area": "Parlamento e governo",
@@ -154,6 +258,14 @@
 {
 "key": "gaza-senza-tregua",
 "label": "Gaza Senza Tregua",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-08",
+"last": "2026-10-08",
+"days": 1
+},
+{
+"key": "ddl-2028",
+"label": "Audizioni sul DDL 2028 per il rafforzamento della difesa nazionale",
 "area": "Esteri, Europa e difesa",
 "first": "2026-10-08",
 "last": "2026-10-08",
@@ -216,25 +328,17 @@
 "days": 1
 },
 {
-"key": "udienza-pubblica-della-corte-costituzionale",
-"label": "Udienza pubblica della Corte costituzionale",
-"area": "Giustizia e diritti",
-"first": "2026-10-06",
-"last": "2026-10-07",
-"days": 2
-},
-{
-"key": "commemorazione-vittime-attacco-terroristico-7-ottobre-2023-i",
-"label": "Commemorazione vittime attacco terroristico 7 ottobre 2023 in Israele",
-"area": "Società, salute e cultura",
-"first": "2026-10-06",
-"last": "2026-10-07",
-"days": 2
-},
-{
 "key": "legge-elettorale",
 "label": "Legge elettorale",
 "area": "Parlamento e governo",
+"first": "2026-10-06",
+"last": "2026-10-07",
+"days": 2
+},
+{
+"key": "udienza-pubblica-della-corte-costituzionale",
+"label": "Udienza pubblica della Corte costituzionale",
+"area": "Giustizia e diritti",
 "first": "2026-10-07",
 "last": "2026-10-07",
 "days": 1
@@ -264,192 +368,208 @@
 "days": 1
 },
 {
-"key": "camera-2822",
-"label": "Legge elettorale",
+"key": "europa-e-geopolitica",
+"label": "Europa e Geopolitica",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-05",
+"last": "2026-10-06",
+"days": 2
+},
+{
+"key": "impianti-strategici-e-riciclo-carta",
+"label": "Impianti strategici e riciclo carta",
 "area": "Parlamento e governo",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "dl-154-2026",
-"label": "Decreto-legge 154/2026 su impianti strategici e DDL 1833 su riciclo carta",
-"area": "Parlamento e governo",
-"first": "2026-10-06",
-"last": "2026-10-06",
-"days": 1
-},
-{
-"key": "inchiesta-parlamentare-sulla-morte-di-david-rossi",
-"label": "Inchiesta parlamentare sulla morte di David Rossi",
+"key": "inchiesta-morte-david-rossi",
+"label": "Inchiesta morte David Rossi",
 "area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "ddl-167",
-"label": "Audizioni sul DDL 167 in materia di legittima difesa",
+"key": "sicurezza-disagio-giovanile",
+"label": "Sicurezza e disagio giovanile",
 "area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "presentazione-del-film-zustissia-e-il-tema-dell-errore-giudi",
-"label": "Presentazione del film \"Zustissia\" e il tema dell'errore giudiziario",
+"key": "udienza-corte-costituzionale",
+"label": "Udienza Corte Costituzionale",
 "area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "antisemitismo-dal-disegno-di-legge-ai-comuni",
-"label": "Antisemitismo",
+"key": "legittima-difesa",
+"label": "Legittima difesa",
 "area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "convegno-quale-europa-di-fronte-alle-sfide-globali-seconda-g",
-"label": "Convegno \"Quale Europa di fronte alle sfide globali?\" (Seconda giornata)",
+"key": "film-zustissia",
+"label": "Film \"Zustissia\"",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "libro-regista-berlusconi",
+"label": "Libro \"Il regista di Berlusconi\"",
 "area": "Politica e partiti",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "presentazione-del-libro-il-regista-di-berlusconi-di-paola-za",
-"label": "Presentazione del libro \"Il regista di Berlusconi\" di Paola Zanca e Roberto Gasparotti",
-"area": "Politica e partiti",
-"first": "2026-10-06",
-"last": "2026-10-06",
-"days": 1
-},
-{
-"key": "presentazione-del-libro-i-nuovi-antisemiti-di-nora-bussigny",
-"label": "Presentazione del libro \"I nuovi antisemiti\" di Nora Bussigny",
-"area": "Politica e partiti",
-"first": "2026-10-06",
-"last": "2026-10-06",
-"days": 1
-},
-{
-"key": "indagine-conoscitiva-sui-diritti-umani-nel-mondo",
-"label": "Indagine conoscitiva sui diritti umani nel mondo",
+"key": "diritti-umani-mondo",
+"label": "Diritti umani nel mondo",
 "area": "Esteri, Europa e difesa",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "war-room-piazze-di-spagna-e-di-francia",
-"label": "War Room: Piazze di Spagna e di Francia",
+"key": "difesa-nazionale",
+"label": "Difesa nazionale",
 "area": "Esteri, Europa e difesa",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "il-piano-mattei-e-la-crisi-degli-aiuti-rapporti-con-l-africa",
-"label": "Il Piano Mattei e la crisi degli aiuti",
+"key": "piazze-spagna-francia",
+"label": "Piazze di Spagna e di Francia",
 "area": "Esteri, Europa e difesa",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "ddl-1693",
-"label": "Audizioni sul DDL 1693",
+"key": "piano-mattei-africa",
+"label": "Piano Mattei e Africa",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "parco-nazionale-etna",
+"label": "Parco nazionale dell'Etna",
 "area": "Economia, lavoro e ambiente",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "indagine-conoscitiva-sull-inquinamento-atmosferico-nella-pia",
-"label": "Indagine conoscitiva sull'inquinamento atmosferico nella Pianura Padana",
+"key": "inquinamento-pianura-padana",
+"label": "Inquinamento Pianura Padana",
 "area": "Economia, lavoro e ambiente",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "presentazione-del-cortometraggio-sociale-l-ultimo-giorno",
-"label": "Presentazione del cortometraggio sociale \"L'ultimo giorno\"",
+"key": "ddl-cinema",
+"label": "Disposizioni in materia di cinema",
 "area": "Società, salute e cultura",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "ddl-2035",
-"label": "Audizioni sul DDL 2035 in materia di cinema",
+"key": "antisemitismo-e-comuni",
+"label": "Antisemitismo e comuni",
 "area": "Società, salute e cultura",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "presentazione-della-iv-edizione-del-festival-e-cultura",
-"label": "Presentazione della IV edizione del Festival \"è cultura!\"",
+"key": "festival-e-cultura",
+"label": "Festival \"è cultura!\"",
 "area": "Società, salute e cultura",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "celebrazioni-per-il-50-anniversario-della-fondazione-villa-m",
-"label": "Celebrazioni per il 50° Anniversario della Fondazione Villa Maraini Croce Rossa Italiana",
+"key": "fauda-7-ottobre",
+"label": "Fauda - 7 ottobre",
 "area": "Società, salute e cultura",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "ddl-1990",
-"label": "Audizioni sul DDL 1990",
+"key": "libro-nuovi-antisemiti",
+"label": "Libro \"I nuovi antisemiti\"",
+"area": "Società, salute e cultura",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "villa-maraini-50-anni",
+"label": "Fondazione Villa Maraini 50 anni",
+"area": "Società, salute e cultura",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "commemorazione-7-ottobre",
+"label": "Commemorazione 7 ottobre",
+"area": "Società, salute e cultura",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "ia-e-giustizia",
+"label": "IA e giustizia",
 "area": "Scienza, tecnologia e informazione",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "indagine-conoscitiva-sull-impatto-dell-intelligenza-artifici",
-"label": "Indagine conoscitiva sull'impatto dell'intelligenza artificiale nella giustizia",
+"key": "ia-lavoro-anima",
+"label": "IA, lavoro e anima",
 "area": "Scienza, tecnologia e informazione",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "presentazione-del-libro-lia-ci-ruba-il-lavoro-e-ci-restituis",
-"label": "Presentazione del libro \"L’IA ci ruba il lavoro e ci restituisce l’anima\" di Laura Cappello",
+"key": "ai-cyber-resilienza",
+"label": "AI, cyber difesa e resilienza",
 "area": "Scienza, tecnologia e informazione",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "conferenza-stampa-su-ai-agentica-autonomia-cyber-e-resilienz",
-"label": "Conferenza stampa su AI agentica, autonomia cyber e resilienza del Paese",
+"key": "reti-per-la-medicina",
+"label": "Reti per la medicina",
 "area": "Scienza, tecnologia e informazione",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1
 },
 {
-"key": "war-room-innovaction-reti-per-la-medicina",
-"label": "War Room InnovAction",
-"area": "Scienza, tecnologia e informazione",
-"first": "2026-10-06",
-"last": "2026-10-06",
-"days": 1
-},
-{
-"key": "manager-e-aziende-nell-era-dell-ai-e-degli-algoritmi",
-"label": "Manager e aziende nell'era dell'AI e degli algoritmi",
+"key": "manager-aziende-ai",
+"label": "Manager e aziende nell'era dell'AI",
 "area": "Scienza, tecnologia e informazione",
 "first": "2026-10-06",
 "last": "2026-10-06",
@@ -458,14 +578,6 @@
 {
 "key": "politica-interna-i-tormenti-del-campo-largo",
 "label": "Politica Interna",
-"area": "Temi del giorno",
-"first": "2026-10-05",
-"last": "2026-10-05",
-"days": 1
-},
-{
-"key": "europa-e-geopolitica",
-"label": "Europa e Geopolitica",
 "area": "Temi del giorno",
 "first": "2026-10-05",
 "last": "2026-10-05",

@@ -1,5 +1,21 @@
 [
 {
+"key": "inchiesta-morte-david-rossi",
+"label": "Inchiesta morte David Rossi",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-12",
+"days": 2
+},
+{
+"key": "decreto-scuola-2026",
+"label": "Decreto scuola",
+"area": "Parlamento e governo",
+"first": "2026-10-12",
+"last": "2026-10-12",
+"days": 1
+},
+{
 "key": "diritti-civili-il-fine-vita",
 "label": "Dibattito sul Fine Vita in Italia e Europa",
 "area": "Società, salute e cultura",
@@ -379,14 +395,6 @@
 "key": "impianti-strategici-e-riciclo-carta",
 "label": "Impianti strategici e riciclo carta",
 "area": "Parlamento e governo",
-"first": "2026-10-06",
-"last": "2026-10-06",
-"days": 1
-},
-{
-"key": "inchiesta-morte-david-rossi",
-"label": "Inchiesta morte David Rossi",
-"area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1

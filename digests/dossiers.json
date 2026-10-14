@@ -1,16 +1,128 @@
 [
 {
-"key": "inchiesta-morte-david-rossi",
-"label": "Inchiesta morte David Rossi",
+"key": "manovra-di-bilancio-2027",
+"label": "Manovra di Bilancio 2027",
+"area": "Parlamento e governo",
+"first": "2026-10-08",
+"last": "2026-10-13",
+"days": 3
+},
+{
+"key": "inchiesta-moby-prince",
+"label": "Inchiesta Moby Prince",
 "area": "Giustizia e diritti",
-"first": "2026-10-06",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "decreto-giustizia-interni-impianti",
+"label": "Decreto giustizia, interni e impianti strategici",
+"area": "Giustizia e diritti",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "costi-energia-elettrica",
+"label": "Costi energia elettrica",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "circolazione-diesel-euro5",
+"label": "Circolazione veicoli diesel Euro 5",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "fisioterapista-di-comunita",
+"label": "Fisioterapista di comunità",
+"area": "Società, salute e cultura",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "riconoscimento-disprassia",
+"label": "Riconoscimento disprassia",
+"area": "Società, salute e cultura",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "impatto-internet-minori",
+"label": "Impatto internet e nuove tecnologie sui minori",
+"area": "Società, salute e cultura",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "processo-santa-maria-capua-vetere",
+"label": "Processo Santa Maria Capua Vetere",
+"area": "Giustizia e diritti",
+"first": "2026-10-08",
 "last": "2026-10-12",
 "days": 2
 },
 {
-"key": "decreto-scuola-2026",
-"label": "Decreto scuola",
+"key": "seduta-camera-725",
+"label": "Seduta 725ª della Camera dei Deputati",
 "area": "Parlamento e governo",
+"first": "2026-10-12",
+"last": "2026-10-12",
+"days": 1
+},
+{
+"key": "morte-david-rossi",
+"label": "Commissione parlamentare di inchiesta sulla morte di David Rossi",
+"area": "Giustizia e diritti",
+"first": "2026-10-12",
+"last": "2026-10-12",
+"days": 1
+},
+{
+"key": "maxiprocesso-montante",
+"label": "Maxiprocesso Montante",
+"area": "Giustizia e diritti",
+"first": "2026-10-12",
+"last": "2026-10-12",
+"days": 1
+},
+{
+"key": "processo-marcello-colafigli",
+"label": "Processo Marcello Colafigli ed altri",
+"area": "Giustizia e diritti",
+"first": "2026-10-12",
+"last": "2026-10-12",
+"days": 1
+},
+{
+"key": "processo-operazione-assedio",
+"label": "Processo Operazione assedio",
+"area": "Giustizia e diritti",
+"first": "2026-10-12",
+"last": "2026-10-12",
+"days": 1
+},
+{
+"key": "odor-di-patrimoniale",
+"label": "Odor di patrimoniale",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-12",
+"last": "2026-10-12",
+"days": 1
+},
+{
+"key": "decreto-scuola-ddl-2053",
+"label": "Audizioni sul Decreto Scuola (DDL 2053)",
+"area": "Società, salute e cultura",
 "first": "2026-10-12",
 "last": "2026-10-12",
 "days": 1
@@ -248,14 +360,6 @@
 "days": 1
 },
 {
-"key": "processo-santa-maria-capua-vetere",
-"label": "Processo Santa Maria Capua Vetere",
-"area": "Giustizia e diritti",
-"first": "2026-10-08",
-"last": "2026-10-08",
-"days": 1
-},
-{
 "key": "processo-hydra",
 "label": "Processo Hydra",
 "area": "Giustizia e diritti",
@@ -298,14 +402,6 @@
 {
 "key": "premio-ossigeno",
 "label": "Premio Ossigeno",
-"area": "Economia, lavoro e ambiente",
-"first": "2026-10-08",
-"last": "2026-10-08",
-"days": 1
-},
-{
-"key": "manovra-di-bilancio-2027",
-"label": "Manovra di Bilancio 2027",
 "area": "Economia, lavoro e ambiente",
 "first": "2026-10-08",
 "last": "2026-10-08",
@@ -395,6 +491,14 @@
 "key": "impianti-strategici-e-riciclo-carta",
 "label": "Impianti strategici e riciclo carta",
 "area": "Parlamento e governo",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "inchiesta-morte-david-rossi",
+"label": "Inchiesta morte David Rossi",
+"area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",
 "days": 1

@@ -1,19 +1,139 @@
 [
 {
+"date": "2026-10-13",
+"area": "Parlamento e governo",
+"title": "Documento Programmatico di Finanza Pubblica 2026 e scostamento di bilancio",
+"summary": "Camera e Senato hanno discusso congiuntamente il Documento Programmatico di Finanza Pubblica 2026 e la Relazione al Parlamento per l'autorizzazione allo scostamento di bilancio, con il Governo che ha richiesto flessibilità per spese in difesa e sicurezza energetica.",
+"id": "documento-programmatico-di-finanza-pubblica-2026-e-scostamen",
+"dossier": "manovra-di-bilancio-2027"
+},
+{
+"date": "2026-10-13",
+"area": "Giustizia e diritti",
+"title": "Inchiesta sul disastro della nave Moby Prince",
+"summary": "La Commissione parlamentare d'inchiesta sul disastro della Moby Prince ha audito Vincenzo Onorato, che ha ribadito la tesi di una causa esterna all'origine della collisione e ha contestato la versione ufficiale di errore umano e nebbia.",
+"id": "inchiesta-sul-disastro-della-nave-moby-prince",
+"dossier": "inchiesta-moby-prince"
+},
+{
+"date": "2026-10-13",
+"area": "Giustizia e diritti",
+"title": "Misure urgenti in materia di giustizia, Ministero dell’Interno e impianti strategici nazionali",
+"summary": "La Commissione Giustizia della Camera ha avviato le audizioni sul disegno di legge di conversione del decreto 29 settembre 2026, n. 168, che introduce misure urgenti in materia di giustizia, funzionalità del Ministero dell’Interno e impianti di interesse strategico nazionale.",
+"id": "misure-urgenti-in-materia-di-giustizia-ministero-dellinterno",
+"dossier": "decreto-giustizia-interni-impianti"
+},
+{
+"date": "2026-10-13",
+"area": "Economia, lavoro e ambiente",
+"title": "Costi dell’energia elettrica a carico di imprese e cittadini",
+"summary": "La Commissione Attività produttive della Camera ha audito i rappresentanti dell’Autorità di regolazione per energia reti e ambiente (Arera) sui costi dell’energia elettrica per imprese e cittadini.",
+"id": "costi-dellenergia-elettrica-a-carico-di-imprese-e-cittadini",
+"dossier": "costi-energia-elettrica"
+},
+{
+"date": "2026-10-13",
+"area": "Economia, lavoro e ambiente",
+"title": "Circolazione dei veicoli diesel Euro 5",
+"summary": "Le Commissioni riunite Ambiente e Trasporti della Camera hanno svolto audizioni sul disegno di legge di conversione del decreto 28 settembre 2026, n. 167, recante misure urgenti per la circolazione dei veicoli ad alimentazione diesel appartenenti alla categoria ambientale Euro 5.",
+"id": "circolazione-dei-veicoli-diesel-euro-5",
+"dossier": "circolazione-diesel-euro5"
+},
+{
+"date": "2026-10-13",
+"area": "Società, salute e cultura",
+"title": "Istituzione della figura professionale del fisioterapista di comunità",
+"summary": "La Commissione Affari sociali della Camera ha svolto audizioni nell’ambito dell’esame della proposta di legge recante “Istituzione della figura professionale del fisioterapista di comunità”.",
+"id": "istituzione-della-figura-professionale-del-fisioterapista-di",
+"dossier": "fisioterapista-di-comunita"
+},
+{
+"date": "2026-10-13",
+"area": "Società, salute e cultura",
+"title": "Riconoscimento della disprassia come disabilità",
+"summary": "La Commissione Affari Sociali della Camera ha svolto audizioni sulle proposte di legge per il riconoscimento della disprassia come disabilità ai fini dell’inclusione scolastica e universitaria, dell’integrazione sociale e dell’inserimento professionale.",
+"id": "riconoscimento-della-disprassia-come-disabilita",
+"dossier": "riconoscimento-disprassia"
+},
+{
+"date": "2026-10-13",
+"area": "Società, salute e cultura",
+"title": "Impatto di internet e delle nuove tecnologie sulla salute psicofisica dei minori",
+"summary": "La Commissione parlamentare per l’infanzia e l’adolescenza ha svolto audizioni nell’ambito dell’indagine conoscitiva sull’impatto di internet e delle nuove tecnologie sulla salute psicofisica dei minori.",
+"id": "impatto-di-internet-e-delle-nuove-tecnologie-sulla-salute-ps",
+"dossier": "impatto-internet-minori"
+},
+{
 "date": "2026-10-12",
 "area": "Parlamento e governo",
-"title": "Decreto scuola: audizioni in Senato sul DDL 2053",
-"summary": "La 7ª Commissione del Senato ha condotto audizioni sul disegno di legge di conversione del decreto-legge n. 170/2024 (DDL 2053), raccogliendo posizioni critiche da parte di associazioni professionali, rappresentanze studentesche e docenti riguardo a temi come il riordino degli istituti tecnici, il t",
-"id": "decreto-scuola-audizioni-in-senato-sul-ddl-2053",
-"dossier": "decreto-scuola-2026"
+"title": "Seduta della Camera dei Deputati",
+"summary": "La Camera dei Deputati ha avviato le discussioni generali su diversi disegni di legge e mozioni, tra cui la ratifica di trattati con il Vietnam e disposizioni sulla protezione civile.",
+"id": "seduta-della-camera-dei-deputati",
+"dossier": "seduta-camera-725"
 },
 {
 "date": "2026-10-12",
 "area": "Giustizia e diritti",
-"title": "Commissione d'inchiesta sulla morte di David Rossi: le risultanze del RIS",
-"summary": "La Commissione parlamentare d'inchiesta sulla morte di David Rossi ha ascoltato i comandanti delle sezioni del RIS di Roma e il consulente della Commissione, i quali hanno presentato le risultanze sperimentali che confermano la presenza di uno o due soggetti all'imboccatura di Vicolo Monte Pio la se",
-"id": "commissione-d-inchiesta-sulla-morte-di-david-rossi-le-risult",
-"dossier": "inchiesta-morte-david-rossi"
+"title": "Commissione parlamentare di inchiesta sulla morte di David Rossi",
+"summary": "La Commissione d'inchiesta sulla morte di David Rossi ha audito i Carabinieri del RIS e il consulente Adolfo Gregori, che hanno presentato i risultati degli accertamenti tecnici e sperimentali sulle ombre antropomorfe rilevate nel video di Vicolo Monte Pio la sera del 6 marzo 2013.",
+"id": "commissione-parlamentare-di-inchiesta-sulla-morte-di-david-r",
+"dossier": "morte-david-rossi"
+},
+{
+"date": "2026-10-12",
+"area": "Giustizia e diritti",
+"title": "Processo Mezzarano Salvatore ed altri (presunte torture a Santa Maria Capua Vetere)",
+"summary": "Si è tenuta un'udienza del processo \"Mezzarano Salvatore ed altri\" relativo alle presunte torture avvenute nell’istituto penitenziario di Santa Maria Capua Vetere il 6 aprile 2020.",
+"id": "processo-mezzarano-salvatore-ed-altri-presunte-torture-a-san",
+"dossier": "processo-santa-maria-capua-vetere"
+},
+{
+"date": "2026-10-12",
+"area": "Giustizia e diritti",
+"title": "Maxiprocesso Montante",
+"summary": "A Caltanissetta si è tenuta un'udienza del Maxiprocesso Montante, incentrato su questioni penali.",
+"id": "maxiprocesso-montante",
+"dossier": "maxiprocesso-montante"
+},
+{
+"date": "2026-10-12",
+"area": "Giustizia e diritti",
+"title": "Processo Marcello Colafigli ed altri",
+"summary": "La 9ª sezione penale del Tribunale di Roma ha tenuto un'udienza del processo \"Marcello Colafigli ed altri\".",
+"id": "processo-marcello-colafigli-ed-altri",
+"dossier": "processo-marcello-colafigli"
+},
+{
+"date": "2026-10-12",
+"area": "Giustizia e diritti",
+"title": "Processo Operazione assedio",
+"summary": "L'Aula Occorsio del Tribunale di Roma ha ospitato un'udienza del processo \"Operazione assedio\", incentrato su questioni penali.",
+"id": "processo-operazione-assedio",
+"dossier": "processo-operazione-assedio"
+},
+{
+"date": "2026-10-12",
+"area": "Economia, lavoro e ambiente",
+"title": "Audizioni sul Documento programmatico di finanza pubblica 2026",
+"summary": "Le Commissioni Bilancio di Camera e Senato hanno avviato le audizioni preliminari all'esame del Documento programmatico di finanza pubblica 2026, ascoltando i pareri di importanti istituzioni economiche e del Ministro dell'Economia.",
+"id": "audizioni-sul-documento-programmatico-di-finanza-pubblica-20",
+"dossier": "manovra-di-bilancio-2027"
+},
+{
+"date": "2026-10-12",
+"area": "Economia, lavoro e ambiente",
+"title": "Dibattito sulla patrimoniale",
+"summary": "Un dibattito organizzato da \"War Room\" ha affrontato il tema di un possibile prelievo forzoso, con l'intervento di esperti di economia e fisco.",
+"id": "dibattito-sulla-patrimoniale",
+"dossier": "odor-di-patrimoniale"
+},
+{
+"date": "2026-10-12",
+"area": "Società, salute e cultura",
+"title": "Audizioni sul Decreto Scuola (DDL 2053)",
+"summary": "La 7ª Commissione Cultura del Senato ha audito diverse associazioni e esperti sul disegno di legge 2053 (decreto scuola), raccogliendo critiche sull'approccio d'urgenza, i tetti agli alunni stranieri, le sanzioni ai genitori e la riforma della filiera tecnico-professionale.",
+"id": "audizioni-sul-decreto-scuola-ddl-2053",
+"dossier": "decreto-scuola-ddl-2053"
 },
 {
 "date": "2026-10-11",

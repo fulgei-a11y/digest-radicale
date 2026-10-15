@@ -1,67 +1,243 @@
 [
 {
+"date": "2026-10-14",
+"area": "Parlamento e governo",
+"title": "Comunicazioni del Governo e Decreto Energia al Senato",
+"summary": "Il Presidente del Consiglio ha riferito al Senato in vista del prossimo Consiglio europeo e l'Aula ha avviato la discussione sul decreto-legge relativo ai prezzi petroliferi e alle infrastrutture energetiche strategiche.",
+"id": "comunicazioni-del-governo-e-decreto-energia-al-senato",
+"dossier": "consiglio-europeo-decreto-energia"
+},
+{
+"date": "2026-10-14",
+"area": "Giustizia e diritti",
+"title": "Inchiesta parlamentare sul Forteto e il Mostro di Firenze",
+"summary": "Michele Giuttari, già dirigente della Squadra Mobile di Firenze, ha testimoniato alla Commissione Forteto, rivelando dettagli sui collegamenti tra la comunità e le indagini sui presunti mandanti del Mostro di Firenze, denunciando ostruzionismi e minacce durante il suo operato.",
+"id": "inchiesta-parlamentare-sul-forteto-e-il-mostro-di-firenze",
+"dossier": "inchiesta-forteto-mostro-firenze"
+},
+{
+"date": "2026-10-14",
+"area": "Società, salute e cultura",
+"title": "Violenza di genere nel mondo dello sport",
+"summary": "La Commissione parlamentare d'inchiesta sul femminicidio ha esaminato il tema della violenza di genere nello sport, con testimonianze sulle iniziative di sensibilizzazione nel calcio veneto e proposte concrete del CONI per una cultura di protezione reale degli atleti.",
+"id": "violenza-di-genere-nel-mondo-dello-sport",
+"dossier": "violenza-di-genere-sport"
+},
+{
 "date": "2026-10-13",
 "area": "Parlamento e governo",
-"title": "Documento Programmatico di Finanza Pubblica 2026 e scostamento di bilancio",
-"summary": "Camera e Senato hanno discusso congiuntamente il Documento Programmatico di Finanza Pubblica 2026 e la Relazione al Parlamento per l'autorizzazione allo scostamento di bilancio, con il Governo che ha richiesto flessibilità per spese in difesa e sicurezza energetica.",
-"id": "documento-programmatico-di-finanza-pubblica-2026-e-scostamen",
-"dossier": "manovra-di-bilancio-2027"
+"title": "Discussione del Documento Programmatico di Finanza Pubblica 2026",
+"summary": "Camera e Senato hanno avviato la discussione congiunta sul Documento Programmatico di Finanza Pubblica (DPFP) 2026 e sulla Relazione al Parlamento che autorizza lo scostamento di bilancio per circa 29 miliardi di euro nel biennio 2027-2028, destinati a difesa e sicurezza energetica.",
+"id": "discussione-del-documento-programmatico-di-finanza-pubblica-",
+"dossier": "documento-programmatico-finanza-pubblica-2026"
+},
+{
+"date": "2026-10-13",
+"area": "Parlamento e governo",
+"title": "Conferenza stampa al termine del Consiglio dei Ministri n. 192",
+"summary": "I Ministri Nello Musumeci e Marina Elvira Calderone hanno tenuto una conferenza stampa a Palazzo Chigi al termine del Consiglio dei Ministri.",
+"id": "conferenza-stampa-al-termine-del-consiglio-dei-ministri-n-19",
+"dossier": "conferenza-stampa-cdm"
 },
 {
 "date": "2026-10-13",
 "area": "Giustizia e diritti",
-"title": "Inchiesta sul disastro della nave Moby Prince",
-"summary": "La Commissione parlamentare d'inchiesta sul disastro della Moby Prince ha audito Vincenzo Onorato, che ha ribadito la tesi di una causa esterna all'origine della collisione e ha contestato la versione ufficiale di errore umano e nebbia.",
-"id": "inchiesta-sul-disastro-della-nave-moby-prince",
-"dossier": "inchiesta-moby-prince"
+"title": "Commissione di inchiesta Moby Prince: Audizione Vincenzo Onorato",
+"summary": "La Commissione parlamentare di inchiesta sulle cause del disastro della nave Moby Prince ha audito Vincenzo Onorato, già presidente di Moby Lines e amministratore delegato di Nav.Ar.Ma S.p.a. all'epoca del disastro.",
+"id": "commissione-di-inchiesta-moby-prince-audizione-vincenzo-onor",
+"dossier": "commissione-inchiesta-moby-prince"
 },
 {
 "date": "2026-10-13",
 "area": "Giustizia e diritti",
-"title": "Misure urgenti in materia di giustizia, Ministero dell’Interno e impianti strategici nazionali",
-"summary": "La Commissione Giustizia della Camera ha avviato le audizioni sul disegno di legge di conversione del decreto 29 settembre 2026, n. 168, che introduce misure urgenti in materia di giustizia, funzionalità del Ministero dell’Interno e impianti di interesse strategico nazionale.",
-"id": "misure-urgenti-in-materia-di-giustizia-ministero-dellinterno",
-"dossier": "decreto-giustizia-interni-impianti"
+"title": "Processo Federico Tedeschini ed altri (presunta corruzione TAR del Lazio)",
+"summary": "Si è tenuta un'udienza del processo a Federico Tedeschini e altri, relativo a presunti episodi di corruzione al TAR del Lazio.",
+"id": "processo-federico-tedeschini-ed-altri-presunta-corruzione-ta",
+"dossier": "processo-federico-tedeschini"
+},
+{
+"date": "2026-10-13",
+"area": "Giustizia e diritti",
+"title": "Convegno \"Una giustizia più inclusiva: il nuovo modello italiano per l'esecuzione penale\"",
+"summary": "A Palazzo Madama si è discusso del nuovo modello italiano per l'esecuzione penale, con interventi di rappresentanti del Ministero della Giustizia e del Lavoro.",
+"id": "convegno-una-giustizia-piu-inclusiva-il-nuovo-modello-italia",
+"dossier": "esecuzione-penale"
+},
+{
+"date": "2026-10-13",
+"area": "Giustizia e diritti",
+"title": "Consiglio Superiore della Magistratura (Disciplinare)",
+"summary": "Il Consiglio Superiore della Magistratura ha tenuto una seduta disciplinare, con la partecipazione del vicepresidente Fabio Pinelli.",
+"id": "consiglio-superiore-della-magistratura-disciplinare",
+"dossier": "riforma-della-giustizia-e-csm"
+},
+{
+"date": "2026-10-13",
+"area": "Giustizia e diritti",
+"title": "Presentazione digitalizzazione atti primo maxiprocesso mafia (Termini Imerese 1927-1928)",
+"summary": "È stato presentato a Palazzo Madama il progetto di digitalizzazione degli atti del primo maxiprocesso alla mafia, svoltosi alla Corte d'Assise di Termini Imerese tra il 1927 e il 1928.",
+"id": "presentazione-digitalizzazione-atti-primo-maxiprocesso-mafia",
+"dossier": "maxiprocesso-mafia-termini-imerese"
+},
+{
+"date": "2026-10-13",
+"area": "Giustizia e diritti",
+"title": "Convegno \"Lotte alle mafie e prospettive di sviluppo dopo 21 anni dall’omicidio di Francesco Fortugno”",
+"summary": "L'Aula dei Gruppi Parlamentari ha ospitato un convegno per commemorare i 21 anni dall'omicidio di Francesco Fortugno e discutere le lotte alle mafie e le prospettive di sviluppo.",
+"id": "convegno-lotte-alle-mafie-e-prospettive-di-sviluppo-dopo-21-",
+"dossier": "omicidio-francesco-fortugno"
+},
+{
+"date": "2026-10-13",
+"area": "Giustizia e diritti",
+"title": "Commissione Giustizia della Camera: Audizioni su decreto giustizia, Ministero dell’Interno e impianti strategici",
+"summary": "La Commissione Giustizia della Camera ha svolto audizioni sul disegno di legge di conversione del decreto 29 settembre 2026, n. 168, che introduce misure urgenti in materia di giustizia, funzionalità del Ministero dell’Interno e impianti di interesse strategico nazionale.",
+"id": "commissione-giustizia-della-camera-audizioni-su-decreto-gius",
+"dossier": "decreto-giustizia-interni-impianti-strategici"
+},
+{
+"date": "2026-10-13",
+"area": "Esteri, Europa e difesa",
+"title": "Commissione Affari Esteri della Camera: Esame Relazione Piano Mattei",
+"summary": "La Commissione Affari Esteri della Camera ha esaminato la Relazione sullo stato di attuazione del Piano Mattei, aggiornata al 30 giugno 2026, audendo rappresentanti della Rete delle donne mediatrici del Mediterraneo.",
+"id": "commissione-affari-esteri-della-camera-esame-relazione-piano",
+"dossier": "piano-mattei-africa"
+},
+{
+"date": "2026-10-13",
+"area": "Esteri, Europa e difesa",
+"title": "3ª Commissione Affari esteri e difesa del Senato: Audizione ACN su rafforzamento difesa nazionale",
+"summary": "La 3ª Commissione Affari esteri e difesa del Senato ha audito Andrea Quavici, Direttore generale dell'Agenzia per la Cybersicurezza Nazionale (ACN), in merito al disegno di legge n. 2028 sul rafforzamento e adeguamento delle capacità di difesa nazionale.",
+"id": "3a-commissione-affari-esteri-e-difesa-del-senato-audizione-a",
+"dossier": "ddl-2028"
+},
+{
+"date": "2026-10-13",
+"area": "Esteri, Europa e difesa",
+"title": "Conferenza stampa viaggio Europa Radicale in Israele e Cisgiordania",
+"summary": "Europa Radicale ha tenuto una conferenza stampa a Torino per annunciare il viaggio di una sua delegazione in Israele e Cisgiordania, previsto dal 14 al 17 ottobre.",
+"id": "conferenza-stampa-viaggio-europa-radicale-in-israele-e-cisgi",
+"dossier": "europa-radicale-israele-cisgiordania"
+},
+{
+"date": "2026-10-13",
+"area": "Esteri, Europa e difesa",
+"title": "Commissione Politiche Ue della Camera: Audizione CNCC su direttive fiscali UE",
+"summary": "La Commissione Politiche Ue della Camera ha audito rappresentanti del Consiglio nazionale dei centri commerciali (CNCC) nell'ambito dell'esame congiunto di proposte di direttiva del Consiglio riguardanti la semplificazione del quadro unionale per l'imposizione diretta e la cooperazione amministrativ",
+"id": "commissione-politiche-ue-della-camera-audizione-cncc-su-dire",
+"dossier": "direttive-fiscali-ue"
+},
+{
+"date": "2026-10-13",
+"area": "Esteri, Europa e difesa",
+"title": "Dibattito \"Due nodi fondamentali: la geopolitica e la giustizia\"",
+"summary": "A Roma si è tenuto un dibattito sui temi della geopolitica e della giustizia, organizzato come supplemento della rivista Civiltà Socialista.",
+"id": "dibattito-due-nodi-fondamentali-la-geopolitica-e-la-giustizi",
+"dossier": "geopolitica-e-giustizia"
+},
+{
+"date": "2026-10-13",
+"area": "Esteri, Europa e difesa",
+"title": "Dibattito \"Il sionismo socialista\"",
+"summary": "L'Unione delle Comunità Ebraiche Italiane ha organizzato il sesto incontro del ciclo \"Sionismo: idee, correnti e declinazioni di un progetto politico, identitario e spirituale\", dedicato al sionismo socialista, con l'intervento di David Meghnagi.",
+"id": "dibattito-il-sionismo-socialista",
+"dossier": "sionismo-socialista"
 },
 {
 "date": "2026-10-13",
 "area": "Economia, lavoro e ambiente",
-"title": "Costi dell’energia elettrica a carico di imprese e cittadini",
-"summary": "La Commissione Attività produttive della Camera ha audito i rappresentanti dell’Autorità di regolazione per energia reti e ambiente (Arera) sui costi dell’energia elettrica per imprese e cittadini.",
-"id": "costi-dellenergia-elettrica-a-carico-di-imprese-e-cittadini",
+"title": "Convegno \"Dalle 8 ore alla flessibilità: come cambia il lavoro in una società in evoluzione\"",
+"summary": "L'Associazione Generale Cooperative Italiane (AGCI) ha organizzato a Roma un convegno sulla trasformazione del lavoro, con la partecipazione del Ministro Marina Elvira Calderone e di esperti del settore.",
+"id": "convegno-dalle-8-ore-alla-flessibilita-come-cambia-il-lavoro",
+"dossier": "lavoro-e-flessibilita"
+},
+{
+"date": "2026-10-13",
+"area": "Economia, lavoro e ambiente",
+"title": "Commissione Attività produttive della Camera: Audizione Arera sui costi energia elettrica",
+"summary": "La Commissione Attività produttive della Camera ha audito rappresentanti dell’Autorità di regolazione per energia reti e ambiente (Arera) sui costi dell’energia elettrica a carico di imprese e cittadini.",
+"id": "commissione-attivita-produttive-della-camera-audizione-arera",
 "dossier": "costi-energia-elettrica"
 },
 {
 "date": "2026-10-13",
 "area": "Economia, lavoro e ambiente",
-"title": "Circolazione dei veicoli diesel Euro 5",
-"summary": "Le Commissioni riunite Ambiente e Trasporti della Camera hanno svolto audizioni sul disegno di legge di conversione del decreto 28 settembre 2026, n. 167, recante misure urgenti per la circolazione dei veicoli ad alimentazione diesel appartenenti alla categoria ambientale Euro 5.",
-"id": "circolazione-dei-veicoli-diesel-euro-5",
-"dossier": "circolazione-diesel-euro5"
+"title": "Commissioni riunite Ambiente e Trasporti della Camera: Audizioni su veicoli diesel Euro 5",
+"summary": "Le Commissioni riunite Ambiente e Trasporti della Camera hanno svolto audizioni sul disegno di legge di conversione del decreto 28 settembre 2026, n. 167, che contiene misure urgenti per la circolazione dei veicoli ad alimentazione diesel appartenenti alla categoria ambientale Euro 5.",
+"id": "commissioni-riunite-ambiente-e-trasporti-della-camera-audizi",
+"dossier": "circolazione-veicoli-diesel-euro-5"
+},
+{
+"date": "2026-10-13",
+"area": "Economia, lavoro e ambiente",
+"title": "Dibattito \"War Room - Arriva la tempesta perfetta?\"",
+"summary": "Il programma \"War Room\" ha ospitato un dibattito online sui rischi di una \"tempesta perfetta\" economica, analizzando il debito mondiale, la crisi energetica, l'inflazione e l'aumento dei tassi di interesse.",
+"id": "dibattito-war-room-arriva-la-tempesta-perfetta",
+"dossier": "crisi-economica-globale"
 },
 {
 "date": "2026-10-13",
 "area": "Società, salute e cultura",
-"title": "Istituzione della figura professionale del fisioterapista di comunità",
+"title": "Commissione Affari sociali della Camera: Audizioni su fisioterapista di comunità",
 "summary": "La Commissione Affari sociali della Camera ha svolto audizioni nell’ambito dell’esame della proposta di legge recante “Istituzione della figura professionale del fisioterapista di comunità”.",
-"id": "istituzione-della-figura-professionale-del-fisioterapista-di",
+"id": "commissione-affari-sociali-della-camera-audizioni-su-fisiote",
 "dossier": "fisioterapista-di-comunita"
 },
 {
 "date": "2026-10-13",
 "area": "Società, salute e cultura",
-"title": "Riconoscimento della disprassia come disabilità",
-"summary": "La Commissione Affari Sociali della Camera ha svolto audizioni sulle proposte di legge per il riconoscimento della disprassia come disabilità ai fini dell’inclusione scolastica e universitaria, dell’integrazione sociale e dell’inserimento professionale.",
-"id": "riconoscimento-della-disprassia-come-disabilita",
-"dossier": "riconoscimento-disprassia"
+"title": "Commissione Affari Sociali della Camera: Audizioni su riconoscimento disprassia",
+"summary": "La Commissione Affari Sociali della Camera ha svolto audizioni nell’ambito dell’esame delle proposte di legge per il “Riconoscimento della disprassia come disabilità ai fini dell’inclusione scolastica e universitaria, dell’integrazione sociale e dell’inserimento professionale nonché del conseguiment",
+"id": "commissione-affari-sociali-della-camera-audizioni-su-riconos",
+"dossier": "disprassia-disabilita"
 },
 {
 "date": "2026-10-13",
 "area": "Società, salute e cultura",
-"title": "Impatto di internet e delle nuove tecnologie sulla salute psicofisica dei minori",
-"summary": "La Commissione parlamentare per l’infanzia e l’adolescenza ha svolto audizioni nell’ambito dell’indagine conoscitiva sull’impatto di internet e delle nuove tecnologie sulla salute psicofisica dei minori.",
-"id": "impatto-di-internet-e-delle-nuove-tecnologie-sulla-salute-ps",
-"dossier": "impatto-internet-minori"
+"title": "Commissione parlamentare di inchiesta su emergenza sanitaria SARS-CoV-2: Audizione Felice Manti",
+"summary": "La Commissione parlamentare di inchiesta sulla gestione dell'emergenza sanitaria causata dalla diffusione epidemica del virus SARS-CoV-2 ha audito il giornalista Felice Manti.",
+"id": "commissione-parlamentare-di-inchiesta-su-emergenza-sanitaria",
+"dossier": "commissione-inchiesta-covid"
+},
+{
+"date": "2026-10-13",
+"area": "Società, salute e cultura",
+"title": "Commissione parlamentare per l'infanzia e l'adolescenza: Indagine su impatto internet e nuove tecnologie sui minori",
+"summary": "La Commissione parlamentare per l'infanzia e l'adolescenza ha condotto audizioni nell'ambito dell'indagine conoscitiva sull'impatto di internet e delle nuove tecnologie sulla salute psicofisica dei minori, ascoltando lo psichiatra Federico Tonioni e il ricercatore CNR Antonio Tintori.",
+"id": "commissione-parlamentare-per-l-infanzia-e-l-adolescenza-inda",
+"dossier": "impatto-tecnologie-minori"
+},
+{
+"date": "2026-10-13",
+"area": "Società, salute e cultura",
+"title": "Commissione Cultura della Camera: Indagine su impatto nuove tecnologie nella scuola",
+"summary": "La Commissione Cultura della Camera ha svolto un'audizione nell'ambito dell'indagine conoscitiva sulle sfide educative e culturali e sull'impatto delle nuove tecnologie nella scuola, audendo Ernesto Caffo, Presidente della Fondazione SOS Il Telefono Azzurro ETS.",
+"id": "commissione-cultura-della-camera-indagine-su-impatto-nuove-t",
+"dossier": "impatto-tecnologie-scuola"
+},
+{
+"date": "2026-10-13",
+"area": "Società, salute e cultura",
+"title": "Conferenza stampa ISTAT: Cento anni dell'Istituto",
+"summary": "L'ISTAT ha tenuto una conferenza stampa per presentare le iniziative dell’ultimo trimestre 2026, organizzate per celebrare i cento anni dell’Istituto.",
+"id": "conferenza-stampa-istat-cento-anni-dell-istituto",
+"dossier": "istat-cento-anni"
+},
+{
+"date": "2026-10-13",
+"area": "Società, salute e cultura",
+"title": "Presentazione docufilm \"Perché?\", dedicato alla vita di Angelo Vassallo",
+"summary": "È stato presentato a Roma il docufilm \"Perché?\", dedicato alla vita di Angelo Vassallo, con un saluto del vicepresidente della Camera Sergio Costa.",
+"id": "presentazione-docufilm-perche-dedicato-alla-vita-di-angelo-v",
+"dossier": "docufilm-angelo-vassallo"
+},
+{
+"date": "2026-10-13",
+"area": "Società, salute e cultura",
+"title": "Presentazione libro \"De Gasperi. Interviste (1944-1954)\"",
+"summary": "A Milano è stato presentato il volume \"De Gasperi. Interviste (1944-1954)\", curato dalla Fondazione De Gasperi, con saluti istituzionali di Annarosa Racca e Angelino Alfano.",
+"id": "presentazione-libro-de-gasperi-interviste-1944-1954",
+"dossier": "libro-de-gasperi"
 },
 {
 "date": "2026-10-12",

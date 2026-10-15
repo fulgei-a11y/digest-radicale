@@ -1,24 +1,152 @@
 [
 {
-"key": "manovra-di-bilancio-2027",
-"label": "Manovra di Bilancio 2027",
+"key": "consiglio-europeo-decreto-energia",
+"label": "Consiglio Europeo e Decreto Energia",
 "area": "Parlamento e governo",
-"first": "2026-10-08",
-"last": "2026-10-13",
-"days": 3
+"first": "2026-10-14",
+"last": "2026-10-14",
+"days": 1
 },
 {
-"key": "inchiesta-moby-prince",
-"label": "Inchiesta Moby Prince",
+"key": "inchiesta-forteto-mostro-firenze",
+"label": "Inchiesta Forteto e Mostro di Firenze",
+"area": "Giustizia e diritti",
+"first": "2026-10-14",
+"last": "2026-10-14",
+"days": 1
+},
+{
+"key": "violenza-di-genere-sport",
+"label": "Violenza di genere nello sport",
+"area": "Società, salute e cultura",
+"first": "2026-10-14",
+"last": "2026-10-14",
+"days": 1
+},
+{
+"key": "riforma-della-giustizia-e-csm",
+"label": "Riforma della giustizia e CSM",
+"area": "Giustizia e diritti",
+"first": "2026-10-11",
+"last": "2026-10-13",
+"days": 2
+},
+{
+"key": "piano-mattei-africa",
+"label": "Piano Mattei e Africa",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-06",
+"last": "2026-10-13",
+"days": 2
+},
+{
+"key": "ddl-2028",
+"label": "Audizioni sul DDL 2028 per il rafforzamento della difesa nazionale",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-08",
+"last": "2026-10-13",
+"days": 2
+},
+{
+"key": "documento-programmatico-finanza-pubblica-2026",
+"label": "Documento Programmatico di Finanza Pubblica 2026",
+"area": "Parlamento e governo",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "conferenza-stampa-cdm",
+"label": "Conferenza stampa Consiglio dei Ministri",
+"area": "Parlamento e governo",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "commissione-inchiesta-moby-prince",
+"label": "Commissione di inchiesta Moby Prince",
 "area": "Giustizia e diritti",
 "first": "2026-10-13",
 "last": "2026-10-13",
 "days": 1
 },
 {
-"key": "decreto-giustizia-interni-impianti",
-"label": "Decreto giustizia, interni e impianti strategici",
+"key": "processo-federico-tedeschini",
+"label": "Processo Federico Tedeschini",
 "area": "Giustizia e diritti",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "esecuzione-penale",
+"label": "Esecuzione penale",
+"area": "Giustizia e diritti",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "maxiprocesso-mafia-termini-imerese",
+"label": "Maxiprocesso mafia Termini Imerese",
+"area": "Giustizia e diritti",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "omicidio-francesco-fortugno",
+"label": "Omicidio Francesco Fortugno",
+"area": "Giustizia e diritti",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "decreto-giustizia-interni-impianti-strategici",
+"label": "Decreto giustizia, Ministero dell’Interno e impianti strategici",
+"area": "Giustizia e diritti",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "europa-radicale-israele-cisgiordania",
+"label": "Europa Radicale in Israele e Cisgiordania",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "direttive-fiscali-ue",
+"label": "Direttive fiscali UE",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "geopolitica-e-giustizia",
+"label": "Geopolitica e Giustizia",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "sionismo-socialista",
+"label": "Sionismo socialista",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "lavoro-e-flessibilita",
+"label": "Lavoro e flessibilità",
+"area": "Economia, lavoro e ambiente",
 "first": "2026-10-13",
 "last": "2026-10-13",
 "days": 1
@@ -32,8 +160,16 @@
 "days": 1
 },
 {
-"key": "circolazione-diesel-euro5",
+"key": "circolazione-veicoli-diesel-euro-5",
 "label": "Circolazione veicoli diesel Euro 5",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "crisi-economica-globale",
+"label": "Crisi Economica Globale",
 "area": "Economia, lavoro e ambiente",
 "first": "2026-10-13",
 "last": "2026-10-13",
@@ -48,16 +184,56 @@
 "days": 1
 },
 {
-"key": "riconoscimento-disprassia",
-"label": "Riconoscimento disprassia",
+"key": "disprassia-disabilita",
+"label": "Disprassia e disabilità",
 "area": "Società, salute e cultura",
 "first": "2026-10-13",
 "last": "2026-10-13",
 "days": 1
 },
 {
-"key": "impatto-internet-minori",
-"label": "Impatto internet e nuove tecnologie sui minori",
+"key": "commissione-inchiesta-covid",
+"label": "Commissione di inchiesta Covid",
+"area": "Società, salute e cultura",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "impatto-tecnologie-minori",
+"label": "Impatto tecnologie sui minori",
+"area": "Società, salute e cultura",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "impatto-tecnologie-scuola",
+"label": "Impatto tecnologie nella scuola",
+"area": "Società, salute e cultura",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "istat-cento-anni",
+"label": "ISTAT Cento Anni",
+"area": "Società, salute e cultura",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "docufilm-angelo-vassallo",
+"label": "Docufilm Angelo Vassallo",
+"area": "Società, salute e cultura",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
+"key": "libro-de-gasperi",
+"label": "Libro De Gasperi",
 "area": "Società, salute e cultura",
 "first": "2026-10-13",
 "last": "2026-10-13",
@@ -67,6 +243,14 @@
 "key": "processo-santa-maria-capua-vetere",
 "label": "Processo Santa Maria Capua Vetere",
 "area": "Giustizia e diritti",
+"first": "2026-10-08",
+"last": "2026-10-12",
+"days": 2
+},
+{
+"key": "manovra-di-bilancio-2027",
+"label": "Manovra di Bilancio 2027",
+"area": "Economia, lavoro e ambiente",
 "first": "2026-10-08",
 "last": "2026-10-12",
 "days": 2
@@ -150,14 +334,6 @@
 "first": "2026-10-10",
 "last": "2026-10-11",
 "days": 2
-},
-{
-"key": "riforma-della-giustizia-e-csm",
-"label": "Riforma della giustizia e CSM",
-"area": "Giustizia e diritti",
-"first": "2026-10-11",
-"last": "2026-10-11",
-"days": 1
 },
 {
 "key": "camera-arbitrale-islamica-padova",
@@ -384,14 +560,6 @@
 "days": 1
 },
 {
-"key": "ddl-2028",
-"label": "Audizioni sul DDL 2028 per il rafforzamento della difesa nazionale",
-"area": "Esteri, Europa e difesa",
-"first": "2026-10-08",
-"last": "2026-10-08",
-"days": 1
-},
-{
 "key": "commissione-inchiesta-bancaria",
 "label": "Commissione parlamentare di inchiesta sul sistema bancario, finanziario e assicu",
 "area": "Economia, lavoro e ambiente",
@@ -562,14 +730,6 @@
 {
 "key": "piazze-spagna-francia",
 "label": "Piazze di Spagna e di Francia",
-"area": "Esteri, Europa e difesa",
-"first": "2026-10-06",
-"last": "2026-10-06",
-"days": 1
-},
-{
-"key": "piano-mattei-africa",
-"label": "Piano Mattei e Africa",
 "area": "Esteri, Europa e difesa",
 "first": "2026-10-06",
 "last": "2026-10-06",

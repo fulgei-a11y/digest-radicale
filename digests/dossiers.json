@@ -1,15 +1,63 @@
 [
 {
-"key": "consiglio-europeo-decreto-energia",
-"label": "Consiglio Europeo e Decreto Energia",
+"key": "legittima-difesa",
+"label": "Legittima difesa",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-15",
+"days": 2
+},
+{
+"key": "circolazione-veicoli-diesel-euro-5",
+"label": "Circolazione veicoli diesel Euro 5",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-13",
+"last": "2026-10-15",
+"days": 2
+},
+{
+"key": "decreto-prezzi-petroliferi-infrastrutture-energetiche",
+"label": "Decreto prezzi petroliferi e infrastrutture energetiche",
+"area": "Parlamento e governo",
+"first": "2026-10-15",
+"last": "2026-10-15",
+"days": 1
+},
+{
+"key": "trasferimento-beni-immobili-pa",
+"label": "Semplificazione trasferimento beni immobili tra pubbliche amministrazioni",
+"area": "Parlamento e governo",
+"first": "2026-10-15",
+"last": "2026-10-15",
+"days": 1
+},
+{
+"key": "ddl-caregiver-familiari",
+"label": "Riconoscimento e tutela dei caregiver familiari",
 "area": "Parlamento e governo",
 "first": "2026-10-14",
 "last": "2026-10-14",
 "days": 1
 },
 {
-"key": "inchiesta-forteto-mostro-firenze",
-"label": "Inchiesta Forteto e Mostro di Firenze",
+"key": "comunicazioni-consiglio-europeo",
+"label": "Comunicazioni del Presidente del Consiglio in vista del Consiglio europeo",
+"area": "Parlamento e governo",
+"first": "2026-10-14",
+"last": "2026-10-14",
+"days": 1
+},
+{
+"key": "decreto-prezzi-petroliferi",
+"label": "Decreto-legge sui prezzi petroliferi e infrastrutture energetiche",
+"area": "Parlamento e governo",
+"first": "2026-10-14",
+"last": "2026-10-14",
+"days": 1
+},
+{
+"key": "inchiesta-il-forteto",
+"label": "Inchiesta sulla comunità \"Il Forteto\"",
 "area": "Giustizia e diritti",
 "first": "2026-10-14",
 "last": "2026-10-14",
@@ -19,6 +67,22 @@
 "key": "violenza-di-genere-sport",
 "label": "Violenza di genere nello sport",
 "area": "Società, salute e cultura",
+"first": "2026-10-14",
+"last": "2026-10-14",
+"days": 1
+},
+{
+"key": "regolamento-ue-alloggi-accessibili",
+"label": "Regolamento UE sugli alloggi a prezzi accessibili",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-14",
+"last": "2026-10-14",
+"days": 1
+},
+{
+"key": "regolamento-ue-cloud-ia",
+"label": "Regolamento UE su ecosistema cloud e IA",
+"area": "Scienza, tecnologia e informazione",
 "first": "2026-10-14",
 "last": "2026-10-14",
 "days": 1
@@ -154,14 +218,6 @@
 {
 "key": "costi-energia-elettrica",
 "label": "Costi energia elettrica",
-"area": "Economia, lavoro e ambiente",
-"first": "2026-10-13",
-"last": "2026-10-13",
-"days": 1
-},
-{
-"key": "circolazione-veicoli-diesel-euro-5",
-"label": "Circolazione veicoli diesel Euro 5",
 "area": "Economia, lavoro e ambiente",
 "first": "2026-10-13",
 "last": "2026-10-13",
@@ -682,14 +738,6 @@
 {
 "key": "udienza-corte-costituzionale",
 "label": "Udienza Corte Costituzionale",
-"area": "Giustizia e diritti",
-"first": "2026-10-06",
-"last": "2026-10-06",
-"days": 1
-},
-{
-"key": "legittima-difesa",
-"label": "Legittima difesa",
 "area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",

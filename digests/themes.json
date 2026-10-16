@@ -1,27 +1,91 @@
 [
 {
+"date": "2026-10-15",
+"area": "Parlamento e governo",
+"title": "Decreto-legge 157/2026: Prezzi petroliferi e infrastrutture energetiche strategiche",
+"summary": "Il Senato ha proseguito l'esame del disegno di legge di conversione del decreto-legge 10 settembre 2026, n. 157, recante disposizioni urgenti in materia di prezzi petroliferi connessi alla nuova crisi dei mercati internazionali e di infrastrutture e attività energetiche strategiche.",
+"id": "decreto-legge-157-2026-prezzi-petroliferi-e-infrastrutture-e",
+"dossier": "decreto-prezzi-petroliferi-infrastrutture-energetiche"
+},
+{
+"date": "2026-10-15",
+"area": "Parlamento e governo",
+"title": "DDL 1640: Semplificazione trasferimento beni immobili tra pubbliche amministrazioni",
+"summary": "La 1ª Commissione Affari costituzionali del Senato ha svolto audizioni informali sul Disegno di Legge n. 1640, a prima firma del senatore Marco Silvestroni, che mira a semplificare le procedure di trasferimento di beni immobili tra pubbliche amministrazioni.",
+"id": "ddl-1640-semplificazione-trasferimento-beni-immobili-tra-pub",
+"dossier": "trasferimento-beni-immobili-pa"
+},
+{
+"date": "2026-10-15",
+"area": "Giustizia e diritti",
+"title": "DDL 167: Disposizioni in materia di legittima difesa",
+"summary": "La 2ª Commissione Giustizia del Senato ha avviato audizioni sul disegno di legge 167 e connessi, che riguardano le disposizioni in materia di legittima difesa.",
+"id": "ddl-167-disposizioni-in-materia-di-legittima-difesa",
+"dossier": "legittima-difesa"
+},
+{
+"date": "2026-10-15",
+"area": "Economia, lavoro e ambiente",
+"title": "D.L. 167/2026: Misure urgenti per la circolazione dei veicoli diesel Euro 5",
+"summary": "Le Commissioni riunite Ambiente (VIII) e Trasporti (IX) della Camera dei Deputati hanno svolto audizioni nell'ambito dell'esame del disegno di legge di conversione del decreto 28 settembre 2026, n. 167, che introduce misure urgenti per la circolazione dei veicoli ad alimentazione diesel Euro 5.",
+"id": "d-l-167-2026-misure-urgenti-per-la-circolazione-dei-veicoli-",
+"dossier": "circolazione-veicoli-diesel-euro-5"
+},
+{
 "date": "2026-10-14",
 "area": "Parlamento e governo",
-"title": "Comunicazioni del Governo e Decreto Energia al Senato",
-"summary": "Il Presidente del Consiglio ha riferito al Senato in vista del prossimo Consiglio europeo e l'Aula ha avviato la discussione sul decreto-legge relativo ai prezzi petroliferi e alle infrastrutture energetiche strategiche.",
-"id": "comunicazioni-del-governo-e-decreto-energia-al-senato",
-"dossier": "consiglio-europeo-decreto-energia"
+"title": "Riconoscimento e tutela dei caregiver familiari (A. C. 2789-A)",
+"summary": "La Camera dei Deputati ha approvato in via definitiva il disegno di legge sul riconoscimento e la tutela dei caregiver familiari, dopo un'intensa discussione e votazione di numerosi ordini del giorno, molti dei quali respinti dal Governo.",
+"id": "riconoscimento-e-tutela-dei-caregiver-familiari-a-c-2789-a",
+"dossier": "ddl-caregiver-familiari"
+},
+{
+"date": "2026-10-14",
+"area": "Parlamento e governo",
+"title": "Comunicazioni del Presidente del Consiglio in vista del Consiglio europeo",
+"summary": "La Presidente del Consiglio Giorgia Meloni ha informato il Senato sugli argomenti che saranno trattati nel Consiglio europeo del 15 e 16 ottobre 2026, tra cui competitività, Ucraina, Medio Oriente e sicurezza europea, ottenendo l'approvazione di due proposte di risoluzione.",
+"id": "comunicazioni-del-presidente-del-consiglio-in-vista-del-cons",
+"dossier": "comunicazioni-consiglio-europeo"
+},
+{
+"date": "2026-10-14",
+"area": "Parlamento e governo",
+"title": "Decreto-legge sui prezzi petroliferi e infrastrutture energetiche (DL 157/2026)",
+"summary": "Il Senato ha discusso il disegno di legge di conversione del decreto-legge 10 settembre 2026, n. 157, che proroga la riduzione delle accise sul gasolio e il credito d'imposta per il settore dell'autotrasporto.",
+"id": "decreto-legge-sui-prezzi-petroliferi-e-infrastrutture-energe",
+"dossier": "decreto-prezzi-petroliferi"
 },
 {
 "date": "2026-10-14",
 "area": "Giustizia e diritti",
-"title": "Inchiesta parlamentare sul Forteto e il Mostro di Firenze",
-"summary": "Michele Giuttari, già dirigente della Squadra Mobile di Firenze, ha testimoniato alla Commissione Forteto, rivelando dettagli sui collegamenti tra la comunità e le indagini sui presunti mandanti del Mostro di Firenze, denunciando ostruzionismi e minacce durante il suo operato.",
-"id": "inchiesta-parlamentare-sul-forteto-e-il-mostro-di-firenze",
-"dossier": "inchiesta-forteto-mostro-firenze"
+"title": "Commissione parlamentare di inchiesta sui fatti accaduti presso la comunità \"Il Forteto\"",
+"summary": "La Commissione parlamentare d'inchiesta sul \"Forteto\" ha audito Michele Giuttari, già dirigente della Squadra mobile di Firenze, nell'ambito delle sue indagini.",
+"id": "commissione-parlamentare-di-inchiesta-sui-fatti-accaduti-pre",
+"dossier": "inchiesta-il-forteto"
 },
 {
 "date": "2026-10-14",
 "area": "Società, salute e cultura",
-"title": "Violenza di genere nel mondo dello sport",
-"summary": "La Commissione parlamentare d'inchiesta sul femminicidio ha esaminato il tema della violenza di genere nello sport, con testimonianze sulle iniziative di sensibilizzazione nel calcio veneto e proposte concrete del CONI per una cultura di protezione reale degli atleti.",
-"id": "violenza-di-genere-nel-mondo-dello-sport",
+"title": "Commissione parlamentare di inchiesta sul femminicidio e la violenza di genere nello sport",
+"summary": "La Commissione parlamentare di inchiesta sul femminicidio ha condotto audizioni sulla prevenzione e il contrasto della violenza di genere nel mondo dello sport, raccogliendo testimonianze su iniziative concrete nel calcio dilettantistico e proposte per il *safeguarding* nel CONI.",
+"id": "commissione-parlamentare-di-inchiesta-sul-femminicidio-e-la-",
 "dossier": "violenza-di-genere-sport"
+},
+{
+"date": "2026-10-14",
+"area": "Esteri, Europa e difesa",
+"title": "Regolamento UE sugli alloggi a prezzi accessibili (COM(2026) 599 final)",
+"summary": "Le Commissioni Politiche UE di Camera e Senato hanno avviato l'esame della proposta di regolamento del Parlamento europeo e del Consiglio che istituisce un quadro per misure negli Stati membri a salvaguardia della disponibilità di alloggi e della loro accessibilità economica.",
+"id": "regolamento-ue-sugli-alloggi-a-prezzi-accessibili-com-2026-5",
+"dossier": "regolamento-ue-alloggi-accessibili"
+},
+{
+"date": "2026-10-14",
+"area": "Scienza, tecnologia e informazione",
+"title": "Regolamento UE su ecosistema cloud e IA (COM(2026) 502 final)",
+"summary": "La Commissione Politiche dell'Unione Europea della Camera ha avviato l'esame della proposta di regolamento europeo per rafforzare l'ecosistema europeo del cloud e dell'intelligenza artificiale, audendo rappresentanti di Dynames e IBM Italia.",
+"id": "regolamento-ue-su-ecosistema-cloud-e-ia-com-2026-502-final",
+"dossier": "regolamento-ue-cloud-ia"
 },
 {
 "date": "2026-10-13",

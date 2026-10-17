@@ -1,32 +1,232 @@
 [
 {
-"key": "legittima-difesa",
-"label": "Legittima difesa",
+"key": "processo-santa-maria-capua-vetere",
+"label": "Processo Santa Maria Capua Vetere",
 "area": "Giustizia e diritti",
-"first": "2026-10-06",
-"last": "2026-10-15",
+"first": "2026-10-08",
+"last": "2026-10-16",
+"days": 4
+},
+{
+"key": "albania-italianofona",
+"label": "Albania italianofona: legami culturali",
+"area": "Società, salute e cultura",
+"first": "2026-10-10",
+"last": "2026-10-16",
 "days": 2
 },
 {
-"key": "circolazione-veicoli-diesel-euro-5",
-"label": "Circolazione veicoli diesel Euro 5",
+"key": "notiziario-mattino",
+"label": "Notiziario del mattino",
+"area": "Parlamento e governo",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "disinformazione-costituzione",
+"label": "Presentazione del libro \"Disinformazione e Costituzione\"",
+"area": "Giustizia e diritti",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "riforme-istituzionali",
+"label": "Riforme istituzionali: quarant'anni di tentativi",
+"area": "Politica e partiti",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "16-ottobre-43-anpi",
+"label": "16 ottobre 1943: Comunità ebraica e ANPI",
+"area": "Politica e partiti",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "organizzazione-mondiale-democrazie",
+"label": "Appello per un'Organizzazione Mondiale delle Democrazie",
+"area": "Politica e partiti",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "legge-elettorale-articolo-8",
+"label": "I misteri dell'articolo 8 della legge elettorale",
+"area": "Politica e partiti",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "consiglio-ue-ets",
+"label": "Consiglio UE: la battaglia sugli ETS",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "starlink-guerra-ucraina",
+"label": "Starlink e la guerra russo-ucraina",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "vertice-presidenti-parlamenti-consiglio-europa",
+"label": "Vertice dei Presidenti dei Parlamenti del Consiglio d'Europa",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "declino-europeo-consiglio-ue",
+"label": "Il declino europeo e il Consiglio UE",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "elezioni-israele-7-ottobre",
+"label": "Elezioni in Israele e responsabilità del 7 ottobre",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "consiglio-europeo-bruxelles",
+"label": "Consiglio Europeo: bilancio, Cina ed energia",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "geopolitica-economia-brunetta",
+"label": "Geopolitica ed Economia con Renato Brunetta",
 "area": "Economia, lavoro e ambiente",
-"first": "2026-10-13",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "sviluppo-sostenibile-giovannini",
+"label": "Scegliere il futuro con Enrico Giovannini",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "pio-xii-shoah",
+"label": "Presentazione del volume \"Pio XII e la Shoah\"",
+"area": "Società, salute e cultura",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "anni-rubati-settimia-spizzichino",
+"label": "\"Anni rubati\": memorie di Settimia Spizzichino",
+"area": "Società, salute e cultura",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "roberto-vacca-centenario",
+"label": "Celebrazione del centesimo anno di vita di Roberto Vacca",
+"area": "Società, salute e cultura",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "rassegna-stampa",
+"label": "Stampa e regime con Alessandro Barbano",
+"area": "Società, salute e cultura",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "ia-giustizia-pa",
+"label": "Intelligenza Artificiale nella Giustizia e PA",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "ia-diritti-costituzione",
+"label": "Intelligenza artificiale: dalla tecnica ai diritti",
+"area": "Scienza, tecnologia e informazione",
+"first": "2026-10-16",
+"last": "2026-10-16",
+"days": 1
+},
+{
+"key": "decreto-prezzi-petroliferi",
+"label": "Decreto-legge sui prezzi petroliferi e infrastrutture energetiche",
+"area": "Parlamento e governo",
+"first": "2026-10-14",
 "last": "2026-10-15",
 "days": 2
 },
 {
-"key": "decreto-prezzi-petroliferi-infrastrutture-energetiche",
-"label": "Decreto prezzi petroliferi e infrastrutture energetiche",
+"key": "semplificazione-trasferimenti-immobili-pa",
+"label": "Semplificazione procedure trasferimento beni immobili tra PA",
 "area": "Parlamento e governo",
 "first": "2026-10-15",
 "last": "2026-10-15",
 "days": 1
 },
 {
-"key": "trasferimento-beni-immobili-pa",
-"label": "Semplificazione trasferimento beni immobili tra pubbliche amministrazioni",
-"area": "Parlamento e governo",
+"key": "processo-loggia-ungheria",
+"label": "Processo Piero Amara ed altri (Loggia Ungheria)",
+"area": "Giustizia e diritti",
+"first": "2026-10-15",
+"last": "2026-10-15",
+"days": 1
+},
+{
+"key": "conferenza-presidenti-parlamento-europa",
+"label": "Conferenza europea dei Presidenti di Parlamento",
+"area": "Esteri, Europa e difesa",
+"first": "2026-10-15",
+"last": "2026-10-15",
+"days": 1
+},
+{
+"key": "decreto-circolazione-euro-5-diesel",
+"label": "Circolazione veicoli diesel Euro 5",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-15",
+"last": "2026-10-15",
+"days": 1
+},
+{
+"key": "sostenibilita-nuove-parole-chiave",
+"label": "Sostenibilità: le nuove parole chiave",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-15",
+"last": "2026-10-15",
+"days": 1
+},
+{
+"key": "costruzione-nemico-antisemitismo",
+"label": "La costruzione del nemico: lettura psicoanalitica e psicosociale",
+"area": "Società, salute e cultura",
 "first": "2026-10-15",
 "last": "2026-10-15",
 "days": 1
@@ -42,14 +242,6 @@
 {
 "key": "comunicazioni-consiglio-europeo",
 "label": "Comunicazioni del Presidente del Consiglio in vista del Consiglio europeo",
-"area": "Parlamento e governo",
-"first": "2026-10-14",
-"last": "2026-10-14",
-"days": 1
-},
-{
-"key": "decreto-prezzi-petroliferi",
-"label": "Decreto-legge sui prezzi petroliferi e infrastrutture energetiche",
 "area": "Parlamento e governo",
 "first": "2026-10-14",
 "last": "2026-10-14",
@@ -224,6 +416,14 @@
 "days": 1
 },
 {
+"key": "circolazione-veicoli-diesel-euro-5",
+"label": "Circolazione veicoli diesel Euro 5",
+"area": "Economia, lavoro e ambiente",
+"first": "2026-10-13",
+"last": "2026-10-13",
+"days": 1
+},
+{
 "key": "crisi-economica-globale",
 "label": "Crisi Economica Globale",
 "area": "Economia, lavoro e ambiente",
@@ -294,14 +494,6 @@
 "first": "2026-10-13",
 "last": "2026-10-13",
 "days": 1
-},
-{
-"key": "processo-santa-maria-capua-vetere",
-"label": "Processo Santa Maria Capua Vetere",
-"area": "Giustizia e diritti",
-"first": "2026-10-08",
-"last": "2026-10-12",
-"days": 2
 },
 {
 "key": "manovra-di-bilancio-2027",
@@ -520,14 +712,6 @@
 "days": 1
 },
 {
-"key": "albania-italianofona",
-"label": "Conservazione della lingua e cultura Arbëreshë",
-"area": "Società, salute e cultura",
-"first": "2026-10-10",
-"last": "2026-10-10",
-"days": 1
-},
-{
 "key": "violenza-di-genere",
 "label": "Violenza di genere",
 "area": "Giustizia e diritti",
@@ -738,6 +922,14 @@
 {
 "key": "udienza-corte-costituzionale",
 "label": "Udienza Corte Costituzionale",
+"area": "Giustizia e diritti",
+"first": "2026-10-06",
+"last": "2026-10-06",
+"days": 1
+},
+{
+"key": "legittima-difesa",
+"label": "Legittima difesa",
 "area": "Giustizia e diritti",
 "first": "2026-10-06",
 "last": "2026-10-06",

@@ -1,35 +1,243 @@
 [
 {
-"date": "2026-10-15",
+"date": "2026-10-16",
 "area": "Parlamento e governo",
-"title": "Decreto-legge 157/2026: Prezzi petroliferi e infrastrutture energetiche strategiche",
-"summary": "Il Senato ha proseguito l'esame del disegno di legge di conversione del decreto-legge 10 settembre 2026, n. 157, recante disposizioni urgenti in materia di prezzi petroliferi connessi alla nuova crisi dei mercati internazionali e di infrastrutture e attività energetiche strategiche.",
-"id": "decreto-legge-157-2026-prezzi-petroliferi-e-infrastrutture-e",
-"dossier": "decreto-prezzi-petroliferi-infrastrutture-energetiche"
+"title": "Notiziario del mattino",
+"summary": "Il notiziario del mattino ha riportato le dichiarazioni del Ministro degli Affari Esteri Antonio Tajani a seguito del vertice del Partito Popolare Europeo (PPE) a Bruxelles.",
+"id": "notiziario-del-mattino",
+"dossier": "notiziario-mattino"
+},
+{
+"date": "2026-10-16",
+"area": "Giustizia e diritti",
+"title": "Processo Santa Maria Capua Vetere",
+"summary": "Si è tenuta un'udienza del processo \"Mezzarano Salvatore ed altri\" riguardante le presunte torture avvenute nel carcere di Santa Maria Capua Vetere il 6 aprile 2020.",
+"id": "processo-santa-maria-capua-vetere",
+"dossier": "processo-santa-maria-capua-vetere"
+},
+{
+"date": "2026-10-16",
+"area": "Giustizia e diritti",
+"title": "Presentazione del libro \"Disinformazione e Costituzione\"",
+"summary": "È stato presentato il volume \"Disinformazione e Costituzione. Il nuovo volto del pluralismo dell'informazione nell'ecosistema digitale\" di Enrico Albanesi.",
+"id": "presentazione-del-libro-disinformazione-e-costituzione",
+"dossier": "disinformazione-costituzione"
+},
+{
+"date": "2026-10-16",
+"area": "Politica e partiti",
+"title": "Presentazione del libro \"Storia di una riforma mai nata\"",
+"summary": "È stato presentato a Roma il volume di Giuseppe Calderisi \"Storia di una riforma mai nata. Quarant'anni di vani tentativi per rinnovare le istituzioni\".",
+"id": "presentazione-del-libro-storia-di-una-riforma-mai-nata",
+"dossier": "riforme-istituzionali"
+},
+{
+"date": "2026-10-16",
+"area": "Politica e partiti",
+"title": "16 ottobre 1943: Comunità ebraica e ANPI",
+"summary": "Federico Mollicone (Fratelli d'Italia) ha commentato la decisione della Comunità ebraica di Roma di escludere l'ANPI dalle commemorazioni del 16 ottobre 1943 nel Ghetto.",
+"id": "16-ottobre-1943-comunita-ebraica-e-anpi",
+"dossier": "16-ottobre-43-anpi"
+},
+{
+"date": "2026-10-16",
+"area": "Politica e partiti",
+"title": "Appello per un'Organizzazione Mondiale delle Democrazie",
+"summary": "Il Partito Radicale Nonviolento Transnazionale Transpartito ha lanciato un appello per l'istituzione di un'organizzazione mondiale delle democrazie.",
+"id": "appello-per-un-organizzazione-mondiale-delle-democrazie",
+"dossier": "organizzazione-mondiale-democrazie"
+},
+{
+"date": "2026-10-16",
+"area": "Politica e partiti",
+"title": "I misteri dell'articolo 8 della legge elettorale",
+"summary": "Gabriele Maestri, costituzionalista e giornalista, ha analizzato le complessità dell'articolo 8 della legge elettorale in un'intervista.",
+"id": "i-misteri-dell-articolo-8-della-legge-elettorale",
+"dossier": "legge-elettorale-articolo-8"
+},
+{
+"date": "2026-10-16",
+"area": "Esteri, Europa e difesa",
+"title": "Consiglio UE: la battaglia sugli ETS",
+"summary": "Il Consiglio Europeo ha visto un acceso dibattito sul sistema ETS (Emission Trading System), con l'Italia che ha cercato di ottenere la neutralizzazione degli oneri sul gas per la produzione termoelettrica.",
+"id": "consiglio-ue-la-battaglia-sugli-ets",
+"dossier": "consiglio-ue-ets"
+},
+{
+"date": "2026-10-16",
+"area": "Esteri, Europa e difesa",
+"title": "Starlink e la guerra russo-ucraina",
+"summary": "Piero Fassino (Partito Democratico) ha discusso il ruolo del sistema Starlink nel contesto della guerra tra Russia e Ucraina.",
+"id": "starlink-e-la-guerra-russo-ucraina",
+"dossier": "starlink-guerra-ucraina"
+},
+{
+"date": "2026-10-16",
+"area": "Esteri, Europa e difesa",
+"title": "Vertice dei Presidenti dei Parlamenti del Consiglio d'Europa",
+"summary": "Si è tenuto a Montecitorio il vertice dei Presidenti dei Parlamenti del Consiglio d'Europa, con un focus sulla diplomazia parlamentare e il contrasto alla criminalità organizzata.",
+"id": "vertice-dei-presidenti-dei-parlamenti-del-consiglio-d-europa",
+"dossier": "vertice-presidenti-parlamenti-consiglio-europa"
+},
+{
+"date": "2026-10-16",
+"area": "Esteri, Europa e difesa",
+"title": "Il declino europeo e il Consiglio UE",
+"summary": "Michele Marchi (storico) ha analizzato il \"declino europeo\" e le tensioni emerse al Consiglio UE su bilancio e energia, evidenziando la polarizzazione interna e le difficoltà di integrazione.",
+"id": "il-declino-europeo-e-il-consiglio-ue",
+"dossier": "declino-europeo-consiglio-ue"
+},
+{
+"date": "2026-10-16",
+"area": "Esteri, Europa e difesa",
+"title": "Elezioni in Israele e responsabilità del 7 ottobre",
+"summary": "A undici giorni dalle elezioni del 27 ottobre, la campagna elettorale in Israele è dominata dal dibattito sulle responsabilità dell'attacco del 7 ottobre 2023, con Benjamin Netanyahu e Gadi Eisenkot in una sfida serrata.",
+"id": "elezioni-in-israele-e-responsabilita-del-7-ottobre",
+"dossier": "elezioni-israele-7-ottobre"
+},
+{
+"date": "2026-10-16",
+"area": "Esteri, Europa e difesa",
+"title": "Consiglio Europeo: bilancio, Cina ed energia",
+"summary": "Il Consiglio Europeo ha visto i leader confrontarsi sul bilancio pluriennale 2028-2034, sulla necessità di un nuovo strumento per le merci cinesi e sulla mancanza di soluzioni immediate per il caro energia.",
+"id": "consiglio-europeo-bilancio-cina-ed-energia",
+"dossier": "consiglio-europeo-bruxelles"
+},
+{
+"date": "2026-10-16",
+"area": "Economia, lavoro e ambiente",
+"title": "Geopolitica ed Economia con Renato Brunetta",
+"summary": "Renato Brunetta (Presidente CNEL) ha analizzato i principali fatti di geopolitica ed economia nella sua rubrica \"Rivoluzione in corso\".",
+"id": "geopolitica-ed-economia-con-renato-brunetta",
+"dossier": "geopolitica-economia-brunetta"
+},
+{
+"date": "2026-10-16",
+"area": "Economia, lavoro e ambiente",
+"title": "Scegliere il futuro con Enrico Giovannini",
+"summary": "Enrico Giovannini (direttore scientifico ASviS) ha partecipato alla puntata di \"Scegliere il futuro\" dedicata allo sviluppo sostenibile.",
+"id": "scegliere-il-futuro-con-enrico-giovannini",
+"dossier": "sviluppo-sostenibile-giovannini"
+},
+{
+"date": "2026-10-16",
+"area": "Società, salute e cultura",
+"title": "Presentazione del volume \"Pio XII e la Shoah\"",
+"summary": "È stato presentato a Roma il volume di Pier Luigi Guiducci \"Pio XII e la Shoah. Quali “silenzi”?\", con interventi di Francesco Bonini ed Elena Marta.",
+"id": "presentazione-del-volume-pio-xii-e-la-shoah",
+"dossier": "pio-xii-shoah"
+},
+{
+"date": "2026-10-16",
+"area": "Società, salute e cultura",
+"title": "\"Anni rubati\": memorie di Settimia Spizzichino",
+"summary": "La puntata di \"A proposito di Shalom\" ha presentato il libro di memorie di Settimia Spizzichino, unica donna ebrea romana sopravvissuta alla deportazione del 16 ottobre 1943.",
+"id": "anni-rubati-memorie-di-settimia-spizzichino",
+"dossier": "anni-rubati-settimia-spizzichino"
+},
+{
+"date": "2026-10-16",
+"area": "Società, salute e cultura",
+"title": "Albania italianofona: legami culturali",
+"summary": "Il giornalista pugliese Alessandro Nardelli ha raccontato il significato del Premio Nikolin Gjoja, ricevuto per il suo impegno nel promuovere i legami culturali e umani tra Italia e Albania.",
+"id": "albania-italianofona-legami-culturali",
+"dossier": "albania-italianofona"
+},
+{
+"date": "2026-10-16",
+"area": "Società, salute e cultura",
+"title": "Celebrazione del centesimo anno di vita di Roberto Vacca",
+"summary": "L'Associazione Ingegneri laureati alla Sapienza Università di Roma ha organizzato un convegno per celebrare l'ingresso nel centesimo anno di vita del Professor Roberto Vacca, ingegnere, matematico, uomo di scienza e futurologo.",
+"id": "celebrazione-del-centesimo-anno-di-vita-di-roberto-vacca",
+"dossier": "roberto-vacca-centenario"
+},
+{
+"date": "2026-10-16",
+"area": "Società, salute e cultura",
+"title": "Stampa e regime con Alessandro Barbano",
+"summary": "Alessandro Barbano (giornalista e saggista) ha condotto la rubrica \"Stampa e regime\", offrendo una rassegna stampa.",
+"id": "stampa-e-regime-con-alessandro-barbano",
+"dossier": "rassegna-stampa"
+},
+{
+"date": "2026-10-16",
+"area": "Scienza, tecnologia e informazione",
+"title": "Presentazione del volume \"L’intelligenza artificiale nella giustizia e nella PA\"",
+"summary": "È stato presentato a Roma il volume \"L’intelligenza artificiale nella giustizia e nella PA\", con interventi di esperti e rappresentanti istituzionali.",
+"id": "presentazione-del-volume-lintelligenza-artificiale-nella-giu",
+"dossier": "ia-giustizia-pa"
+},
+{
+"date": "2026-10-16",
+"area": "Scienza, tecnologia e informazione",
+"title": "Intelligenza artificiale: dalla tecnica ai diritti",
+"summary": "Un convegno ha esplorato il rapporto tra intelligenza artificiale, diritto costituzionale e neurodiritti, con la partecipazione di accademici e giuristi internazionali.",
+"id": "intelligenza-artificiale-dalla-tecnica-ai-diritti",
+"dossier": "ia-diritti-costituzione"
 },
 {
 "date": "2026-10-15",
 "area": "Parlamento e governo",
-"title": "DDL 1640: Semplificazione trasferimento beni immobili tra pubbliche amministrazioni",
-"summary": "La 1ª Commissione Affari costituzionali del Senato ha svolto audizioni informali sul Disegno di Legge n. 1640, a prima firma del senatore Marco Silvestroni, che mira a semplificare le procedure di trasferimento di beni immobili tra pubbliche amministrazioni.",
-"id": "ddl-1640-semplificazione-trasferimento-beni-immobili-tra-pub",
-"dossier": "trasferimento-beni-immobili-pa"
+"title": "Decreto-legge sui prezzi petroliferi e infrastrutture energetiche",
+"summary": "Il Senato ha approvato in via definitiva il disegno di legge di conversione del decreto-legge 10 settembre 2026, n. 157, recante disposizioni urgenti in materia di prezzi petroliferi e infrastrutture e attività energetiche strategiche, dopo una discussione caratterizzata da critiche dell'opposizione",
+"id": "decreto-legge-sui-prezzi-petroliferi-e-infrastrutture-energe",
+"dossier": "decreto-prezzi-petroliferi"
+},
+{
+"date": "2026-10-15",
+"area": "Parlamento e governo",
+"title": "Semplificazione procedure trasferimento beni immobili tra PA",
+"summary": "La 1ª Commissione Affari Costituzionali del Senato ha svolto audizioni informali sul disegno di legge n. 1640, che mira a semplificare le procedure di trasferimento di beni immobili tra pubbliche amministrazioni, raccogliendo proposte e criticità da Sogesid, ANCI, Consiglio Nazionale del Notariato e",
+"id": "semplificazione-procedure-trasferimento-beni-immobili-tra-pa",
+"dossier": "semplificazione-trasferimenti-immobili-pa"
 },
 {
 "date": "2026-10-15",
 "area": "Giustizia e diritti",
-"title": "DDL 167: Disposizioni in materia di legittima difesa",
-"summary": "La 2ª Commissione Giustizia del Senato ha avviato audizioni sul disegno di legge 167 e connessi, che riguardano le disposizioni in materia di legittima difesa.",
-"id": "ddl-167-disposizioni-in-materia-di-legittima-difesa",
-"dossier": "legittima-difesa"
+"title": "Processo Santa Maria Capua Vetere",
+"summary": "Si è tenuta un'udienza del processo \"Mezzarano Salvatore ed altri\" presso l'Aula Bunker della Casa Circondariale di Santa Maria Capua Vetere, incentrato sulle presunte torture avvenute nell'istituto penitenziario il 6 aprile 2020.",
+"id": "processo-santa-maria-capua-vetere",
+"dossier": "processo-santa-maria-capua-vetere"
+},
+{
+"date": "2026-10-15",
+"area": "Giustizia e diritti",
+"title": "Processo Piero Amara ed altri (Loggia Ungheria)",
+"summary": "La Terza Sezione Penale del Tribunale di Milano ha ospitato un'udienza del processo \"Piero Amara ed altri\", incentrato sulla vicenda della presunta Loggia Ungheria.",
+"id": "processo-piero-amara-ed-altri-loggia-ungheria",
+"dossier": "processo-loggia-ungheria"
+},
+{
+"date": "2026-10-15",
+"area": "Esteri, Europa e difesa",
+"title": "Conferenza europea dei Presidenti di Parlamento",
+"summary": "A Roma si è svolta la Conferenza europea dei Presidenti di Parlamento, dove i Presidenti di Camera e Senato italiani, Lorenzo Fontana e Ignazio La Russa, e la Presidente dell'Assemblea parlamentare del Consiglio d'Europa Petra Bayr, hanno discusso di democrazie resilienti, intelligenza artificiale e",
+"id": "conferenza-europea-dei-presidenti-di-parlamento",
+"dossier": "conferenza-presidenti-parlamento-europa"
 },
 {
 "date": "2026-10-15",
 "area": "Economia, lavoro e ambiente",
-"title": "D.L. 167/2026: Misure urgenti per la circolazione dei veicoli diesel Euro 5",
-"summary": "Le Commissioni riunite Ambiente (VIII) e Trasporti (IX) della Camera dei Deputati hanno svolto audizioni nell'ambito dell'esame del disegno di legge di conversione del decreto 28 settembre 2026, n. 167, che introduce misure urgenti per la circolazione dei veicoli ad alimentazione diesel Euro 5.",
-"id": "d-l-167-2026-misure-urgenti-per-la-circolazione-dei-veicoli-",
-"dossier": "circolazione-veicoli-diesel-euro-5"
+"title": "Circolazione veicoli diesel Euro 5",
+"summary": "Le Commissioni riunite Ambiente e Trasporti della Camera hanno condotto audizioni sul disegno di legge di conversione del decreto 28 settembre 2026, n. 167, che introduce misure urgenti per la circolazione dei veicoli ad alimentazione diesel appartenenti alla categoria ambientale Euro 5.",
+"id": "circolazione-veicoli-diesel-euro-5",
+"dossier": "decreto-circolazione-euro-5-diesel"
+},
+{
+"date": "2026-10-15",
+"area": "Economia, lavoro e ambiente",
+"title": "Sostenibilità: le nuove parole chiave",
+"summary": "Adnkronos ha organizzato la quarta edizione del format Q&A dedicato allo sviluppo sostenibile, con interventi di ministri, presidenti di autorità e deputati, focalizzati su decarbonizzazione, economia circolare, territorio e il valore concreto della sostenibilità.",
+"id": "sostenibilita-le-nuove-parole-chiave",
+"dossier": "sostenibilita-nuove-parole-chiave"
+},
+{
+"date": "2026-10-15",
+"area": "Società, salute e cultura",
+"title": "La costruzione del nemico: lettura psicoanalitica e psicosociale",
+"summary": "L'Associazione Medica Ebraica ha organizzato a Milano un seminario interdisciplinare sulla costruzione del nemico, affrontando temi come il contagio dell'ostilità, il capro espiatorio, la diffusione dell'odio nel web e le forme contemporanee dell'antisemitismo.",
+"id": "la-costruzione-del-nemico-lettura-psicoanalitica-e-psicosoci",
+"dossier": "costruzione-nemico-antisemitismo"
 },
 {
 "date": "2026-10-14",
